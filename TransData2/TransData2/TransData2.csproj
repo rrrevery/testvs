@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>0485 - 486.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>..\..\..\BFVX\CRM-BS\引用\Oracle.ManagedDataAccess.dll</HintPath>
@@ -94,6 +97,9 @@
       <Project>{e7557a25-01ce-49a4-9edd-70ec82a8b767}</Project>
       <Name>CyPub</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="0485 - 486.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

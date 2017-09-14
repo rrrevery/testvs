@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lstJXC = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lstTran = new System.Windows.Forms.CheckedListBox();
@@ -37,7 +38,8 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.tbLog = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,24 +139,27 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "分钟";
             // 
-            // rtbLog
+            // tbLog
             // 
-            this.rtbLog.BackColor = System.Drawing.SystemColors.Window;
-            this.rtbLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtbLog.Location = new System.Drawing.Point(0, 149);
-            this.rtbLog.Name = "rtbLog";
-            this.rtbLog.ReadOnly = true;
-            this.rtbLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbLog.Size = new System.Drawing.Size(720, 384);
-            this.rtbLog.TabIndex = 10;
-            this.rtbLog.Text = "";
+            this.tbLog.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbLog.Font = new System.Drawing.Font("宋体", 10F);
+            this.tbLog.Location = new System.Drawing.Point(0, 143);
+            this.tbLog.Multiline = true;
+            this.tbLog.Name = "tbLog";
+            this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbLog.Size = new System.Drawing.Size(720, 390);
+            this.tbLog.TabIndex = 11;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 533);
-            this.Controls.Add(this.rtbLog);
+            this.Controls.Add(this.tbLog);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.numericUpDown1);
@@ -184,7 +189,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox rtbLog;
+        private System.Windows.Forms.TextBox tbLog;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

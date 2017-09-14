@@ -18,6 +18,9 @@ namespace TransData2
         public List<JXCDB> JXCList = new List<JXCDB>();
         public List<TransData> TransList = new List<TransData>();
         public string TblSuffix = "";//_CRM _TRAN
+        public bool UseTM = ConfigurationManager.AppSettings["USETM"] == "true";
+        public bool AutoTran = ConfigurationManager.AppSettings["AUTO"] == "true";
+        public int Interval = Convert.ToInt32(ConfigurationManager.AppSettings["TIME"]) * 60 * 1000;
 
         public FormMain()
         {
@@ -26,6 +29,8 @@ namespace TransData2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
+            timer1.Interval = Interval;
             //初始化业务库信息
             JXCConfig config = ConfigurationManager.GetSection("JXCConfig") as JXCConfig;
             for (int i = 0; i < config.JXC.Count; i++)
@@ -88,6 +93,8 @@ namespace TransData2
             {
                 lstTran.Items.Add(one.Name);
             }
+            if (AutoTran)
+                timer1.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,10 +104,13 @@ namespace TransData2
 
         private void DoTransData()
         {
-            foreach (JXCDB jxc in JXCList)
+            timer1.Enabled = false;
+            for (int i = 0; i < JXCList.Count; i++)
             {
-                DoTransDataJXC(jxc);
+                if (lstJXC.CheckedItems.Count == 0 || lstJXC.GetItemChecked(i))
+                    DoTransDataJXC(JXCList[i]);
             }
+            timer1.Enabled = true;
         }
         private void DoTransDataJXC(JXCDB jxcdb)
         {
@@ -118,19 +128,25 @@ namespace TransData2
             {
                 foreach (TransData one in TransList)
                 {
+                    if (lstTran.CheckedItems.Count > 0 && !lstTran.GetItemChecked(TransList.IndexOf(one)))
+                        continue;
                     AddLog("开始传输[" + jxcdb.JXCName + "]的[" + one.Name + "]数据……");
                     int rec = 0;
-                    if (one.CRMTbl != "")
-                        rec = SeqGenerator.GetSeq(one.CRMTbl);
                     int ct = 0;
+                    string tm = GetTM(queryjxc, one.Tbl);
+                    string tm_new = string.Empty;
                     queryjxc.SQL.Text = "select * from " + one.Tbl + TblSuffix + " where 1=1";
-                    if (ConfigurationManager.AppSettings["USETM"] == "true")
+                    if (UseTM && tm != "")
                     {
-                        queryjxc.SQL.Add("and TM>(select STAMP_OLD from CRMSTAMP where TBL_NAME=:TBL_NAME)");
-                        queryjxc.ParamByName("TBL_NAME").AsString = one.Tbl;
+                        //queryjxc.SQL.Add("and TM>(select STAMP_OLD from CRMSTAMP where TBL_NAME=:TBL_NAME)");
+                        //queryjxc.ParamByName("TBL_NAME").AsString = one.Tbl+TblSuffix;
+                        queryjxc.SQL.Add("and TM>" + tm);
                     }
                     queryjxc.SQL.Add("order by TM");
                     queryjxc.Open();
+                    if (!queryjxc.IsEmpty && one.CRMTbl != "")
+                        rec = SeqGenerator.GetSeq(one.CRMTbl);
+
                     while (!queryjxc.Eof)
                     {
                         switch (one.Tbl)
@@ -145,16 +161,17 @@ namespace TransData2
                             case "CXHDDEF": SaveCXHD(query, queryjxc, jxcdb.SHDM, rec + ct); break;
                         }
                         ct++;
+                        tm_new = GetTMStr(queryjxc, "TM");
                         queryjxc.Next();
                     }
                     //保存TM
-                    //
+                    if (UseTM && tm_new != "")
+                        SaveTM(queryjxc, one.Tbl, tm_new);
                     //批量改编号状态
-                    if (ct > 1)
+                    if (ct > 1 && one.CRMTbl != "")
                         SeqGenerator.GetSeq(one.CRMTbl, ct - 1);
                     tot += ct;
                     AddLog("完成传输[" + jxcdb.JXCName + "]的[" + one.Name + "]数据，共" + ct + "条。", 1);
-                    MessageBox.Show("a");
                 }
                 AddLog("完成传输[" + jxcdb.JXCName + "]的数据，共" + tot + "条。", 1);
             }
@@ -170,7 +187,63 @@ namespace TransData2
                 conn.Close();
             }
         }
+        private string GetTM(CyQuery queryjxc, string tblname)
+        {
+            string tm = string.Empty;
+            //取TM
+            if (UseTM)
+            {
+                queryjxc.SQL.Text = "select * from CRMSTAMP where TBL_NAME=:TBL_NAME";
+                queryjxc.ParamByName("TBL_NAME").AsString = tblname + TblSuffix;
+                queryjxc.Open();
+                tm = GetTMStr(queryjxc, "STAMP_OLD");
+                //if (!queryjxc.IsEmpty)
+                //{
+                //    if (queryjxc.DbSystemName == CyDbSystem.SybaseDbSystemName)
+                //    {
+                //        tm = "0x";
+                //        byte[] bytesTM = new byte[8];
+                //        queryjxc.FieldByName("STAMP_OLD").GetBytes(0, bytesTM, 0, 8);
+                //        for (int i = 0; i < 8; i++)
+                //            tm += bytesTM[i].ToString("x2");
+                //    }
+                //    else
+                //        tm = queryjxc.FieldByName("STAMP_OLD").AsInteger.ToString();
+                //}
+            }
+            return tm;
+        }
+        private string GetTMStr(CyQuery queryjxc, string fld)
+        {
+            string tm = string.Empty;
+            if (queryjxc.Active && !queryjxc.IsEmpty)
+            {
+                if (queryjxc.DbSystemName == CyDbSystem.SybaseDbSystemName)
+                {
+                    tm = "0x";
+                    byte[] bytesTM = new byte[8];
+                    queryjxc.FieldByName(fld).GetBytes(0, bytesTM, 0, 8);
+                    for (int i = 0; i < 8; i++)
+                        tm += bytesTM[i].ToString("x2");
+                }
+                else
+                    tm = queryjxc.FieldByName(fld).AsInteger.ToString();
 
+            }
+            return tm;
+        }
+        private void SaveTM(CyQuery queryjxc, string tblname, string tm)
+        {
+            queryjxc.Close();
+            queryjxc.SQL.Text = "update CRMSTAMP set STAMP_OLD=" + tm + " where TBL_NAME=:TBL_NAME";
+            queryjxc.ParamByName("TBL_NAME").AsString = tblname + TblSuffix;
+            if (queryjxc.ExecSQL() == 0)
+            {
+                queryjxc.SQL.Text = "insert into CRMSTAMP(TBL_NAME,STAMP_OLD) values(:TBL_NAME," + tm + ")";
+                queryjxc.ParamByName("TBL_NAME").AsString = tblname + TblSuffix;
+                queryjxc.ExecSQL();
+            }
+        }
         private void SaveBM(CyQuery query, CyQuery queryjxc, string SHDM, int rec)
         {
             query.SQL.Text = "update SHBM set BMMC=:BMMC,BMQC=:BMQC,DEPT_TYPE=:DEPT_TYPE where SHDM=:SHDM and BMDM=:BMDM";
@@ -206,23 +279,20 @@ namespace TransData2
             query.SQL.Text = "update SHHT set GHSDM=:GHSDM,GSHMC=:GSHMC,SHBMID=:SHBMID,BJ_YX=:BJ_YX";
             query.SQL.Add("where SHDM=:SHDM and HTH=:HTH");
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
+            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
             query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
             query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
             query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
-            query.ParamByName("BMDM").AsString = queryjxc.FieldByName("DEPTID").AsString;
             query.ParamByName("SHBMID").AsInteger = bm;
             if (query.ExecSQL() == 0)
             {
                 query.SQL.Text = "insert into SHHT(SHHTID,SHDM,HTH,GHSDM,GSHMC,SHBMID,BJ_YX) values(:SHHTID,:SHDM,:HTH,:GHSDM,:GSHMC,:SHBMID,:BJ_YX)";
-                query.SQL.Add("from SHBM where BMDM=:BMDM");
                 query.ParamByName("SHDM").AsString = SHDM;
                 query.ParamByName("SHHTID").AsInteger = rec;
-                query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
+                query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
                 query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
                 query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
                 query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
-                query.ParamByName("BMDM").AsString = queryjxc.FieldByName("DEPTID").AsString;
                 query.ParamByName("SHBMID").AsInteger = bm;
                 query.ExecSQL();
             }
@@ -252,18 +322,18 @@ namespace TransData2
         {
             query.SQL.Text = "update SHSPSB set SBDM=:SBDM,SBMC=:SBMC,PYM=:PYM,SYZ=:SYZ,MJBJ=:MJBJ where SHDM=:SHDM and SBDM=:SBDM";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SPFL").AsString;
-            query.ParamByName("SBMC").AsString = queryjxc.FieldByName("SBID").AsInteger.ToString();
+            query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SBID").AsInteger.ToString();
+            query.ParamByName("SBMC").AsString = queryjxc.FieldByName("NAME").AsString;
             query.ParamByName("PYM").AsString = queryjxc.FieldByName("PYM").AsString;
             query.ParamByName("SYZ").AsString = queryjxc.FieldByName("SYZ").AsString;
             query.ParamByName("MJBJ").AsInteger = 1;
             if (query.ExecSQL() == 0)
             {
-                query.SQL.Text = "insert into SHSPSB(SHSBID,SHDM,SBDM,SBMC,PYM,SYZ,MJBJ) values(:SHSBID,:SHDM,:SBDMNEW,:SBMC,:PYM,:SYZ,:MJBJ) ";
+                query.SQL.Text = "insert into SHSPSB(SHSBID,SHDM,SBDM,SBMC,PYM,SYZ,MJBJ) values(:SHSBID,:SHDM,:SBDM,:SBMC,:PYM,:SYZ,:MJBJ) ";
                 query.ParamByName("SHDM").AsString = SHDM;
                 query.ParamByName("SHSBID").AsInteger = rec;
-                query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SPFL").AsString;
-                query.ParamByName("SBMC").AsString = queryjxc.FieldByName("SBID").AsInteger.ToString();
+                query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SBID").AsInteger.ToString();
+                query.ParamByName("SBMC").AsString = queryjxc.FieldByName("NAME").AsString;
                 query.ParamByName("PYM").AsString = queryjxc.FieldByName("PYM").AsString;
                 query.ParamByName("SYZ").AsString = queryjxc.FieldByName("SYZ").AsString;
                 query.ParamByName("MJBJ").AsInteger = 1;
@@ -275,19 +345,19 @@ namespace TransData2
             query.Close();
             query.SQL.Text = "select SHHTID from SHHT where SHDM=:SHDM and HTH=:HTH";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
+            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
             query.Open();
             if (query.IsEmpty)
-                throw new Exception("合同号(" + queryjxc.FieldByName("HTH").AsString + ")不存在");
+                throw new Exception("合同号(" + queryjxc.FieldByName("HTH").AsInteger.ToString() + ")不存在");
             int ht = query.Fields[0].AsInteger;
 
             query.Close();
             query.SQL.Text = "select SHSBID from SHSPSB where SHDM=:SHDM and SBDM=:SBDM";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SB").AsString;
+            query.ParamByName("SBDM").AsString = queryjxc.FieldByName("SB").AsInteger.ToString();
             query.Open();
             if (query.IsEmpty)
-                throw new Exception("商标(" + queryjxc.FieldByName("SB").AsString + ")不存在");
+                throw new Exception("商标(" + queryjxc.FieldByName("SB").AsInteger.ToString() + ")不存在");
             int sb = query.Fields[0].AsInteger;
 
             query.Close();
@@ -339,10 +409,10 @@ namespace TransData2
             query.Close();
             query.SQL.Text = "select SHBMID from SHBM where SHDM=:SHDM and BMDM=:BMDM";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("BMDM").AsString = queryjxc.FieldByName("DEPTID").AsString;
+            query.ParamByName("BMDM").AsString = queryjxc.FieldByName("BMDM").AsString;
             query.Open();
             if (query.IsEmpty)
-                throw new Exception("部门代码(" + queryjxc.FieldByName("DEPTID").AsString + ")不存在");
+                throw new Exception("部门代码(" + queryjxc.FieldByName("BMDM").AsString + ")不存在");
             int bm = query.Fields[0].AsInteger;
 
             query.Close();
@@ -355,7 +425,8 @@ namespace TransData2
             int sp = query.Fields[0].AsInteger;
             query.Close();
 
-            query.SQL.Text = "update BMSP set SHBMID=:SHBMID where SHBMID=:SHBMID and SHSPID=:SHSPID";
+            query.SQL.Text = "update BMSP set SHBMID=:SHBMID1 where SHBMID=:SHBMID and SHSPID=:SHSPID";
+            query.ParamByName("SHBMID1").AsInteger = bm;
             query.ParamByName("SHBMID").AsInteger = bm;
             query.ParamByName("SHSPID").AsInteger = sp;
             if (query.ExecSQL() == 0)
@@ -368,9 +439,9 @@ namespace TransData2
         }
         private void SaveSKFS(CyQuery query, CyQuery queryjxc, string SHDM, int rec)
         {
-            query.SQL.Text = "update SHZFFS set ZFFSDM = :ZFFSDMNEW,ZFFSMC = :ZFFSMC,MJBJ = :MJBJ,YHQID = :YHQID,BJ_MBJZ = :BJ_MBJZ where SHDM = :SHDM and ZFFSDM = :ZFFSDM ";
+            query.SQL.Text = "update SHZFFS set ZFFSMC=:ZFFSMC,MJBJ=:MJBJ,YHQID=:YHQID,BJ_MBJZ=:BJ_MBJZ where SHDM=:SHDM and ZFFSDM=:ZFFSDM";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("ZFFSDM").AsString = queryjxc.FieldByName("CODE").AsString;
+            query.ParamByName("ZFFSDM").AsString = queryjxc.FieldByName("CODE").AsInteger.ToString();
             query.ParamByName("ZFFSMC").AsString = queryjxc.FieldByName("NAME").AsString;
             query.ParamByName("MJBJ").AsInteger = 1;
             if (!queryjxc.FieldByName("YHQID").IsNull)
@@ -386,7 +457,7 @@ namespace TransData2
                 query.SQL.Text = "insert into SHZFFS(SHZFFSID,SHDM,ZFFSDM,ZFFSMC,MJBJ,YHQID,BJ_MBJZ) values(:SHZFFSID,:SHDM,:ZFFSDM,:ZFFSMC,:MJBJ,:YHQID,:BJ_MBJZ)";
                 query.ParamByName("SHDM").AsString = SHDM;
                 query.ParamByName("SHZFFSID").AsInteger = rec;
-                query.ParamByName("ZFFSDM").AsString = queryjxc.FieldByName("CODE").AsString;
+                query.ParamByName("ZFFSDM").AsString = queryjxc.FieldByName("CODE").AsInteger.ToString();
                 query.ParamByName("ZFFSMC").AsString = queryjxc.FieldByName("NAME").AsString;
                 query.ParamByName("MJBJ").AsInteger = 1;
                 if (!queryjxc.FieldByName("YHQID").IsNull)
@@ -438,24 +509,29 @@ namespace TransData2
         private void AddLog(string s, int cl = 0)
         {
             s = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ") + s + "\r\n";
-            //tbLog.Text += s;
+            tbLog.Text += s;
 
-            //cl 0提示1重要2错误
-            int b = rtbLog.TextLength;
-            rtbLog.Text += s;
-            rtbLog.Select(b, s.Length - 2);
-            switch (cl)
-            {
-                case 0: rtbLog.SelectionColor = Color.Black; break;
-                case 1: rtbLog.SelectionColor = Color.Blue; break;
-                case 2: rtbLog.SelectionColor = Color.Red; break;
-            }
-            rtbLog.Select(0, 0);
+            //cl 0提示1重要2错误，尼玛做个颜色就这么难，算了就都黑的吧，谁研究出来再说
+            //int b = rtbLog.TextLength;
+            //rtbLog.Text += s;
+            //rtbLog.Select(b, s.Length - 2);
+            //switch (cl)
+            //{
+            //    case 0: rtbLog.SelectionColor = Color.Black; break;
+            //    case 1: rtbLog.SelectionColor = Color.Blue; break;
+            //    case 2: rtbLog.SelectionColor = Color.Red; break;
+            //}
+            //rtbLog.Select(0, 0);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ;
         }
     }
 }
