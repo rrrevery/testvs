@@ -93,13 +93,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BFVX\CRM-BS\CyPub_BF\CyPub\CyPub.csproj">
+    <Content Include="0485 - 486.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BFVX\CRM-BS\CyPub\CyPub_BF\CyPub.csproj">
       <Project>{e7557a25-01ce-49a4-9edd-70ec82a8b767}</Project>
       <Name>CyPub</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="0485 - 486.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

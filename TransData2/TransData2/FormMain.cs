@@ -29,8 +29,10 @@ namespace TransData2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            edTime.Value = Interval / 60 / 1000;
+            cbAuto.Checked = AutoTran;
             timer1.Enabled = false;
-            timer1.Interval = Interval;
+            timer1.Interval = (int)edTime.Value * 60 * 1000;
             //初始化业务库信息
             JXCConfig config = ConfigurationManager.GetSection("JXCConfig") as JXCConfig;
             for (int i = 0; i < config.JXC.Count; i++)
@@ -93,8 +95,9 @@ namespace TransData2
             {
                 lstTran.Items.Add(one.Name);
             }
-            if (AutoTran)
-                timer1.Enabled = true;
+            //if (cbAuto.Checked)
+            //    DoTransData();
+            timer1.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -279,7 +282,7 @@ namespace TransData2
             query.SQL.Text = "update SHHT set GHSDM=:GHSDM,GSHMC=:GSHMC,SHBMID=:SHBMID,BJ_YX=:BJ_YX";
             query.SQL.Add("where SHDM=:SHDM and HTH=:HTH");
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
+            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
             query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
             query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
             query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
@@ -289,7 +292,7 @@ namespace TransData2
                 query.SQL.Text = "insert into SHHT(SHHTID,SHDM,HTH,GHSDM,GSHMC,SHBMID,BJ_YX) values(:SHHTID,:SHDM,:HTH,:GHSDM,:GSHMC,:SHBMID,:BJ_YX)";
                 query.ParamByName("SHDM").AsString = SHDM;
                 query.ParamByName("SHHTID").AsInteger = rec;
-                query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
+                query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
                 query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
                 query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
                 query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
@@ -345,10 +348,10 @@ namespace TransData2
             query.Close();
             query.SQL.Text = "select SHHTID from SHHT where SHDM=:SHDM and HTH=:HTH";
             query.ParamByName("SHDM").AsString = SHDM;
-            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsInteger.ToString();
+            query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
             query.Open();
             if (query.IsEmpty)
-                throw new Exception("合同号(" + queryjxc.FieldByName("HTH").AsInteger.ToString() + ")不存在");
+                throw new Exception("合同号(" + queryjxc.FieldByName("HTH").AsString + ")不存在");
             int ht = query.Fields[0].AsInteger;
 
             query.Close();
@@ -369,6 +372,7 @@ namespace TransData2
                 throw new Exception("商品分类(" + queryjxc.FieldByName("SPFL").AsString + ")不存在");
             int fl = query.Fields[0].AsInteger;
             query.Close();
+            //AddLog(ht + "," + sb + "," + fl);
 
             query.SQL.Text = "update SHSPXX set SPDM=:SPDM,SPMC=:SPMC,SPJC=:SPJC,PYM=:PYM,UNIT=:UNIT,SPHS=:SPHS,SPGG=:SPGG,HH=:HH,";
             query.SQL.Add("SHSPFLID=:SHSPFLID,SHSBID=:SHSBID,SHHTID=:SHHTID where SHDM=:SHDM and SPDM=:SPDM");
@@ -531,7 +535,20 @@ namespace TransData2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ;
+            if (cbAuto.Checked)
+                DoTransData();
+        }
+
+        private void edTime_ValueChanged(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            timer1.Interval = (int)edTime.Value * 60 * 1000;
+            timer1.Enabled = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tbLog.Clear();
         }
     }
 }

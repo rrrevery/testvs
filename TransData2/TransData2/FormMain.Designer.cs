@@ -35,16 +35,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.edTime = new System.Windows.Forms.NumericUpDown();
+            this.cbAuto = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbLog = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.button3 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.edTime)).BeginInit();
             this.SuspendLayout();
             // 
             // lstJXC
             // 
+            this.lstJXC.CheckOnClick = true;
             this.lstJXC.FormattingEnabled = true;
             this.lstJXC.Location = new System.Drawing.Point(12, 42);
             this.lstJXC.Name = "lstJXC";
@@ -62,6 +64,7 @@
             // 
             // lstTran
             // 
+            this.lstTran.CheckOnClick = true;
             this.lstTran.FormattingEnabled = true;
             this.lstTran.Location = new System.Drawing.Point(153, 42);
             this.lstTran.MultiColumn = true;
@@ -98,37 +101,38 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // numericUpDown1
+            // edTime
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(589, 39);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.edTime.Location = new System.Drawing.Point(589, 39);
+            this.edTime.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.edTime.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(40, 21);
-            this.numericUpDown1.TabIndex = 7;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.edTime.Name = "edTime";
+            this.edTime.Size = new System.Drawing.Size(40, 21);
+            this.edTime.TabIndex = 7;
+            this.edTime.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.edTime.ValueChanged += new System.EventHandler(this.edTime_ValueChanged);
             // 
-            // checkBox1
+            // cbAuto
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(496, 42);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "自动传输";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbAuto.AutoSize = true;
+            this.cbAuto.Location = new System.Drawing.Point(496, 42);
+            this.cbAuto.Name = "cbAuto";
+            this.cbAuto.Size = new System.Drawing.Size(72, 16);
+            this.cbAuto.TabIndex = 8;
+            this.cbAuto.Text = "自动传输";
+            this.cbAuto.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -152,17 +156,29 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 60000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(493, 74);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "清空日志";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 533);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.tbLog);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.cbAuto);
+            this.Controls.Add(this.edTime);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -172,7 +188,7 @@
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,11 +202,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown edTime;
+        private System.Windows.Forms.CheckBox cbAuto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbLog;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
