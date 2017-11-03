@@ -278,14 +278,16 @@ namespace TransData2
                 throw new Exception("部门代码(" + queryjxc.FieldByName("DEPTID").AsString + ")不存在");
             int bm = query.Fields[0].AsInteger;
             query.Close();
-
+            Log4Net.I("aaaa");
             query.SQL.Text = "update SHHT set GHSDM=:GHSDM,GSHMC=:GSHMC,SHBMID=:SHBMID,BJ_YX=:BJ_YX";
             query.SQL.Add("where SHDM=:SHDM and HTH=:HTH");
             query.ParamByName("SHDM").AsString = SHDM;
             query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
+            Log4Net.I("aaab");
             query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
             query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
             query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
+            Log4Net.I("aaac");
             query.ParamByName("SHBMID").AsInteger = bm;
             if (query.ExecSQL() == 0)
             {
@@ -293,9 +295,11 @@ namespace TransData2
                 query.ParamByName("SHDM").AsString = SHDM;
                 query.ParamByName("SHHTID").AsInteger = rec;
                 query.ParamByName("HTH").AsString = queryjxc.FieldByName("HTH").AsString;
+                Log4Net.I("aaab");
                 query.ParamByName("GSHMC").AsString = queryjxc.FieldByName("NAME").AsString;
                 query.ParamByName("GHSDM").AsString = queryjxc.FieldByName("GHDWDM").AsString;
                 query.ParamByName("BJ_YX").AsInteger = queryjxc.FieldByName("BJ_YX").AsInteger;
+                Log4Net.I("aaac");
                 query.ParamByName("SHBMID").AsInteger = bm;
                 query.ExecSQL();
             }
