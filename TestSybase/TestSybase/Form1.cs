@@ -409,9 +409,31 @@ namespace TestSybase
                 CyQuery query = new CyQuery(conn);
                 query.SQL.Add("select * from HYKDEF where HYKTYPE=101");
                 query.Open();
-                tbMsg.Text += "整数类型按字符串：" + query.FieldByName("HYKTYPE").AsString + "\r\n";
-                tbMsg.Text += "浮点类型按字符串：" + query.FieldByName("KFJE").AsString + "\r\n";
-                tbMsg.Text += "字符串类型按数字" + query.FieldByName("HYKNAME").AsInteger.ToString() + "\r\n";
+                Log("整数类型按字符串：" + query.FieldByName("HYKTYPE").AsString);
+                Log("浮点类型按字符串：" + query.FieldByName("KFJE").AsString);
+                Log("字符串类型按数字" + query.FieldByName("HYKNAME").AsInteger.ToString());
+                query.Close();
+            }
+            catch (Exception ex)
+            {
+                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            string dbname = "ORA_NEW";
+            DbConnection conn = CyDbConnManager.GetActiveDbConnection(dbname);
+            try
+            {
+                CyQuery query = new CyQuery(conn);
+                query.SQL.Add("select * from HYK_JFFHLPJHD where JLBH=14");
+                query.Open();
+                Log("Float类型：" + query.FieldByName("ZSL").AsFloat.ToString());
                 query.Close();
             }
             catch (Exception ex)

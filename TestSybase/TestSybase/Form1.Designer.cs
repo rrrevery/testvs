@@ -60,9 +60,10 @@
             this.button12 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button16 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.tbMsg = new System.Windows.Forms.TextBox();
-            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -397,6 +398,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.button17);
             this.tabPage5.Controls.Add(this.button16);
             this.tabPage5.Controls.Add(this.button14);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -406,6 +408,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "重复参数";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(135, 26);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 1;
+            this.button16.Text = "类型错误测试";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button14
             // 
@@ -427,15 +439,15 @@
             this.tbMsg.Size = new System.Drawing.Size(668, 84);
             this.tbMsg.TabIndex = 24;
             // 
-            // button16
+            // button17
             // 
-            this.button16.Location = new System.Drawing.Point(135, 26);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(75, 23);
-            this.button16.TabIndex = 1;
-            this.button16.Text = "类型错误测试";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
+            this.button17.Location = new System.Drawing.Point(225, 26);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(99, 23);
+            this.button17.TabIndex = 2;
+            this.button17.Text = "Float类型测试";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // Form1
             // 
@@ -497,6 +509,7 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }
 
