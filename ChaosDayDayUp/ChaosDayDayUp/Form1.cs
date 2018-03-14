@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ChaosDayDayUp
 {
     public partial class Form1 : Form
     {
-        public DateTime dRQ;
+        public PersonInfo User = new PersonInfo();
+        public string[] WeekDay = new string[] { "日", "一", "二", "三", "四", "五", "六" };
         public Form1()
         {
             InitializeComponent();
@@ -20,95 +22,50 @@ namespace ChaosDayDayUp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dRQ = new DateTime(2017, 9, 1);
-            PersonInfo.HP = 100;
-            PersonInfo.MaxHP = 100;
-            PersonInfo.MP = 100;
-            PersonInfo.MaxMP = 100;
-            PersonInfo.Food = 100;
-            PersonInfo.MaxFood = 100;
+            User.dRQ = new DateTime(2017, 9, 1);
+            User.Days = 0;
+            User.HP = 100;
+            User.MaxHP = 100;
+            User.MP = 100;
+            User.MaxMP = 100;
+            User.Food = 100;
+            User.MaxFood = 100;
+            User.MyWork = new Work();
+            User.MyWork.WorkHP = 6;
+            User.MyWork.WorkMP = 1;
+            User.MyWork.WorkMoney = 100;
             //Stat.HP = 100;
             //Stat.HP = 100;
             //Stat.HP = 100;
             timer1.Enabled = true;
         }
-        private void ShowInfo()
+        public void ShowInfo()
         {
-            pbHP.Value= PersonInfo.HP;
-            pbHP.Value = PersonInfo.HP;
-            pbHP.Value = PersonInfo.HP;
+            pbHP.Value = User.HP;
+            pbHP.Maximum = User.MaxHP;
+            pbMP.Value = User.MP;
+            pbMP.Maximum = User.MaxMP;
+            pbFood.Value = User.Food;
+            pbFood.Maximum = User.MaxFood;
+            lbMoney.Text = "$" + User.Money.ToString();
+            Text = "DayDayUp!  " + User.dRQ.ToShortDateString() + "[" + WeekDay[(int)User.dRQ.DayOfWeek] + "]";
         }
-        private void Day()
+        public void Day()
         {
-            Text = "DayDayUp!  " + dRQ.ToShortDateString();
-            Show();
-            Morning();
-            Afternoon();
-            Evening();
-            dRQ = dRQ.AddDays(1);
+            ShowInfo();
+            User.Morning();
+            Thread.Sleep(100);
+            ShowInfo();
+            User.Afternoon();
+            Thread.Sleep(100);
+            ShowInfo();
+            User.Evening();
+            Thread.Sleep(100);
+            ShowInfo();
+            User.dRQ = User.dRQ.AddDays(1);
+            User.Days++;
         }
-        //日程
-        private void Morning()
-        {
-            Breakfast();
-            Work(4);
-        }
-        private void Afternoon()
-        {
-            Lunch();
-            NoonBreak(1);
-            Work(2);
-            Tea();
-            Work(2);
-        }
-        private void Evening()
-        {
-            Supper();
-            Play(4);
-            NighSleep(1);
-        }
-        //吃饭
-        private void Breakfast()
-        {
-            PersonInfo.Eat(10, 5, 1);
-        }
-        private void Lunch()
-        {
-            PersonInfo.Eat(80, 5, 1);
-        }
-        private void Tea()
-        {
-            PersonInfo.Eat(10, 10, 0);
-        }
-        private void Supper()
-        {
-            PersonInfo.Eat(60, 5, 1);
-        }
-        private void NightSnack()
-        {
-            PersonInfo.Eat(10, 10, -1);
-        }
-        //休息
-        private void NoonBreak(int hour)
-        {
-            PersonInfo.Sleep(hour * 8, Math.Min(hour * 2, 5), 1);
-        }
-        private void NighSleep(int hour)
-        {
-            PersonInfo.Sleep(hour * 10, Math.Min(hour * 2, 10), 2);
-        }
-        private void Work(int hour)
-        {
 
-        }
-        private void Play(int hour)
-        {
-
-        }
-        private void Study(int hour)
-        {
-
-        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             Day();

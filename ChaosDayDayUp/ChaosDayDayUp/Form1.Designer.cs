@@ -39,6 +39,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbMoney = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pbHP
@@ -124,11 +126,29 @@
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lbMoney
+            // 
+            this.lbMoney.AutoSize = true;
+            this.lbMoney.Location = new System.Drawing.Point(197, 13);
+            this.lbMoney.Name = "lbMoney";
+            this.lbMoney.Size = new System.Drawing.Size(0, 12);
+            this.lbMoney.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(197, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 12);
+            this.label7.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 480);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lbMoney);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -161,6 +181,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbMoney;
+        private System.Windows.Forms.Label label7;
     }
 }
 
