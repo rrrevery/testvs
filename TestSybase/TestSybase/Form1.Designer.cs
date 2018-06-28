@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button15 = new System.Windows.Forms.Button();
@@ -60,16 +61,22 @@
             this.button12 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.tbMsg = new System.Windows.Forms.TextBox();
-            this.button17 = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tbSD_NUM = new System.Windows.Forms.TextBox();
+            this.tbSD_HEX = new System.Windows.Forms.TextBox();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -79,6 +86,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -409,6 +417,16 @@
             this.tabPage5.Text = "重复参数";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(225, 26);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(99, 23);
+            this.button17.TabIndex = 2;
+            this.button17.Text = "Float类型测试";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
             // button16
             // 
             this.button16.Location = new System.Drawing.Point(135, 26);
@@ -439,15 +457,54 @@
             this.tbMsg.Size = new System.Drawing.Size(668, 84);
             this.tbMsg.TabIndex = 24;
             // 
-            // button17
+            // tabPage6
             // 
-            this.button17.Location = new System.Drawing.Point(225, 26);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(99, 23);
-            this.button17.TabIndex = 2;
-            this.button17.Text = "Float类型测试";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.tabPage6.Controls.Add(this.button19);
+            this.tabPage6.Controls.Add(this.button18);
+            this.tabPage6.Controls.Add(this.tbSD_HEX);
+            this.tabPage6.Controls.Add(this.tbSD_NUM);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(660, 304);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "时段测试";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tbSD_NUM
+            // 
+            this.tbSD_NUM.Location = new System.Drawing.Point(3, 6);
+            this.tbSD_NUM.Multiline = true;
+            this.tbSD_NUM.Name = "tbSD_NUM";
+            this.tbSD_NUM.Size = new System.Drawing.Size(300, 107);
+            this.tbSD_NUM.TabIndex = 0;
+            this.tbSD_NUM.Text = resources.GetString("tbSD_NUM.Text");
+            // 
+            // tbSD_HEX
+            // 
+            this.tbSD_HEX.Location = new System.Drawing.Point(3, 197);
+            this.tbSD_HEX.Name = "tbSD_HEX";
+            this.tbSD_HEX.Size = new System.Drawing.Size(604, 21);
+            this.tbSD_HEX.TabIndex = 1;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(41, 145);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 2;
+            this.button18.Text = "↓";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(187, 145);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 3;
+            this.button19.Text = "↑";
+            this.button19.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -467,6 +524,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -510,6 +569,11 @@
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TextBox tbSD_HEX;
+        private System.Windows.Forms.TextBox tbSD_NUM;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button18;
     }
 }
 

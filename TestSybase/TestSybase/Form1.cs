@@ -445,5 +445,11 @@ namespace TestSybase
                 conn.Close();
             }
         }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            byte[] bytes = FormatUtils.StrToPeriodBytes(tbSD_NUM.Text.TrimEnd(';'));
+            tbSD_HEX.Text = BitConverter.ToString(bytes, 0).Replace("-", "");
+        }
     }
 }
