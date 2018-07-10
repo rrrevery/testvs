@@ -1,0 +1,6 @@
+create or replace view HYXX as
+select SEQNO HYID,TYPE HYKTYPE,CARDNO HYK_NO,NAME HY_NAME,CARDNO CDNR,ENABLEDATE JKRQ,'2099-12-31' YXQ,null ZHXFRQ,0 BJ_PSW,null PASSWORD,
+ENABLEDATE DJSJ,1 DJR,'老系统' DJRMC,1 STATUS,1 MDID,1 FXDW,SEQNO GKID from vip_info_sy A where storeno in ('HZ11','2003','HZ07');
+create or replace view GKDA as
+select SEQNO GKID,case SEX when 'F' then 1 when 'M' then 0 else null end SEX,BIRTHDAY CSRQ,ADDRESS TXDZ,MAIL E_MAIL,TELEPHONE SJHM,WEDDINGDATE JHJNR,
+ENABLEDATE DJSJ,1 DJR,'老系统' DJRMC,LASTMODIFY GXSJ,1 GXR,'老系统' GXRMC from vip_info_sy A where storeno in ('HZ11','2003','HZ07');

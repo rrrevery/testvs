@@ -1,0 +1,72 @@
+select min(SEQNO) from vip_info_sy@CRMOLD;
+
+create or replace view HYXX1 as
+select SEQNO HYID,min(TYPE) HYKTYPE,SEQNO HYK_NO,max(NAME) HY_NAME,SEQNO CDNR,max(ENABLEDATE) JKRQ,'2099-12-31' YXQ,null ZHXFRQ,0 BJ_PSW,null PASSWORD,
+max(ENABLEDATE) DJSJ,1 DJR,'老系统' DJRMC,1 STATUS,1 MDID,1 FXDW,SEQNO GKID from vip_info_sy@CRMOLD A where storeno in ('HZ11','2003','HZ07') and TELEPHONE is not null
+group by SEQNO order by SEQNO desc;
+
+create or replace view GKDA as
+select SEQNO GKID,case SEX when 'F' then 1 when 'M' then 0 else null end SEX,BIRTHDAY CSRQ,ADDRESS TXDZ,MAIL E_MAIL,TELEPHONE SJHM,WEDDINGDATE JHJNR,
+ENABLEDATE DJSJ,1 DJR,'老系统' DJRMC,LASTMODIFY GXSJ,1 GXR,'老系统' GXRMC from vip_info_sy@CRMOLD A where storeno in ('HZ11','2003','HZ07') and NAME<>'待定';
+
+create or replace view HYXX2 as
+select 100000000+rownum HYID,A.* from (select min(TYPE) HYKTYPE,CARDNO HYK_NO,max(NAME) HY_NAME,CARDNO CDNR,max(ENABLEDATE) JKRQ,'2099-12-31' YXQ,null ZHXFRQ,0 BJ_PSW,null PASSWORD,
+max(ENABLEDATE) DJSJ,1 DJR,'老系统2' DJRMC,1 STATUS,1 MDID,1 FXDW,max(SEQNO) GKID from vip_info_sy@CRMOLD A where storeno in ('HZ11','2003','HZ07') and TELEPHONE is null
+group by CARDNO) A;
+
+create or replace view JFZH1 as
+select B.SEQNO,sum(JD) JF from vip_jd_info@CRMOLD B,vip_info_sy@CRMOLD A where B.SEQNO=A.SEQNO and B.CARDNO=A.CARDNO and A.storeno in ('HZ11','2003','HZ07') and TELEPHONE is not null
+group by B.SEQNO;
+
+create or replace view JFZH2 as
+select A.HYID,B.SEQNO,B.CARDNO,sum(JD) JF from vip_jd_info@CRMOLD B,HYXX2 A where B.SEQNO=A.GKID and B.CARDNO=A.HYK_NO
+group by A.HYID,B.SEQNO,B.CARDNO;
+
+select * from HYK_HYXX;
+select * from HYK_JFZH;
+select * from HYK_MDJF;
+select * from HYK_JFBDJLMX;
+select * from HYK_JFBDJLMX_MD;
+select * from JFZH2;
+select * from HYK_JFZH F where not exists(select * from HYK_HYXX H where H.HYID=F.HYID);
+select * from HYK_HYXX H where not exists(select * from HYK_JFZH F where H.HYID=F.HYID);
+select * from MDDY;
+
+insert into HYK_HYXX(HYID,HYKTYPE,HYK_NO,HY_NAME,CDNR,JKRQ,YXQ,ZHXFRQ,BJ_PSW,PASSWORD,DJSJ,DJR,DJRMC,STATUS,MDID,FXDW,GKID)
+select HYID,HYKTYPE,HYK_NO,HY_NAME,CDNR,JKRQ,YXQ,ZHXFRQ,BJ_PSW,PASSWORD,DJSJ,DJR,DJRMC,STATUS,MDID,FXDW,GKID from HYXX1;
+insert into HYK_HYXX(HYID,HYKTYPE,HYK_NO,HY_NAME,CDNR,JKRQ,YXQ,ZHXFRQ,BJ_PSW,PASSWORD,DJSJ,DJR,DJRMC,STATUS,MDID,FXDW,GKID)
+select HYID,HYKTYPE,HYK_NO,HY_NAME,CDNR,JKRQ,YXQ,ZHXFRQ,BJ_PSW,PASSWORD,DJSJ,DJR,DJRMC,STATUS,MDID,FXDW,GKID from HYXX2;
+
+insert into HYK_JFZH(HYID,WCLJF,ZKJE)
+select SEQNO,JF,0 from JFZH1;
+insert into HYK_JFZH(HYID,WCLJF,ZKJE)
+select HYID,JF,0 from JFZH2;
+insert into HYK_MDJF(HYID,MDID,WCLJF,XFJE)
+select HYID,1,WCLJF,XFJE from HYK_JFZH where HYID>10000;
+
+insert into HYK_JFBDJLMX(JYBH,CZMD,JLBH,HYID,CLSJ,CLLX,ZY,WCLJFBD,WCLJF)
+select rownum+10000,1,1,HYID,sysdate,32,'老系统初始积分',WCLJF,WCLJF from HYK_JFZH where HYID>10000;
+insert into HYK_JFBDJLMX_MD(JYBH,MDID,WCLJFBD,WCLJF)
+select JYBH,CZMD,WCLJFBD,WCLJF from HYK_JFBDJLMX where ZY='老系统初始积分';
+
+insert into HYK_GKDA(GKID,SEX,CSRQ,TXDZ,E_MAIL,SJHM,JHJNR,DJSJ,DJR,DJRMC,GXSJ,GXR,GXRMC)
+select GKID,SEX,max(CSRQ),TXDZ,E_MAIL,max(SJHM),JHJNR,min(DJSJ),DJR,DJRMC,max(GXSJ),GXR,GXRMC from GKDA where SJHM is not null
+group by GKID,SEX,TXDZ,E_MAIL,JHJNR,DJR,DJRMC,GXR,GXRMC
+-- or GKID not in(select GKID from GKDA group by GKID having count(*)>1));
+
+select * from HYK_HYXX;
+select DJRMC,count(*),min(HYID),max(HYID) from HYK_HYXX group by DJRMC
+select * from HYXX1 A,HYXX2 B where A.HYK_NO=B.HYK_NO
+select HYK_NO,count(*) from HYXX2 B group by HYK_NO having count(*)>1
+select * from HYXX2 where HYK_NO='222100507543';
+select * from JFZH1 A,JFZH2 B where A.SEQNO=B.SEQNO
+select GKID,count(*) from GKDA where SJHM is not null group by GKID having count(*)>1;
+select * from GKDA where GKID=1537276;
+select GKID,count(*) from(
+select GKID,SEX,CSRQ,TXDZ,E_MAIL,max(SJHM),JHJNR,min(DJSJ),DJR,DJRMC,max(GXSJ),GXR,GXRMC from GKDA where SJHM is not null
+group by GKID,SEX,CSRQ,TXDZ,E_MAIL,JHJNR,DJR,DJRMC,GXR,GXRMC
+) A group by GKID having count(*)>1;
+
+select * from GKDA where length(SJHM)>20
+
+select * from HYK_GKDA where GKID=1537276

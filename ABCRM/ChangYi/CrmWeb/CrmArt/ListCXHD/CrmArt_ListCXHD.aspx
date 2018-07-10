@@ -1,0 +1,35 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CrmArt_ListCXHD.aspx.cs" Inherits="BF.CrmWeb.CrmArt.ListCXHD.CrmArt_ListCXHD" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%=V_Head_WebArtList%>
+    <script>
+        vPageMsgID = <%=CM_YHQGL_CXHDZT%>;
+    </script>
+    <script src="CrmArt_ListCXHD.js"></script>
+</head>
+<body style="height: auto; overflow-y: hidden">
+    <div id="MainPanel" class="bfbox zero_padding">
+        <%=V_ArtToolBar%>
+        <div class="bfrow">
+            <div class="bffld_art">
+                <div class="bffld_left">促销编号</div>
+                <div class="bffld_right">
+                    <input id="TB_CXID" type="text" />
+
+                </div>
+            </div>
+            <div class="bffld_art">
+                <div class="bffld_left">促销主题</div>
+                <div class="bffld_right">
+                    <input id="TB_CXZT" type="text" />
+                </div>
+            </div>
+        </div>
+        <table id="list"></table>
+    </div>
+</body>
+</html>
