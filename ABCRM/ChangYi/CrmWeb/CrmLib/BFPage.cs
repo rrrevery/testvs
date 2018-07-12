@@ -166,7 +166,7 @@ public class BFPage : System.Web.UI.Page
                 if (Convert.ToInt32(emp.Id) < -1)
                 {
                     obj.iRYID = GlobalVariables.SYSInfo.iAdminID;
-                    obj.sRYMC = "超级用户";
+                    obj.sRYMC = emp.Name;
                     obj.bSUPER = true;
                 }
                 else

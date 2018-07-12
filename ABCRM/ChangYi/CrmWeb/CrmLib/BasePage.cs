@@ -90,7 +90,7 @@ public class BasePage : BFPage
         V_Head_Input += "<script src='../../../Js/easyui-lang-zh_CN.js'></script>";
         V_Head_Input += "<script src='../../../Js/My97DatePicker/WdatePicker.js'></script>";
         V_Head_Input += "<script src='../../../Js/iframeTools.js'></script>";
-        V_Head_Input += "<script src='../../../Js/CommonFunctionCrm.js?t=" + t + "'></script>";
+        V_Head_Input += "<script src='../../CrmLib/CommonFunctionCrm.js?t=" + t + "'></script>";
         V_Head_WebArt = V_Head_Input;
         V_Head_Input += "<script src='../../../Js/jquery.inputmask.js'></script>";
         V_Head_Input += "<script src='../../../Js/jquery.form.js'></script>";
@@ -134,7 +134,7 @@ public class BasePage : BFPage
 
         string top = "<div id='reg-form'><div id='TopPanel' class='topbox'>";
         string loc = "<div id='location'><div id='switchspace'></div></div>";
-        string toolbar = "<div id='btn-toolbar'><div id='morebuttons'><i class='fa fa-list-ul fa-lg' aria-hidden='true' style='color: rgb(140,151,157)'></i></div></div>";//<div id='WXPublicID'><select id='selectPublicID' class='easyui-combobox'></select></div>
+        string toolbar = "<div id='btn-toolbar'></div>";//<div id='WXPublicID'><select id='selectPublicID' class='easyui-combobox'></select></div>
         string clear = "<div class='clear'></div>";
         string begin = top + loc + toolbar + "</div>";
 

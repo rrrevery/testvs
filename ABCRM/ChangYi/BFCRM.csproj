@@ -1788,7 +1788,7 @@
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\bootstrapx-popoverx.js" />
-    <Content Include="Js\CommonFunctionCrm.js" />
+    <Content Include="CrmWeb\CrmLib\CommonFunctionCrm.js" />
     <Content Include="Js\CrmUser\Js_CrmUser_01.js" />
     <Content Include="Js\DashBoard.js" />
     <Content Include="Js\datagrid-dnd.js" />
@@ -2036,7 +2036,7 @@
     <Content Include="Webservice\DCLRW.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\BasePage.cs">
+    <Compile Include="CrmWeb\CrmLib\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CrmWeb\CrmArt\ArtCLDX\CrmArt_ArtCLDX.aspx.cs">
