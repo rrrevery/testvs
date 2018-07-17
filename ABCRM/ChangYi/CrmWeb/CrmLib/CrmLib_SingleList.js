@@ -120,7 +120,7 @@ function DrawGrid(listName, vColName, vColModel) {
         pageSize: 100,
         pageList: [100, 500, 1000],
         onSortColumn: function (sort, order) {
-            SearchData(undefined, undefined, sort, order, listName);
+            SearchData(listName, undefined, undefined, sort, order);
         },
         onLoadSuccess: OnLoadSuccess,
         onClickRow: OnClickRow,
@@ -129,7 +129,7 @@ function DrawGrid(listName, vColName, vColModel) {
     var pager = $("#" + listName).datagrid("getPager");
     pager.pagination({
         onSelectPage: function (pageNum, pageSize) {
-            SearchData(pageNum, pageSize, undefined, undefined, listName);
+            SearchData(listName, pageNum, pageSize);
         },
     });
     if ($("#bftitle").text() == "")
@@ -240,37 +240,37 @@ function WUC_Dialog_Return(viewDataIn, trueDataIn, jsonStringIn) {
     }
 }
 
-function SearchData(page, rows, sort, order, listName) {
-    if (listName == undefined) { listName = "list"; }
-    var obj = MakeSearchJSON(listName);
-    //page页码,rows每页行数,sort排序字段,order排序方式
-    page = page || $('#' + listName + '').datagrid("options").pageNumber;
-    rows = rows || $('#' + listName + '').datagrid("options").pageSize;
-    sort = sort || $('#' + listName + '').datagrid("options").sortName;
-    order = order || $('#' + listName + '').datagrid("options").sortOrder;
-    $('#' + listName + '').datagrid("loading");
-    $.ajax({
-        type: "post",
-        url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        async: true,
-        data: {
-            json: JSON.stringify(obj),
-            titles: 'cybillsearch',
-            page: page,
-            rows: rows,
-            sort: sort,
-            order: order,
-        },
-        success: function (data) {
-            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
-                ShowMessage(data);
-            }
-            $('#' + listName + '').datagrid('loadData', JSON.parse(data), "json");
-            $('#' + listName + '').datagrid("loaded");
-            vSearchData = data;
-        },
-        error: function (data) {
-            ShowMessage(data);
-        }
-    });
-}
+//function SearchData(page, rows, sort, order, listName) {
+//    if (listName == undefined) { listName = "list"; }
+//    var obj = MakeSearchJSON(listName);
+//    //page页码,rows每页行数,sort排序字段,order排序方式
+//    page = page || $('#' + listName + '').datagrid("options").pageNumber;
+//    rows = rows || $('#' + listName + '').datagrid("options").pageSize;
+//    sort = sort || $('#' + listName + '').datagrid("options").sortName;
+//    order = order || $('#' + listName + '').datagrid("options").sortOrder;
+//    $('#' + listName + '').datagrid("loading");
+//    $.ajax({
+//        type: "post",
+//        url: vUrl + "?mode=Search&func=" + vPageMsgID,
+//        async: true,
+//        data: {
+//            json: JSON.stringify(obj),
+//            titles: 'cybillsearch',
+//            page: page,
+//            rows: rows,
+//            sort: sort,
+//            order: order,
+//        },
+//        success: function (data) {
+//            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
+//                ShowMessage(data);
+//            }
+//            $('#' + listName + '').datagrid('loadData', JSON.parse(data), "json");
+//            $('#' + listName + '').datagrid("loaded");
+//            vSearchData = data;
+//        },
+//        error: function (data) {
+//            ShowMessage(data);
+//        }
+//    });
+//}

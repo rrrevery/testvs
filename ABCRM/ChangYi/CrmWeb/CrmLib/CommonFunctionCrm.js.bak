@@ -1230,23 +1230,18 @@ function PostToCrmlib(func, Params, suc, async) {
         dataType: "json",
         async: async,
         cache: false,
-        data: { json: JSON.stringify(Params) },
+        //data: data,
+        data: {
+            json: JSON.stringify(Params)
+        },
         success: function (data) {
-            //if (data != null) {
-            //    if (typeof (data.indexOf) != "undefined" && data.indexOf("错误：") >= 0) {
-            //        ShowMessage(data.substr(data.indexOf("错误：")));
-            //        data = null;
-            //    }
-            //}
-            //result = suc(data);
-            if (data.status != undefined) {
-                if (data.status == 1)
-                    ShowMessage(data.msg);
-                else
-                    ShowErrMessage(data.msg);
+            if (data != null) {
+                if (typeof (data.indexOf) != "undefined" && data.indexOf("错误：") >= 0) {
+                    ShowMessage(data.substr(data.indexOf("错误：")));
+                    data = null;
+                }
             }
-            else
-                result = suc(data);
+            result = suc(data);
         },
         error: function (data) {
             //ShowErrMessage("请求错误，错误信息：" + data.responseText + "，方法名：" + func);
@@ -1545,10 +1540,12 @@ function DeleteRows(listName) {
 }
 
 function MakeSearchJSON(listName) {
-    listName = listName || "list";
+    if (listName == undefined) {
+        listName = "list";
+    }
     var cond = MakeSearchCondition();
     if (cond == null)
-        cond = new Array();
+        return;
     var Obj = new Object();
     Obj.SearchConditions = cond;
     var colModels = "", colNames = "", colWidths = "";
@@ -1618,19 +1615,9 @@ function PostToServer(Obj, str_url, str_mode, str_suc, async, succ) {
         success: function (data) {
             canBeClose = true;
             myDialog.close();
-            if (typeof (data) == "string") {
-                vJLBH = GetValueRegExp(data, "jlbh")
-                if (vJLBH == "" && data != "yes")
-                    data = JSON.parse(data);
-            }
-            //if (data.indexOf("错误") >= 0 || data.indexOf("error") >= 0) {
-            //    ShowErrMessage(data);
-            //    canBeClose = false;
-            if (data.status != undefined) {
-                if (data.status == 1)
-                    ShowMessage(data.msg);
-                else
-                    ShowErrMessage(data.msg);
+            if (data.indexOf("错误") >= 0 || data.indexOf("error") >= 0) {
+                ShowErrMessage(data);
+                canBeClose = false;
             }
             else {
                 if (str_suc != "")
@@ -1651,62 +1638,6 @@ function PostToServer(Obj, str_url, str_mode, str_suc, async, succ) {
     });
     return canBeClose;
 }
-
-function SearchData(listName, page, rows, sort, order) {
-    //长痛不如短痛，listName还是应该作为第一个参数，之前的我都改了，报错的一定是新加的
-    //还有增加一个菜单号的参数，和success的回调，先这样吧，以后再加
-    listName = listName || "list";
-    //var obj = new Object();
-    //obj.json = JSON.stringify(MakeSearchJSON(listName));
-    var Params = MakeSearchJSON(listName);
-    var list = "#" + listName;
-    //page页码,rows每页行数,sort排序字段,order排序方式
-    page = page || $(list).datagrid("options").pageNumber;
-    rows = rows || $(list).datagrid("options").pageSize;
-    sort = sort || $(list).datagrid("options").sortName;
-    order = order || $(list).datagrid("options").sortOrder;
-    //obj.page = page;
-    //obj.rows = rows;
-    //obj.sort = sort;
-    //obj.order = order;
-    $(list).datagrid("loading");
-    $.ajax({
-        type: "post",
-        url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        async: true,
-        dataType: "json",
-        data: {
-            json: JSON.stringify(Params),
-            page: page,
-            rows: rows,
-            sort: sort,
-            order: order,
-        },
-        success: function (data) {
-            if (data.status != undefined) {
-                if (data.status == 1)
-                    ShowMessage(data.msg);
-                else
-                    ShowErrMessage(data.msg);
-                return;
-            }
-            DataGridShow(list, data);
-        },
-        error: function (data) {
-            ShowErrMessage(data);
-        }
-    });
-}
-
-function DataGridShow(list, data) {
-    $(list).datagrid('loadData', data, "json");
-    $(list).datagrid("loaded");
-    vSearchData = JSON.stringify(data);
-    if (CurIndex >= 0) {
-        $(list).datagrid("selectRow", CurIndex);
-    }
-}
-
 
 function BoolCellFormat(value, row, index) {
     try {

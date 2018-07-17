@@ -127,9 +127,9 @@ $(document).ready(function () {
     //ZSel_MoreCondition_Load(v_ZSel_rownum);
 
 
-    if (DBQ != 1) {
-        SearchClick();
-    }
+    //if (DBQ != 1) {
+    //    SearchClick();
+    //}
 
 
 });
@@ -146,7 +146,7 @@ function BindKey() {
     document.getElementById("B_Update").onclick = UpdateClick;
 }
 
-function DrawGrid(listName, vColName, vColModel,vSingle) {
+function DrawGrid(listName, vColName, vColModel, vSingle) {
     //为简化查询模板开发流程，统一Grid格式，新的查询可以使用InitGrid函数初始化vColumnNames和vColumnModel
     InitGrid();
     if (listName == undefined) { listName = "list"; }
@@ -181,15 +181,16 @@ function DrawGrid(listName, vColName, vColModel,vSingle) {
         pageSize: 10,
         pageList: [10, 50, 100],
         onSortColumn: function (sort, order) {
-            SearchData(undefined, undefined, sort, order, listName);
+            SearchData(listName, undefined, undefined, sort, order);
         },
         onClickRow: OnClickRow,
         onDblClickRow: DBClickRow,
+        onLoadSuccess: OnLoadSuccess,
     });
     var pager = $('#' + listName + '').datagrid("getPager");
     pager.pagination({
         onSelectPage: function (pageNum, pageSize) {
-            SearchData(pageNum, pageSize, undefined, undefined, listName);
+            SearchData(listName, pageNum, pageSize);
         },
         buttons: [{
             iconCls: 'fa fa-cog datagrid_setting',
@@ -197,6 +198,11 @@ function DrawGrid(listName, vColName, vColModel,vSingle) {
         }]
     });
 }
+
+function OnLoadSuccess() {
+    ;
+}
+
 function ListSet() {
     var bSel = false;
     $.dialog.data('Columns', vColumns);
@@ -364,8 +370,9 @@ function SearchClick() {
 function ExportClick() {
     var obj = MakeSearchJSON();
     var zUrl = vUrl + "?mode=Export&func=" + vPageMsgID;
-    var array = new Array();
-    array["json"] = JSON.stringify(obj);
+    var array = new Object();
+    array.json = JSON.stringify(obj);
+    array = $.sign(array);
     PostToExport(zUrl, array);
     SetControlBaseState();
 };
@@ -948,42 +955,42 @@ function DeleteHYZLXNode(parentNode) {
     { }
 }
 
-function SearchData(page, rows, sort, order, listName) {
-    if (listName == undefined) { listName = "list"; }
-    var obj = MakeSearchJSON(listName);
-    //page页码,rows每页行数,sort排序字段,order排序方式
-    page = page || $('#' + listName + '').datagrid("options").pageNumber;
-    rows = rows || $('#' + listName + '').datagrid("options").pageSize;
-    sort = sort || $('#' + listName + '').datagrid("options").sortName;
-    order = order || $('#' + listName + '').datagrid("options").sortOrder;
-    $('#' + listName + '').datagrid("loading");
-    $.ajax({
-        type: "post",
-        url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        async: true,
-        data: {
-            json: JSON.stringify(obj),
-            titles: 'cybillsearch',
-            page: page,
-            rows: rows,
-            sort: sort,
-            order: order,
-        },
-        success: function (data) {
-            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
-                ShowErrMessage(data);
-                $('#' + listName + '').datagrid("loaded");
-                return;
-            }
-            $('#' + listName + '').datagrid('loadData', JSON.parse(data), "json");
-            $('#' + listName + '').datagrid("loaded");
-            vSearchData = data;
-        },
-        error: function (data) {
-            ShowErrMessage(data);
-        }
-    });
-}
+//function SearchData(page, rows, sort, order, listName) {
+//    if (listName == undefined) { listName = "list"; }
+//    var obj = MakeSearchJSON(listName);
+//    //page页码,rows每页行数,sort排序字段,order排序方式
+//    page = page || $('#' + listName + '').datagrid("options").pageNumber;
+//    rows = rows || $('#' + listName + '').datagrid("options").pageSize;
+//    sort = sort || $('#' + listName + '').datagrid("options").sortName;
+//    order = order || $('#' + listName + '').datagrid("options").sortOrder;
+//    $('#' + listName + '').datagrid("loading");
+//    $.ajax({
+//        type: "post",
+//        url: vUrl + "?mode=Search&func=" + vPageMsgID,
+//        async: true,
+//        data: {
+//            json: JSON.stringify(obj),
+//            titles: 'cybillsearch',
+//            page: page,
+//            rows: rows,
+//            sort: sort,
+//            order: order,
+//        },
+//        success: function (data) {
+//            //if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
+//            //    ShowErrMessage(data);
+//            //    $('#' + listName + '').datagrid("loaded");
+//            //    return;
+//            //}
+//            $('#' + listName + '').datagrid('loadData', JSON.parse(data), "json");
+//            $('#' + listName + '').datagrid("loaded");
+//            vSearchData = data;
+//        },
+//        error: function (data) {
+//            ShowErrMessage(data);
+//        }
+//    });
+//}
 
 function OnClickRow(rowIndex, rowData) {
     SetControlBaseState();

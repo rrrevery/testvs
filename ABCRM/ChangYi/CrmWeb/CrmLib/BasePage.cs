@@ -91,6 +91,7 @@ public class BasePage : BFPage
         V_Head_Input += "<script src='../../../Js/My97DatePicker/WdatePicker.js'></script>";
         V_Head_Input += "<script src='../../../Js/iframeTools.js'></script>";
         V_Head_Input += "<script src='../../CrmLib/CommonFunctionCrm.js?t=" + t + "'></script>";
+        V_Head_Input += "<script src='../../CrmLib/OpenDialog.js?t=" + t + "'></script>";
         V_Head_WebArt = V_Head_Input;
         V_Head_Input += "<script src='../../../Js/jquery.inputmask.js'></script>";
         V_Head_Input += "<script src='../../../Js/jquery.form.js'></script>";

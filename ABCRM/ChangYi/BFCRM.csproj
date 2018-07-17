@@ -326,6 +326,7 @@
     <Content Include="CrmWeb\CrmLib\CrmLib_FillTree.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_GetLPXX.js" />
     <Content Include="CrmWeb\CrmLib\NEEDLOGIN.html" />
+    <Content Include="CrmWeb\CrmLib\OpenDialog.js" />
     <Content Include="CrmWeb\CrmLib\RWCard\BFCRM_RWCard.cab" />
     <Content Include="CrmWeb\CrmLib\RWCard\BFCRM_RWCard.inf" />
     <Content Include="CrmWeb\CrmLib\SelectKCK\SelectKCKNoType.aspx" />
