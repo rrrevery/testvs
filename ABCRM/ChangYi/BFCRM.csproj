@@ -321,12 +321,9 @@
     <Content Include="CrmWeb\CrmLib\CrmLib_BillSelect.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_BillWX.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_CRMReport.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_FillHYQY.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_FillSHBM.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_FillTree.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_GetLPXX.js" />
     <Content Include="CrmWeb\CrmLib\NEEDLOGIN.html" />
-    <Content Include="CrmWeb\CrmLib\OpenDialog.js" />
+    <Content Include="CrmWeb\CrmLib\CrmLib_Dialog.js" />
     <Content Include="CrmWeb\CrmLib\RWCard\BFCRM_RWCard.cab" />
     <Content Include="CrmWeb\CrmLib\RWCard\BFCRM_RWCard.inf" />
     <Content Include="CrmWeb\CrmLib\SelectKCK\SelectKCKNoType.aspx" />
@@ -338,9 +335,6 @@
     <Content Include="CrmWeb\CrmLib\CrmLib_CXDInput.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_FillCheckTree.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_TreeInput.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_FillFXDW.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_FillHYKTYPE.js" />
-    <Content Include="CrmWeb\CrmLib\CrmLib_FillBGDD.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_BillInput.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_GetData.js" />
     <Content Include="CrmWeb\CRMREPORT\BFMZQDY\CRMREPORT_BFMZQDY.aspx" />
@@ -1785,7 +1779,7 @@
     <Content Include="Js\bootstrap.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\bootstrapx-popoverx.js" />
-    <Content Include="CrmWeb\CrmLib\CommonFunctionCrm.js" />
+    <Content Include="CrmWeb\CrmLib\CrmLib_Common.js" />
     <Content Include="Js\CrmUser\Js_CrmUser_01.js" />
     <Content Include="Js\DashBoard.js" />
     <Content Include="Js\datagrid-dnd.js" />

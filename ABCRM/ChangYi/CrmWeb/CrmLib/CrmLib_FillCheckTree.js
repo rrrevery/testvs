@@ -8,7 +8,7 @@
     },
     callback: {
         onCheck: zTreeOnCheck,
-        beforeCheck:beforeCheck
+        beforeCheck: beforeCheck
     },
     data: {
         simpleData: {
@@ -18,11 +18,10 @@
 };
 
 function beforeCheck(treeId, treeNode) {
-  return  beforeCheckCustomer(treeId, treeNode);
+    return beforeCheckCustomer(treeId, treeNode);
 };
 
-function beforeCheckCustomer(treeId, treeNode)
-{
+function beforeCheckCustomer(treeId, treeNode) {
     return true;
 }
 
@@ -35,7 +34,7 @@ function zTreeOnChecking(event, treeId, treeNode) {
 }
 
 function FillCheckTree(treename, func, personid) {
-    PostToCrmlib(func, { iRYID: personid }, function (data) {
+    PostToCrmlib(func, { iRYID: personid, iID: iDJR }, function (data) {
         var zNodes = "[";
         for (var i = 0; i < data.length; i++) {
             zNodes = zNodes + "{id:'" + data[i].sDM + "',pId:'" + ((data[i].sPDM == "") ? "0" : data[i].sPDM)
