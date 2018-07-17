@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.IO;
-using LoginServiceLib;
 using BF.Pub;
 using BF.CrmProc;
 using System.Collections;
@@ -50,7 +49,7 @@ namespace BF.CrmWeb.LIB
                     else if (obj.iRYID <= 0)
                         bPermit = false;
                     else if (System.Configuration.ConfigurationManager.AppSettings["UsePlatform"] == "true")
-                        bPermit = LoginAuthorise.CheckMenuAuthoriseByPersonId(obj.iRYID.ToString(), obj.iMENUID.ToString());
+                        bPermit = true;//LoginAuthorise.CheckMenuAuthoriseByPersonId(obj.iRYID.ToString(), obj.iMENUID.ToString());
                     else
                         bPermit = CrmLibProc.CheckMenuPermit(obj.iRYID, obj.iMENUID);
                     outdata = JsonConvert.SerializeObject(bPermit);

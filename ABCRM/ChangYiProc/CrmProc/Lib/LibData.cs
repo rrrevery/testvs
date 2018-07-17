@@ -1685,8 +1685,35 @@ namespace BF.CrmProc
 
     }
 
+    public interface IZTREE
+    {
+        string id { get; set; }
+        string pId { get; set; }
+        string name { get; set; }
+    }
 
+    public class BGDD2 : IZTREE
+    {
+        public string sBGDDDM = string.Empty;
+        public string sPBGDDDM = string.Empty;
+        public string sBGDDMC = string.Empty;
+        public string id
+        {
+            get { return sBGDDDM; }
+            set { sBGDDDM = value; }
+        }
+        public string pId
+        {
+            get { return sPBGDDDM; }
+            set { sPBGDDDM = value; }
+        }
+        public string name
+        {
+            get { return sBGDDMC; }
+            set { sBGDDMC = value; }
+        }
 
+    }
 
 
 

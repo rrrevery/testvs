@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+    <div id="app-2">
+        <span v-bind:title="message">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+    </div>
+    <div id="app-3">
+        <p v-if="seen">现在你看到我了</p>
+    </div>
+    <div id="app-4">
+        <ul>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ul>
+    </div>
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">逆转消息</button>
+    </div>
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+    <div id="main">
+        <div>
+            卡号<input type="text" v-model="data.HYK_NO" />
+            姓名<input type="text" v-model="data.HY_NAME" />
+        </div>
+        <input type="button" v-on:click="btnClick" value="测试" />
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: '页面加载于 ' + new Date().toLocaleString()
+        }
+    })
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true
+        }
+    })
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+            { text: '学习 JavaScript' },
+            { text: '学习 Vue' },
+            { text: '整个牛项目' }
+            ]
+        }
+    })
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    var app = new Vue({
+        el: "#main",
+        data: {
+            data: { HYK_NO: "12345", HY_NAME: "王萌" }
+        },
+        methods: {
+            btnClick: function () {
+                this.data.HYK_NO = "00001";
+                this.data.HY_NAME = "肉包";
+            }
+        }
+    })
+</script>

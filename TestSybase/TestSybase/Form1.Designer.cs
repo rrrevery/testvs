@@ -64,12 +64,14 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.tbMsg = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tbSD_NUM = new System.Windows.Forms.TextBox();
-            this.tbSD_HEX = new System.Windows.Forms.TextBox();
-            this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.tbSD_HEX = new System.Windows.Forms.TextBox();
+            this.tbSD_NUM = new System.Windows.Forms.TextBox();
+            this.tbMsg = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button20 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -77,6 +79,7 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -87,6 +90,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -447,16 +451,6 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // tbMsg
-            // 
-            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbMsg.Location = new System.Drawing.Point(0, 246);
-            this.tbMsg.Multiline = true;
-            this.tbMsg.Name = "tbMsg";
-            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMsg.Size = new System.Drawing.Size(668, 84);
-            this.tbMsg.TabIndex = 24;
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.button19);
@@ -471,21 +465,14 @@
             this.tabPage6.Text = "时段测试";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // tbSD_NUM
+            // button19
             // 
-            this.tbSD_NUM.Location = new System.Drawing.Point(3, 6);
-            this.tbSD_NUM.Multiline = true;
-            this.tbSD_NUM.Name = "tbSD_NUM";
-            this.tbSD_NUM.Size = new System.Drawing.Size(300, 107);
-            this.tbSD_NUM.TabIndex = 0;
-            this.tbSD_NUM.Text = resources.GetString("tbSD_NUM.Text");
-            // 
-            // tbSD_HEX
-            // 
-            this.tbSD_HEX.Location = new System.Drawing.Point(3, 197);
-            this.tbSD_HEX.Name = "tbSD_HEX";
-            this.tbSD_HEX.Size = new System.Drawing.Size(604, 21);
-            this.tbSD_HEX.TabIndex = 1;
+            this.button19.Location = new System.Drawing.Point(187, 145);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 3;
+            this.button19.Text = "↑";
+            this.button19.UseVisualStyleBackColor = true;
             // 
             // button18
             // 
@@ -497,14 +484,52 @@
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
-            // button19
+            // tbSD_HEX
             // 
-            this.button19.Location = new System.Drawing.Point(187, 145);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 3;
-            this.button19.Text = "↑";
-            this.button19.UseVisualStyleBackColor = true;
+            this.tbSD_HEX.Location = new System.Drawing.Point(3, 197);
+            this.tbSD_HEX.Name = "tbSD_HEX";
+            this.tbSD_HEX.Size = new System.Drawing.Size(604, 21);
+            this.tbSD_HEX.TabIndex = 1;
+            // 
+            // tbSD_NUM
+            // 
+            this.tbSD_NUM.Location = new System.Drawing.Point(3, 6);
+            this.tbSD_NUM.Multiline = true;
+            this.tbSD_NUM.Name = "tbSD_NUM";
+            this.tbSD_NUM.Size = new System.Drawing.Size(300, 107);
+            this.tbSD_NUM.TabIndex = 0;
+            this.tbSD_NUM.Text = resources.GetString("tbSD_NUM.Text");
+            // 
+            // tbMsg
+            // 
+            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbMsg.Location = new System.Drawing.Point(0, 246);
+            this.tbMsg.Multiline = true;
+            this.tbMsg.Name = "tbMsg";
+            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMsg.Size = new System.Drawing.Size(668, 84);
+            this.tbMsg.TabIndex = 24;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.button20);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(660, 304);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "ODBC_HANA";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(8, 160);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.TabIndex = 0;
+            this.button20.Text = "button20";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // Form1
             // 
@@ -526,6 +551,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -574,6 +600,8 @@
         private System.Windows.Forms.TextBox tbSD_NUM;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button button20;
     }
 }
 

@@ -407,7 +407,7 @@ namespace TestSybase
             try
             {
                 CyQuery query = new CyQuery(conn);
-                query.SQL.Add("select * from HYKDEF where HYKTYPE=101");
+                query.SQL.Text = "select * from HYKDEF where HYKTYPE=101";
                 query.Open();
                 Log("整数类型按字符串：" + query.FieldByName("HYKTYPE").AsString);
                 Log("浮点类型按字符串：" + query.FieldByName("KFJE").AsString);
@@ -431,7 +431,7 @@ namespace TestSybase
             try
             {
                 CyQuery query = new CyQuery(conn);
-                query.SQL.Add("select * from HYK_JFFHLPJHD where JLBH=14");
+                query.SQL.Text = "select * from HYK_JFFHLPJHD where JLBH=14";
                 query.Open();
                 Log("Float类型：" + query.FieldByName("ZSL").AsFloat.ToString());
                 query.Close();
@@ -450,6 +450,31 @@ namespace TestSybase
         {
             byte[] bytes = FormatUtils.StrToPeriodBytes(tbSD_NUM.Text.TrimEnd(';'));
             tbSD_HEX.Text = BitConverter.ToString(bytes, 0).Replace("-", "");
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            string dbname = "ODBC_HANA";
+            DbConnection conn = CyDbConnManager.GetActiveDbConnection(dbname);
+            try
+            {
+                CyQuery query = new CyQuery(conn);
+                query.SQL.Text = "select * from CRM_HYKDEF where HYKTYPE=:HYKTYPE";
+                query.ParamByName("HYKTYPE").AsInteger = 306;
+                query.Open();
+                Log("Int类型：" + query.FieldByName("HYKTYPE").AsInteger.ToString());
+                Log("String类型：" + query.FieldByName("HYKNAME").AsString);
+                Log("Float类型：" + query.FieldByName("KFJE").AsFloat.ToString());
+                query.Close();
+            }
+            catch (Exception ex)
+            {
+                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

@@ -418,10 +418,14 @@ function ClearInputdata(Element) {
     }
 };
 
-function GetUrlParam(name) {
+function GetUrlParam(name, dftval) {
+    if (dftval == undefined)
+        dftval = "";
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return "";
+    if (r != null)
+        return unescape(r[2]);
+    return dftval;
 }
 
 function GetUrlCaption(name) {
@@ -653,7 +657,7 @@ function FillRQLX(selectName, rqlx) {
     if (rqlx[1] == "1")
         arr.push({ value: 1, text: "季" });
     if (rqlx[0] == "1")
-        arr.push({ value: 0, text: "年" });    
+        arr.push({ value: 0, text: "年" });
     $(selectName).combobox("loadData", arr);
     $(selectName).combobox("setValue", arr[0].value);
 
@@ -1744,49 +1748,31 @@ function MakeNewTab(url, title, tabid) {
     if (localhostPath.substr(localhostPath.length - 1) == "/" && url.substr(0, 1) == "/")
         url = url.substr(1);
 
-    if (tabid > 0 && parent.OpenTab2 != undefined) {// 
-        sCK = GetUrlParam("ck");
-        sCK = "ck=" + sCK;
-        if (url.indexOf("?") > 0)
-            sCK = "&" + sCK;
-        else
-            sCK = "?" + sCK;
-        parent.OpenTab2((tabid).toString(), localhostPath + url + sCK, title, true);//localhostPath暂时去掉
+    //if (tabid > 0 && parent.OpenTab2 != undefined) {// 
+    //    sCK = GetUrlParam("ck");
+    //    sCK = "ck=" + sCK;
+    //    if (url.indexOf("?") > 0)
+    //        sCK = "&" + sCK;
+    //    else
+    //        sCK = "?" + sCK;
+    //    parent.OpenTab2((tabid).toString(), localhostPath + url + sCK, title, true);//localhostPath暂时去掉
+    //}
+    //else {
+    //    parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
+    //}
+    var options = {
+        id: tabid,   //菜单号
+        title: title,  //菜单标题
+        url: localhostPath + url,  //菜单地址
+        self: true,  //写死
+        callback: null  //打开后回调
+    };
+
+    if (parent && parent._ && parent._.OpenPage) {
+        parent._.OpenPage(options);
     }
     else {
         parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
-        //jQuery(function ($) {
-        //    //jQuery.noConflict();
-        //    //(function ($) {
-        //    //    $(function () {
-        //    //        // 使用 $ 作为 jQuery 别名的代码
-        //    //var $ = jQuery.noConflict();
-        //    var liid = "li" + parent.id;
-        //    parent.curdivifid = "div" + liid;
-        //    if ($(window.parent.frames["subTabs"].document).find("li").length < 6) {//主界面可以打开的选项卡总数
-
-        //        var addli = " <li class='' id='" + liid + "'><a href='" + url + "' data-toggle='tab'>" + title + "<span class='closeIcon'>×</span></a><>";
-        //        var html = "<div  id='" + parent.curdivifid + "' class='iFrame' ><iframe id='subFrame" + parent.curdivifid + "'  frameborder='0' class='iFrame' name='subFrame" + parent.curdivifid + "' src='" + url + "'></iframe></div>";
-        //        $(window.parent.frames["subTabs"].document).find("#mainTabs").append(addli);
-        //        var bodyheight = parent.document.body.clientHeight;
-        //        $("#maincontent", window.parent.document).append(html);
-        //        $("#subFrame" + parent.curdivifid, window.parent.document).height(bodyheight - 44);
-
-        //        $(window.parent.frames["subTabs"].document).find("li").attr("class", "");
-        //        $(window.parent.frames["subTabs"].document).find("#" + liid).show().attr("class", "active");
-
-        //        $("#" + parent.predivifid, window.parent.document).hide();
-        //        parent.predivifid = parent.curdivifid;
-        //        $("#" + parent.curdivifid, window.parent.document).show();
-        //        parent.id++;
-        //        window.parent.bindLi();
-
-        //    } else { alert("请关闭其他选项！") }
-
-
-        //    //    });
-        //    //})(jQuery);//此方法会导致$被还原为空！
-        //})
     }
 };
 
@@ -3252,16 +3238,6 @@ $(document).ready(function () {
         $("#" + panelName + "").slideToggle();
         ToggleHiddenPanelCustomer(elementName);
     });
-    //更多菜单
-
-    if (parent.OpenTab2 == undefined) {
-        $("#morebuttons").hide();
-    }
-    else {
-        $("#morebuttons").click(function () {
-            ToggleNavigationMen();
-        });
-    }
     //对话框背景透明度
     var d = art.dialog.defaults;
     d.opacity = 0.1;//取消弹出框时背景变暗
@@ -3283,35 +3259,6 @@ $(document).ready(function () {
 function ToggleHiddenPanelCustomer(elementName) {
     ;
 }
-
-function LoadMenList() {
-    $("#menuList").html("");
-    AddBeforeCustomerMenu();
-    $("#menuList").append("<li onclick='parent.SaveFav()'>加入常用</li>");
-    $("#menuList").append("<li onclick='parent.closeCurTab()'>关闭当前</li>");
-    $("#menuList").append("<li onclick='parent.closeOtherTab()'>关闭其它</li>");
-    $("#menuList").append("<li onclick='parent.closeAllTab()'>关闭全部</li>");
-
-    //$("#menuList").append("<li>加入常用</li>")
-    //$("#menuList").append("<li>我要吐槽</li>")
-    //$("#menuList").append("<li>功能评分</li>")
-    //$("#menuList").append("<li>使用说明</li>")
-    //$("#menuList").append("<li>流程查看</li>")
-    AddAfterCustomerMenu();
-}
-//T-- 加载导航栏
-function ToggleNavigationMen() {
-    var Obj = $("[class='fa fa-list-ul fa-lg']");
-    var Offset = Obj.offset();
-    var html = '<div id="navigationMenu"><ul id="menuList"></ul> </div>';
-    $("body").append(html);
-    $("#navigationMenu").css({ left: Offset.left - 100 + "px", top: $("#btn-toolbar").offset().top + $("#btn-toolbar").outerHeight() + 5 + "px" }).slideDown("fast");
-    $("body").bind("mousedown", function () {
-        $("#navigationMenu").slideUp();
-    });
-    LoadMenList();
-}
-
 function AddAfterCustomerMenu() {;
     //
 }

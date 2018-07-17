@@ -105,6 +105,7 @@ public class BasePage : BFPage
         tmpjs += "var sIPAddress = '" + V_IPAddress + "';";
         tmpjs += "var iPID = '" + 1 + "';";
         tmpjs += "var sPIF = '" + 1 + "';";
+        tmpjs += "document.domain='" + ConfigurationManager.AppSettings["domain"] + "';";
         tmpjs += "</script>";
         //Print Object
         tmpjs += "<object id='LODOP_OB' classid='clsid:2105C259-1E0C-4534-8141-A753534CB4CA' width='0' height='0' style='display:none' >";
@@ -972,7 +973,7 @@ public class BasePage : BFPage
     public const int CM_HYXF_JFGZ_CJCX = 5166099;                         //积分规则修改参加促销权限
     public const int CM_HYXF_BJF = 5166100;
     public const int CM_HYXF_SHJFGZ = 5166101;
-    public const int CM_HYXF_HYXFMXQJHZDBQ = 5166102;               
+    public const int CM_HYXF_HYXFMXQJHZDBQ = 5166102;
 
     #endregion
     #region CM_LPGL

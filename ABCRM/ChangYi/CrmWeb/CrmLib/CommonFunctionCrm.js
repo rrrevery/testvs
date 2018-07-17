@@ -418,10 +418,14 @@ function ClearInputdata(Element) {
     }
 };
 
-function GetUrlParam(name) {
+function GetUrlParam(name, dftval) {
+    if (dftval == undefined)
+        dftval = "";
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return "";
+    if (r != null)
+        return unescape(r[2]);
+    return dftval;
 }
 
 function GetUrlCaption(name) {
@@ -1759,16 +1763,16 @@ function MakeNewTab(url, title, tabid) {
     var options = {
         id: tabid,   //菜单号
         title: title,  //菜单标题
-        url: localhostPath + url + sCK,  //菜单地址
+        url: localhostPath + url,  //菜单地址
         self: true,  //写死
         callback: null  //打开后回调
     };
 
     if (parent && parent._ && parent._.OpenPage) {
-        parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
+        parent._.OpenPage(options);
     }
     else {
-        window.open(options.url);
+        parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
     }
 };
 
