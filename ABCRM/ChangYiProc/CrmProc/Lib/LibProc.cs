@@ -16,7 +16,7 @@ namespace BF.CrmProc
         public static void Initialize()
         {
             GlobalVariables.SYSInfo.bTest = GetWebConfig("TestModel", "false") == "true";
-            GlobalVariables.SYSInfo.sPubUser = GetWebConfig("PubUser", "BFPUB");
+            //GlobalVariables.SYSInfo.sPubUser = GetWebConfig("PubUser", "BFPUB");
             GlobalVariables.SYSConfig.sSMSUser = GetWebConfig("SMSUser");
             GlobalVariables.SYSConfig.sSMSPass = GetWebConfig("SMSPass");
             GlobalVariables.SYSConfig.sBMJG = GetWebConfig("BMJG", "22222");

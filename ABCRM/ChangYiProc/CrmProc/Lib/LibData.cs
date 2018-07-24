@@ -35,7 +35,7 @@ namespace BF.CrmProc
         public int iAdminID = 99999999;
         public bool bTest = false;
         public bool bTestMenu = false;
-        public string sPubUser = "BFPUB8";
+        //public string sPubUser = "BFPUB8";
         //public List<TickSession> TickSessions = new List<TickSession>();
     }
     public class SysConfig
