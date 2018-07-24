@@ -39,12 +39,12 @@ namespace BF.CrmWeb.LIB
                 else if (func == "CheckMenuPermit")
                 {
                     //已测试通过，不能用的更新一下bin的LoginServiceLib.dll
-                    //web.config的appSettings配<add key="Test" value="true"/>为测试模式，跳过平台权限验证
+                    //web.config的appSettings配<add key="TestModel" value="true"/>为测试模式，跳过平台权限验证
                     //web.config的appSettings配<add key="UsePlatform" value="true"/>为使用平台权限，否则为CRM权限
                     bool bPermit = false;
                     if (obj.iRYID == GlobalVariables.SYSInfo.iAdminID)
                         bPermit = false;
-                    else if (System.Configuration.ConfigurationManager.AppSettings["Test"] == "true")
+                    else if (GlobalVariables.SYSInfo.bTest)
                         bPermit = true;
                     else if (obj.iRYID <= 0)
                         bPermit = false;

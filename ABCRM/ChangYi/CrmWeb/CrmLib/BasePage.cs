@@ -106,7 +106,8 @@ public class BasePage : BFPage
         tmpjs += "var sIPAddress = '" + V_IPAddress + "';";
         tmpjs += "var iPID = '" + 1 + "';";
         tmpjs += "var sPIF = '" + 1 + "';";
-        tmpjs += "document.domain='" + ConfigurationManager.AppSettings["domain"] + "';";
+        tmpjs += "document.domain='" + HttpContext.Current.Request.Url.Host + "';";
+        //tmpjs += "document.domain='" + ConfigurationManager.AppSettings["domain"] + "';";
         tmpjs += "</script>";
         //Print Object
         tmpjs += "<object id='LODOP_OB' classid='clsid:2105C259-1E0C-4534-8141-A753534CB4CA' width='0' height='0' style='display:none' >";

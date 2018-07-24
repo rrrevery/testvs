@@ -156,7 +156,7 @@ public class BFPage : System.Web.UI.Page
     }
     protected void CheckUsrLogin()
     {
-        if (System.Configuration.ConfigurationManager.AppSettings["Test"] == "true")
+        if (GlobalVariables.SYSInfo.bTest)
             return;
         try
         {
