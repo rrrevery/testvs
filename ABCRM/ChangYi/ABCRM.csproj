@@ -6580,9 +6580,9 @@
     <Folder Include="Js\Plupload\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChangYiProc\BFCRMProc.csproj">
+    <ProjectReference Include="..\ChangYiProc\ABCRMProc.csproj">
       <Project>{8e818cd6-801a-4df4-8a60-f80be85e16ba}</Project>
-      <Name>BFCRMProc</Name>
+      <Name>ABCRMProc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
