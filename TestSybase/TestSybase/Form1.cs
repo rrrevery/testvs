@@ -466,6 +466,12 @@ namespace TestSybase
                 Log("String类型：" + query.FieldByName("HYKNAME").AsString);
                 Log("Float类型：" + query.FieldByName("KFJE").AsFloat.ToString());
                 query.Close();
+                //query.SQL.Text = "select current_timestamp from dummy";
+                //query.Open();
+                //Log(query.Fields[0].AsDateTime.ToString());
+                DateTime dt = CyDbSystem.GetDbServerTime(query);
+                Log(dt.ToString());
+                query.Close();
             }
             catch (Exception ex)
             {
