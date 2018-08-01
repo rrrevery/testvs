@@ -1716,9 +1716,9 @@
     <Content Include="Css\zTreeStyle\img\zTreeStandard.gif" />
     <Content Include="Css\zTreeStyle\img\zTreeStandard.png" />
     <Content Include="Css\zTreeStyle\zTreeStyle.css" />
-    <Content Include="App_Data\DriverFile\CLodop_Setup_for_Win32NT.exe" />
-    <Content Include="App_Data\DriverFile\install_lodop32.exe" />
-    <Content Include="App_Data\DriverFile\install_lodop64.exe" />
+    <Content Include="File\CLodop_Setup_for_Win32NT.exe" />
+    <Content Include="File\install_lodop32.exe" />
+    <Content Include="File\install_lodop64.exe" />
     <Content Include="DashBoard.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -6577,6 +6577,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="CrmWeb\LPGL\JFFLLPCX\" />
     <Folder Include="Js\Plupload\" />
   </ItemGroup>

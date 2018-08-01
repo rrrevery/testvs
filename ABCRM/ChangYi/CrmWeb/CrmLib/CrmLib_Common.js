@@ -420,6 +420,14 @@ function GetUrlParam(name, dftval) {
     return dftval;
 }
 
+function GetValueRegExp(str, name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = str.match(reg);
+    if (r != null)
+        return unescape(r[2]);
+    return "";
+}
+
 function GetUrlCaption(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -710,8 +718,6 @@ function MakeNewTab(url, title, tabid) {
         parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
     }
 };
-
-
 
 function ShowMessage(sMsg, time, cls, lock, closefunc) {
     time = time || 3;
