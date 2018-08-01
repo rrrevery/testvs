@@ -57,14 +57,6 @@ function PageDate_Clear() {
 
 };
 
-function GetValueRegExp(str, name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = str.match(reg);
-    if (r != null)
-        return unescape(r[2]);
-    return "";
-}
-
 function SetControlBaseState() {
     if (sDJRMC == "") {
         alert("您已离线，请重新登录！");
