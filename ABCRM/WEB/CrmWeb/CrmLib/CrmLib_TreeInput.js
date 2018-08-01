@@ -42,6 +42,8 @@ $(document).ready(function () {
     AddToolButtons("取消", "B_Cancel");
     AddCustomerButton();
     AddButtonSep();
+    BindKey();
+    RefreshButtonSep();
 
     $("#B_AddTJ").css("width", "86px");
     $("#B_AddXJ").css("width", "86px");
@@ -72,13 +74,6 @@ $(document).ready(function () {
     vProcStatus = cPS_BROWSE;
 
     SetControlBaseState();
-    //处理按钮事件
-    document.getElementById("B_AddTJ").onclick = AddTJClick;
-    document.getElementById("B_AddXJ").onclick = AddXJClick;
-    document.getElementById("B_Update").onclick = UpdateClick;
-    document.getElementById("B_Delete").onclick = DeleteClick;
-    document.getElementById("B_Cancel").onclick = CancelClick;
-    document.getElementById("B_Save").onclick = SaveClick;
 
     $("#TreePanel").height($(document).height() - 93);
     $("#MainPanel").height($(document).height() - 93);
@@ -86,6 +81,16 @@ $(document).ready(function () {
     if ($("#bftitle").text() == "")
         $("#bftitle").html(vCaption);
 });
+
+function BindKey() {
+    //处理按钮事件
+    document.getElementById("B_AddTJ").onclick = AddTJClick;
+    document.getElementById("B_AddXJ").onclick = AddXJClick;
+    document.getElementById("B_Update").onclick = UpdateClick;
+    document.getElementById("B_Delete").onclick = DeleteClick;
+    document.getElementById("B_Cancel").onclick = CancelClick;
+    document.getElementById("B_Save").onclick = SaveClick;
+}
 
 function AddTJClick() {
     PageDate_Clear();

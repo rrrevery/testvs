@@ -322,6 +322,7 @@
     <Content Include="CrmWeb\CrmLib\CrmLib_BillWX.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_CRMReport.js" />
     <Content Include="CrmWeb\CrmLib\CrmLib_FillTree.js" />
+    <Content Include="CrmWeb\CrmLib\CrmLib_Init.js" />
     <Content Include="CrmWeb\CrmLib\NEEDLOGIN.html" />
     <Content Include="CrmWeb\CrmLib\CrmLib_Dialog.js" />
     <Content Include="CrmWeb\CrmLib\RWCard\BFCRM_RWCard.cab" />

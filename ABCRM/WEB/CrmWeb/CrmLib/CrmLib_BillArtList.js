@@ -57,7 +57,7 @@ $(document).ready(function () {
     var pager = $('#list').datagrid("getPager");
     pager.pagination({
         onSelectPage: function (pageNum, pageSize) {
-            SearchData(pageNum, pageSize);
+            SearchData("list", pageNum, pageSize);
             ShowAlreadySelected()
         },
     });
@@ -100,67 +100,67 @@ function ArtSearchClick() {
     SearchData();
 };
 
-function SearchData(page, rows, sort, order) {
-    var obj = MakeSearchJSON();
-    //page页码,rows每页行数,sort排序字段,order排序方式
-    page = page || $('#list').datagrid("options").pageNumber;
-    rows = rows || $('#list').datagrid("options").pageSize;
-    sort = sort || $('#list').datagrid("options").sortName;
-    order = order || $('#list').datagrid("options").sortOrder;
-    $('#list').datagrid("loading");
-    $.ajax({
-        type: "post",
-        url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        async: true,
-        data: {
-            json: JSON.stringify(obj),
-            titles: 'cybillsearch',
-            page: page,
-            rows: rows,
-            sort: sort,
-            order: order,
-        },
-        success: function (data) {
-            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
-                ShowMessage(data);
-            }
-            $('#list').datagrid('loadData', JSON.parse(data), "json");
-            $('#list').datagrid("loaded");
-            vSearchData = data;
-        },
-        error: function (data) {
-            ShowMessage(data);
-        }
-    });
+//function SearchData(page, rows, sort, order) {
+//    var obj = MakeSearchJSON();
+//    //page页码,rows每页行数,sort排序字段,order排序方式
+//    page = page || $('#list').datagrid("options").pageNumber;
+//    rows = rows || $('#list').datagrid("options").pageSize;
+//    sort = sort || $('#list').datagrid("options").sortName;
+//    order = order || $('#list').datagrid("options").sortOrder;
+//    $('#list').datagrid("loading");
+//    $.ajax({
+//        type: "post",
+//        url: vUrl + "?mode=Search&func=" + vPageMsgID,
+//        async: true,
+//        data: {
+//            json: JSON.stringify(obj),
+//            titles: 'cybillsearch',
+//            page: page,
+//            rows: rows,
+//            sort: sort,
+//            order: order,
+//        },
+//        success: function (data) {
+//            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
+//                ShowMessage(data);
+//            }
+//            $('#list').datagrid('loadData', JSON.parse(data), "json");
+//            $('#list').datagrid("loaded");
+//            vSearchData = data;
+//        },
+//        error: function (data) {
+//            ShowMessage(data);
+//        }
+//    });
 
-}
+//}
 
-function MakeSearchJSON() {
-    var cond = MakeSearchCondition();
-    if (cond == null)
-        return;
-    var Obj = new Object();
-    Obj.SearchConditions = cond;
-    var colModels = "", colNames = "", colWidths = "";
-    var cols = $("#list").data('datagrid').options.columns[0];
-    for (var i = 0; i < cols.length; i++) {
-        if (!cols[i].hidden) {
-            colModels += cols[i].field + "|";
-            colNames += cols[i].title + "|";
-            colWidths += cols[i].width + "|";
-        }
-    }
-    Obj.sColNames = colNames;
-    Obj.sColModels = colModels;
-    Obj.sColWidths = colWidths;
-    Obj.sSortFiled = $("#list").data('datagrid').options.sortName;// cols[0].field;
-    Obj.sSortType = $("#list").data('datagrid').options.sortOrder;
-    Obj.iLoginRYID = iDJR;
-    Obj.iLoginPUBLICID = iWXPID;
-    AddCustomerCondition(Obj);
+//function MakeSearchJSON() {
+//    var cond = MakeSearchCondition();
+//    if (cond == null)
+//        return;
+//    var Obj = new Object();
+//    Obj.SearchConditions = cond;
+//    var colModels = "", colNames = "", colWidths = "";
+//    var cols = $("#list").data('datagrid').options.columns[0];
+//    for (var i = 0; i < cols.length; i++) {
+//        if (!cols[i].hidden) {
+//            colModels += cols[i].field + "|";
+//            colNames += cols[i].title + "|";
+//            colWidths += cols[i].width + "|";
+//        }
+//    }
+//    Obj.sColNames = colNames;
+//    Obj.sColModels = colModels;
+//    Obj.sColWidths = colWidths;
+//    Obj.sSortFiled = $("#list").data('datagrid').options.sortName;// cols[0].field;
+//    Obj.sSortType = $("#list").data('datagrid').options.sortOrder;
+//    Obj.iLoginRYID = iDJR;
+//    Obj.iLoginPUBLICID = iWXPID;
+//    AddCustomerCondition(Obj);
 
-    return Obj;
-}
+//    return Obj;
+//}
 
 function MakeSearchCondition() {
     ;

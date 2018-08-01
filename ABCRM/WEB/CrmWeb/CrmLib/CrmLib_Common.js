@@ -263,6 +263,15 @@ function GetLength(strTemp) {
     return sum;
 }
 
+String.prototype.barryCount = function () {
+    if (typeof (this) != "object") {
+        txt = this.replace(/(<.*?>)/ig, '');
+        txt = txt.replace(/[\u4E00-\u9FA5]/g, '11');
+        var count = txt.length;
+        return count;
+    }
+}
+
 //验证日期
 function checkDate(obj) {
     value = Trim(obj.value);
@@ -1254,6 +1263,50 @@ function CheckMenuPermit(iPersonID, iMenuID) {
     }, false);
 }
 
+var sCurrentPath = "";
+
+$(document).ready(function () {
+    //尼玛不知道放哪儿
+    //缩进
+    //for (i = 0; i < $(".slide_down_title").length; i++) {
+    //    elementName = $(".slide_down_title")[i].id;
+    //    panelName = elementName + "_Hidden";
+    //    $("#" + panelName).addClass("maininput3");
+    //}
+    $(".slide_down_title").append("<div class='btn_dropdown'><i class='fa fa-angle-down' aria-hidden='true' style='color: white'></i></div>");
+    $(".slide_down_title").click(function () {
+        elementName = this.id;
+        panelName = elementName + "_Hidden";
+        if ($("#" + panelName + "").css("display") != "none") {
+            $("#" + elementName + " [class='fa fa-angle-down']").removeClass("fa fa-angle-down").addClass("fa fa-angle-left");
+        }
+        else {
+            $("#" + elementName + " [class='fa fa-angle-left']").removeClass("fa fa-angle-left").addClass("fa fa-angle-down");
+        }
+        $("#" + panelName + "").slideToggle();
+        ToggleHiddenPanelCustomer(elementName);
+    });
+    //对话框背景透明度
+    var d = art.dialog.defaults;
+    d.opacity = 0.1;//取消弹出框时背景变暗
+
+    //页面地址
+    sCurrentPath = window.location.href;
+    sCurrentPath = sCurrentPath.substr(sCurrentPath.indexOf("//") + 2, sCurrentPath.length);
+    sCurrentPath = sCurrentPath.substring(sCurrentPath.indexOf("/") + 1, sCurrentPath.indexOf(".aspx"));
+    sCurrentPath = sCurrentPath.substr(0, sCurrentPath.length - 5) + ".aspx";
+
+    //导航图用
+    //$(".nav_count_wall").hide();
+    //$(".nav_left").append("<div class='nav_count_tip_white'></div>");
+    $(".nav_fld").append("<div class='nav_count_tip_white'></div>");
+    $(".nav_fld").append("<div class='nav_count_tip_blue'></div>");
+    $(".nav_count_wall").show();
+});
+
+function ToggleHiddenPanelCustomer(elementName) {
+    ;
+}
 function AddAfterCustomerMenu() {;
     //
 }

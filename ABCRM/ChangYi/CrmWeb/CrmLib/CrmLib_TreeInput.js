@@ -1,17 +1,5 @@
-﻿var vProcStatus = 0;
-var cPS_BROWSE = 0;
-var cPS_ADD = 1;
-var cPS_MODIFY = 2;
-var cPS_ERROR = 3;
-var vUrl = "";
-var vPageMsgID = "1";
-var bCanEdit = true;
-var vCaption = "";
-var vBMGZ = "22222";//编码规则
+﻿var vBMGZ = "22222";//编码规则
 var curNode;//选中的节点
-var vOLDDB = GetUrlParam("old");
-if (vOLDDB == "")
-    vOLDDB = "0";
 
 var saveCode;
 
@@ -267,11 +255,6 @@ function SetControlBaseState() {
     SetControlState();
 };
 
-function SetControlState() {
-    //增加了空方法，这样单据js不写这个方法也不会报错了，因为一般这个方法也没有内容
-    ;
-}
-
 function posttosever(Obj, str_url, str_mode, str_suc, async) {
     PostToServer(Obj, str_url, str_mode, str_suc, async, function (data) {
         FillTree(false);
@@ -303,10 +286,6 @@ function onClick(e, treeId, treeNode) {
 function OnClickCustom(e, treeId, treeNode) {
     ;
 }
-function AddCustomerButton() {
-    //单据特殊的按钮在这里加，因为如果直接AddToolButtons的话，会覆盖原来按钮的事件，所以加了一个这个方法
-    ;
-};
 
 function postTowx() {
     if ($("#selectPublicID").combobox("getValue") == "选择公众号") {

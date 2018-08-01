@@ -1,28 +1,10 @@
-﻿var vJLBH = "";
-var vUrl = "";
-var vPageMsgID = "1";
-var vPagePersonID = "1";
-var vColumnNames = [];
+﻿var vColumnNames = [];
 var vColumnModel = [];
 var vAllColumns = [];
 var vColumns = [];
 var vFrozenColumns = [];
-var vSearchData = "";
 var GridWidth = 1000;
 var GridHeight = 700;
-var bCanEdit = true;
-var bCanExec = true;
-var bCanSrch = true;
-var vCaption = "";
-var vOLDDB = GetUrlParam("old");
-if (vOLDDB == "")
-    vOLDDB = "0";
-var vCZK = GetUrlParam("czk");
-if (vCZK == "")
-    vCZK = "0";
-var optype = GetUrlParam("optype");
-var jlbhlist = GetUrlParam("jlbhlist");
-
 var bDrawExport = false;
 var bDropDown = false;
 var ExportMode = false;
@@ -32,6 +14,7 @@ var OtherSearchCondition = "";
 var ConbinDataArry = new Array();
 var iWXPID = 1;
 var DBQ = GetUrlParam("PLDBQ");
+
 //MakeNewTab放到commonfunc里
 function SetControlBaseState() {
     //var rowid = $("#list").jqGrid("getGridParam", "selrow");
@@ -47,16 +30,6 @@ function SetControlBaseState() {
     document.getElementById("B_Exec").disabled = !(bHasData && !bExecuted) || !bCanExec;
     document.getElementById("B_Search").disabled = !bCanSrch;
     SetControlState();
-};
-
-function SetControlState() {
-    //增加了空方法，这样单据js不写这个方法也不会报错了，因为一般这个方法也没有内容
-    ;
-}
-
-function AddCustomerButton() {
-    //单据特殊的按钮在这里加，因为如果直接AddToolButtons的话，会覆盖原来按钮的事件，所以加了一个这个方法
-    ;
 };
 
 function onHYZLXClick(e, treeId, treeNode) {
@@ -90,7 +63,6 @@ $(document).ready(function () {
     //动态添加分隔线
     AddButtonSep();
     //判断在线人员
-    vPagePersonID = iDJR;
     if (sDJRMC == "") {
         alert("您已离线，请重新登录！");
     }

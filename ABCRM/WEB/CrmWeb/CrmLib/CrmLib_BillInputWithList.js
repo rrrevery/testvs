@@ -193,7 +193,7 @@ $(document).ready(function () {
     var pager = $('#list').datagrid("getPager");
     pager.pagination({
         onSelectPage: function (pageNum, pageSize) {
-            SearchData(pageNum, pageSize);
+            SearchData("list", pageNum, pageSize);
         },
     });
     //$("#list").jqGrid(
@@ -382,61 +382,61 @@ function ShowDataBase(Obj) {
     //SetControlBaseState();
 }
 
-function SearchData(page, rows, sort, order) {
-    var obj = MakeSearchJSON();
-    //page页码,rows每页行数,sort排序字段,order排序方式
-    page = page || $('#list').datagrid("options").pageNumber;
-    rows = rows || $('#list').datagrid("options").pageSize;
-    sort = sort || $('#list').datagrid("options").sortName;
-    order = order || $('#list').datagrid("options").sortOrder;
-    $('#list').datagrid("loading");
-    $.ajax({
-        type: "post",
-        url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        async: true,
-        data: {
-            json: JSON.stringify(obj),
-            titles: 'cybillsearch',
-            page: page,
-            rows: rows,
-            sort: sort,
-            order: order,
-        },
-        success: function (data) {
-            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
-                ShowMessage(data);
-            }
-            $('#list').datagrid('loadData', JSON.parse(data), "json");
-            $('#list').datagrid("loaded");
-            vSearchData = data;
-            if (CurIndex >= 0) {
-                $("#list").datagrid("selectRow", CurIndex);
-            }
-        },
-        error: function (data) {
-            ShowMessage(data);
-        }
-    });
+//function SearchData(page, rows, sort, order) {
+//    var obj = MakeSearchJSON();
+//    //page页码,rows每页行数,sort排序字段,order排序方式
+//    page = page || $('#list').datagrid("options").pageNumber;
+//    rows = rows || $('#list').datagrid("options").pageSize;
+//    sort = sort || $('#list').datagrid("options").sortName;
+//    order = order || $('#list').datagrid("options").sortOrder;
+//    $('#list').datagrid("loading");
+//    $.ajax({
+//        type: "post",
+//        url: vUrl + "?mode=Search&func=" + vPageMsgID,
+//        async: true,
+//        data: {
+//            json: JSON.stringify(obj),
+//            titles: 'cybillsearch',
+//            page: page,
+//            rows: rows,
+//            sort: sort,
+//            order: order,
+//        },
+//        success: function (data) {
+//            if (data.indexOf('错误') >= 0 || data.indexOf('error') >= 0) {
+//                ShowMessage(data);
+//            }
+//            $('#list').datagrid('loadData', JSON.parse(data), "json");
+//            $('#list').datagrid("loaded");
+//            vSearchData = data;
+//            if (CurIndex >= 0) {
+//                $("#list").datagrid("selectRow", CurIndex);
+//            }
+//        },
+//        error: function (data) {
+//            ShowMessage(data);
+//        }
+//    });
 
-}
+//}
 
-function MakeSearchJSON() {
-    var cond = MakeSearchCondition();
-    if (cond == null)
-        return;
-    var Obj = new Object();
-    Obj.SearchConditions = cond;
-    Obj.iLoginRYID = iDJR;
-    AddCustomerCondition(Obj);
-    return Obj;
-}
+//function MakeSearchJSON() {
+//    var cond = MakeSearchCondition();
+//    if (cond == null)
+//        return;
+//    var Obj = new Object();
+//    Obj.SearchConditions = cond;
+//    Obj.iLoginRYID = iDJR;
+//    AddCustomerCondition(Obj);
+//    return Obj;
+//}
 
-function MakeSearchCondition() {
-    ;
-}
-function AddCustomerCondition() {
-    ;
-}
+//function MakeSearchCondition() {
+//    ;
+//}
+//function AddCustomerCondition() {
+//    ;
+//}
 
 function ShowDataBase2(t_jlbh) {
     var Obj = new Object();
@@ -461,8 +461,6 @@ function ShowDataBase2(t_jlbh) {
         url: vUrl + "?mode=View" + "&func=" + vPageMsgID,
         data: { json: JSON.stringify(Obj).replace(/\\/g, "").replace(/\"{/g, "{").replace(/}\"}/g, "}}"), titles: 'cybillview' },
         success: function (data) {
-            var a=JSON.stringify(Obj);
-
             canBeClose = true;
             myDialog.close();
             //if (data.indexOf('错误') >= 0) {
