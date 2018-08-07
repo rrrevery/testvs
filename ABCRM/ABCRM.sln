@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCRM", "ChangYi\ABCRM.csproj", "{2D9F9577-E4A6-4D2D-89F2-A90ABA2880C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCRM", "ABCRM\ABCRM.csproj", "{2D9F9577-E4A6-4D2D-89F2-A90ABA2880C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8E818CD6-801A-4DF4-8A60-F80BE85E16BA} = {8E818CD6-801A-4DF4-8A60-F80BE85E16BA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCRMProc", "ChangYiProc\ABCRMProc.csproj", "{8E818CD6-801A-4DF4-8A60-F80BE85E16BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCRMProc", "ABCRMProc\ABCRMProc.csproj", "{8E818CD6-801A-4DF4-8A60-F80BE85E16BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
