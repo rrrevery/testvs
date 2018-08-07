@@ -156,7 +156,7 @@ public class BFPage : System.Web.UI.Page
     }
     protected void CheckUsrLogin()
     {
-        if (GlobalVariables.SYSInfo.bTest && System.Configuration.ConfigurationManager.AppSettings["UsePlatform"] == "false")
+        if (GlobalVariables.SYSInfo.bTest && !GlobalVariables.SYSInfo.bUsePlatform)
             return;
         try
         {

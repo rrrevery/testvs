@@ -10,34 +10,6 @@
     <script>vPageMsgID = '<%=CM_HYKGL_HYDALR %>'</script>
     <script src="HYKGL_HYDALR_Srch.js"></script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBASE_FC.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_ZJLX.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_ZY.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_XL.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_JTSR.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_JTCY.js"></script>
-    <script src="../../DE/HYKBaseYW/HYKBaseYW_JTGJ.js"></script>
-
-    <style>
-        .mini-buttonedit-border {
-            border: solid 1px #a5acb5;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            padding-right: 30px;
-        }
-
-        .mini-buttonedit-input {
-            border: 0;
-            float: left;
-        }
-
-        .mini-buttonedit-buttons {
-            position: absolute;
-            width: 30px;
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
     <%=V_SearchBodyBegin %>

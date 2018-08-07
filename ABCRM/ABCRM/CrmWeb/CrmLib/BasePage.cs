@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-
+using BF.CrmProc;
 
 public class BasePage : BFPage
 {
@@ -23,7 +23,6 @@ public class BasePage : BFPage
     public string V_DHTBodyBegin, V_DHTBodyEnd;
     public string V_ArtToolBar;
     public string V_Head_WebArt, V_Head_WebArtList, V_Head_WebArtTree;
-    public string V_Domain;
 
     public override void BFPage_Load(object sender, EventArgs e)
     {
@@ -103,16 +102,15 @@ public class BasePage : BFPage
         string printsrv = ConfigurationManager.AppSettings["CloudPrintServer"];
         if (printsrv != null && printsrv != "")
             V_Head_Input += "<script src='" + System.Configuration.ConfigurationManager.AppSettings["CloudPrintServer"] + "/CLodopfuncs.js'></script>";
-        V_Domain = "<script>var domain='" + HttpContext.Current.Request.Url.Host + "'</script>";
         string tmpjs = "<script>";
         tmpjs += "var iDJR = '" + V_UserID + "';";
         tmpjs += "var sDJRMC = '" + V_UserName + "';";
         tmpjs += "var sIPAddress = '" + V_IPAddress + "';";
         tmpjs += "var iPID = '" + 1 + "';";
         tmpjs += "var sPIF = '" + 1 + "';";
-        //tmpjs += "document.domain='" + ConfigurationManager.AppSettings["domain"] + "';";
+        tmpjs += "var domain='" + HttpContext.Current.Request.Url.Host + "';";
+        tmpjs += "var bUsePlatform=" + GlobalVariables.SYSInfo.bUsePlatform.ToString().ToLower() + ";";
         tmpjs += "</script>";
-        tmpjs += V_Domain;
         //Print Object
         tmpjs += "<object id='LODOP_OB' classid='clsid:2105C259-1E0C-4534-8141-A753534CB4CA' width='0' height='0' style='display:none' >";
         tmpjs += "<embed id='LODOP_EM' type='application/x-print-lodop' width='0' height='0' pluginspage='install_lodop32.exe'></embed></object>";

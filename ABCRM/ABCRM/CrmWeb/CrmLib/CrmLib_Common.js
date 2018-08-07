@@ -710,11 +710,12 @@ function MakeNewTab(url, title, tabid) {
         self: true,  //写死
         callback: null  //打开后回调
     };
-
-    var d = document.domain;
-    document.domain = domain;
-    if (parent && parent._ && parent._.OpenPage) {
-        parent._.OpenPage(options);
+    if (bUsePlatform) {
+        var d = document.domain;
+        document.domain = domain;
+        if (parent && parent._ && parent._.OpenPage) {
+            parent._.OpenPage(options);
+        }
     }
     else {
         parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });

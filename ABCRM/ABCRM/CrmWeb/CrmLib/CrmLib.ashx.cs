@@ -50,7 +50,7 @@ namespace BF.CrmWeb.LIB
                         bPermit = true;
                     else if (obj.iRYID <= 0)
                         bPermit = false;
-                    else if (System.Configuration.ConfigurationManager.AppSettings["UsePlatform"] == "true")
+                    else if (GlobalVariables.SYSInfo.bUsePlatform)
                     {
                         var emp = UserApplication.GetUser<Employee>();
                         bPermit = emp.HasPermission(obj.iMENUID.ToString()); //获取权限

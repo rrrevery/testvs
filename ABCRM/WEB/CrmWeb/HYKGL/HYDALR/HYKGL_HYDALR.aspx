@@ -11,7 +11,7 @@
         vPageMsgID = <%=CM_HYKGL_HYDALR%>;
     </script>
     <script src="HYKGL_HYDALR.js"></script>
-    <script src="../../CrmLib/CrmLib_FillHYQY.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <object
         id="SynCardOcx1"
         classid="clsid:46E4B248-8A41-45C5-B896-738ED44C1587"

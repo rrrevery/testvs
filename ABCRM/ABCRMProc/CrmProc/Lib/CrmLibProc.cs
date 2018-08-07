@@ -4639,6 +4639,8 @@ namespace BF.CrmProc
         public static string GetGKDA(out string msg, CyQuery query, CRMLIBASHX param) //ref GKDA obj
         {
             msg = string.Empty;
+            if (param.sSFZBH==""&& param.sSJHM==""&& param.sHYK_NO == "")
+                return "";
             GKDA obj = null;
             query.SQL.Text = "select G.*,B.GK_NAME TJRYMC,PERSON_NAME KHJLMC";
             //if (obj.sHYK_NO != "")

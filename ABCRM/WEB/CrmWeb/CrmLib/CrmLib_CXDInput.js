@@ -60,9 +60,6 @@ $(document).ready(function () {
 
     $("#LB_CXSDSTR").click(function () {
         var dialogUrl = "../../CrmArt/TimeSet/CrmArt_TimeSet.aspx";
-        var pturl = window.location.pathname.toUpperCase();
-        pturl = pturl.substr(0, pturl.indexOf("CRMWEB"));
-        dialogUrl = dialogUrl.replace("../..", pturl + "CRMWEB");
         $.dialog.data('SetDialogTimeEnable', vProcStatus != cPS_BROWSE)
         $.dialog.data('DialogTimeData', $("#HF_CXSD").val());
         //dialogUrl = dialogUrl.replace("../..", sCRMPATH + "/CRMWEB");

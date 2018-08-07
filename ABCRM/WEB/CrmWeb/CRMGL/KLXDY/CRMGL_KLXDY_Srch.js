@@ -52,3 +52,6 @@ function MakeSearchCondition() {
 	MakeMoreSrchCondition(arrayObj);
 	return arrayObj;
 };
+function AddCustomerCondition(Obj) {
+    Obj.qx = false;
+}

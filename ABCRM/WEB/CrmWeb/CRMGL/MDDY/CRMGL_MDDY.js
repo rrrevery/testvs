@@ -82,3 +82,6 @@ function ShowData(data) {
 function InsertClickCustom() {
     $("#S_SH").combobox("setValue", "选择商户");
 };
+function AddCustomerCondition(Obj) {
+    Obj.qx = false;
+}

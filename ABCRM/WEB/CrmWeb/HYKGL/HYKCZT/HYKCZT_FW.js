@@ -99,7 +99,6 @@ $(document).ready(function () {
     $("#B_CK").click(function () {
         $.dialog.data("iDJR", iDJR);
         var dialogUrl = "../../CrmArt/ListCZTHYK/CrmArt_ListCZTHYK.aspx?czk=0";
-        dialogUrl = MakePTUrl(dialogUrl);
         $.dialog.open(dialogUrl, {
             lock: true, width: 1000, height: 350, cancel: false,
             close: function () {
@@ -333,9 +332,6 @@ function clickfunction() {
     if (!pHYKNO) {
         return;
     }
-    var pturl = window.location.pathname.toUpperCase();
-    pturl = pturl.substr(0, pturl.indexOf("CRMWEB"));
-    pturl = pturl.substr(1);
     var tp_filename = "";
     var title = $(this)[0].text;//.substr(2, 99);
     var tabid = $(this).attr("menuid");
@@ -525,7 +521,7 @@ function clickfunction() {
             break;
     }
     if (tp_filename) {
-        MakeNewTab(pturl + tp_filename, title, tabid);
+        MakeNewTab(tp_filename, title, tabid);
     }
     event.preventDefault();
     console.log($(this).text());//生成不同的newTabe

@@ -1,12 +1,10 @@
-﻿var vUrl = "";
-var vPageMsgID = "1";
-var vCaption = "";
-var vSingleSelect = false;
+﻿var vSingleSelect = false;
 var vAutoShow = true;
 var vDialogName = "";
 var vIdField = "";
 var lstAlready = [];
 var iWXPID = 1;
+
 $(document).ready(function () {
     if ($.dialog.data("dialogInput")) {
         lstAlready = JSON.parse($.dialog.data("dialogInput"));
