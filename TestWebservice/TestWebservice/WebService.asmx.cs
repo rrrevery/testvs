@@ -22,11 +22,17 @@ namespace TestWebservice
             public string name = string.Empty;
             public double totalmoney = 0;
             public List<SalePay> paylist = new List<SalePay>();
+            public List<PayCoupon> couponlist = new List<PayCoupon>();
         }
         public class SalePay
         {
             public int paytype = 0;
             public double paymoney = 0;
+        }
+        public class PayCoupon
+        {
+            public int coupontype = 0;
+            public double couponmoney = 0;
         }
 
         [WebMethod]
@@ -61,11 +67,18 @@ namespace TestWebservice
             obj.paylist.Add(new SalePay() { paytype = 2, paymoney = 15 });
             obj.totalmoney = obj.paylist.Sum(one => one.paymoney);
             lst.Add(obj);
-            Sale obj2 = new Sale() { id = a, name = "测试2" + b };
-            obj2.paylist.Add(new SalePay() { paytype = 1, paymoney = 10 });
-            obj2.paylist.Add(new SalePay() { paytype = 2, paymoney = 15 });
-            obj2.totalmoney = obj2.paylist.Sum(one => one.paymoney);
-            lst.Add(obj2);
+            obj = new Sale() { id = a + 1, name = "测试2" + b };
+            obj.paylist.Add(new SalePay() { paytype = 1, paymoney = 40 });
+            obj.couponlist.Add(new PayCoupon() { coupontype = 1, couponmoney = 5 });
+            obj.totalmoney = obj.paylist.Sum(one => one.paymoney);
+            lst.Add(obj);
+            obj = new Sale() { id = a + 2, name = "测试3" + b };
+            obj.paylist.Add(new SalePay() { paytype = 1, paymoney = 20 });
+            obj.paylist.Add(new SalePay() { paytype = 2, paymoney = 15 });
+            obj.couponlist.Add(new PayCoupon() { coupontype = 1, couponmoney = 5 });
+            obj.couponlist.Add(new PayCoupon() { coupontype = 3, couponmoney = 10 });
+            obj.totalmoney = obj.paylist.Sum(one => one.paymoney);
+            lst.Add(obj);
             return lst;
         }
 
