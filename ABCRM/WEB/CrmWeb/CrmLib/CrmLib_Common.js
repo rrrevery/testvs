@@ -263,15 +263,6 @@ function GetLength(strTemp) {
     return sum;
 }
 
-String.prototype.barryCount = function () {
-    if (typeof (this) != "object") {
-        txt = this.replace(/(<.*?>)/ig, '');
-        txt = txt.replace(/[\u4E00-\u9FA5]/g, '11');
-        var count = txt.length;
-        return count;
-    }
-}
-
 //验证日期
 function checkDate(obj) {
     value = Trim(obj.value);
@@ -427,6 +418,14 @@ function GetUrlParam(name, dftval) {
     if (r != null)
         return unescape(r[2]);
     return dftval;
+}
+
+function GetValueRegExp(str, name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = str.match(reg);
+    if (r != null)
+        return unescape(r[2]);
+    return "";
 }
 
 function GetUrlCaption(name) {
@@ -711,16 +710,18 @@ function MakeNewTab(url, title, tabid) {
         self: true,  //写死
         callback: null  //打开后回调
     };
-
-    if (parent && parent._ && parent._.OpenPage) {
-        parent._.OpenPage(options);
+    if (bUsePlatform) {
+        var d = document.domain;
+        document.domain = domain;
+        if (parent && parent._ && parent._.OpenPage) {
+            parent._.OpenPage(options);
+        }
     }
     else {
         parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
     }
+    document.domain = d;
 };
-
-
 
 function ShowMessage(sMsg, time, cls, lock, closefunc) {
     time = time || 3;
@@ -1140,79 +1141,6 @@ function upLoadFile(form, dir, suc) {
     $("#" + form).ajaxSubmit(options);
 }
 
-//T--适用于大部分列表弹出框
-//T--URL参数、取值参数后续可以数组拼接
-function MoseDialogModel(dialogName, hideField, showField, hideData, dialogUrl, dialogTitle, multiSelect, nameValue, idValue, condData, autoShow, dialogWidth, dialogHeight) {
-    if (autoShow == undefined) {
-        autoShow == true;
-    }
-    $.dialog.data("dialogName", dialogName);
-    $.dialog.data("dialogTitle", dialogTitle);
-    if (typeof (hideData) == 'object')
-        $.dialog.data("dialogInput", JSON.stringify(hideData));
-    else {
-        $.dialog.data("dialogInput", $("#" + hideData).val());
-    }
-    $.dialog.data("SingleSelect", !multiSelect);//尼玛叫Single给赋值multi
-    $.dialog.data("autoShow", autoShow);
-    $.dialog.data("DialogCondition", "");
-    if (condData) {
-        $.dialog.data("DialogCondition", JSON.stringify(condData));
-    }
-    var vWidth = dialogWidth || 600;
-    var vHeight = dialogHeight || 550;
-    if (dialogName.indexOf("Tree") >= 0) {
-        vHeight = 400;
-        vWidth = 400;
-    }
-    if (dialogName.indexOf("DialogSK") >= 0) {
-        vHeight = 200;
-        vWidth = 500;
-    }
-    $.dialog.open(dialogUrl, {
-        lock: true, width: vWidth, height: vHeight, cancel: false,
-        drag: true, fixed: false,
-        close: function () {
-            var tp_mc = "";
-            var tp_hf = "";
-            var bSelected = $.dialog.data('dialogSelected');
-            if (bSelected) {
-                var lst = JSON.parse($.dialog.data(dialogName));
-                for (var i = 0; i <= lst.length - 1; i++) {
-                    tp_mc += lst[i][nameValue] + ",";
-                    if (typeof (lst[i][idValue]) == "string" && lst.length > 1) {
-                        tp_hf += "'" + lst[i][idValue] + "',";
-                    }
-                    else {
-                        tp_hf += lst[i][idValue] + ",";
-                    }
-                }
-                $("#" + showField).val(tp_mc.substr(0, tp_mc.length - 1));
-                $("#" + hideField).val(tp_hf.substr(0, tp_hf.length - 1));
-                if (typeof (hideData) != 'object')
-                    $("#" + hideData).val($.dialog.data(dialogName));
-                MoseDialogCustomerReturn(dialogName, lst, showField);
-            }
-            else {
-                if (dialogName.indexOf("DialogSK") < 0) {
-                    $("#" + showField).val("");
-                    $("#" + hideField).val("");
-                    if (typeof (hideData) != 'object') {
-                        $("#" + hideData).val("");
-                    }
-                }
-            }
-            $.dialog.data(dialogName, "");
-            $.dialog.data("dialogInput", "");
-            $.dialog.data("DialogCondition", "");
-        }
-    }, false);
-};
-
-//T--自定义返回方法
-function MoseDialogCustomerReturn(dialogName, lstData, showField) {
-};
-
 function ClearDialogSelect(showField, hideField, hideData) {
     $("#" + showField).val("");
     //$("#" + showField).text("");
@@ -1263,50 +1191,6 @@ function CheckMenuPermit(iPersonID, iMenuID) {
     }, false);
 }
 
-var sCurrentPath = "";
-
-$(document).ready(function () {
-    //尼玛不知道放哪儿
-    //缩进
-    //for (i = 0; i < $(".slide_down_title").length; i++) {
-    //    elementName = $(".slide_down_title")[i].id;
-    //    panelName = elementName + "_Hidden";
-    //    $("#" + panelName).addClass("maininput3");
-    //}
-    $(".slide_down_title").append("<div class='btn_dropdown'><i class='fa fa-angle-down' aria-hidden='true' style='color: white'></i></div>");
-    $(".slide_down_title").click(function () {
-        elementName = this.id;
-        panelName = elementName + "_Hidden";
-        if ($("#" + panelName + "").css("display") != "none") {
-            $("#" + elementName + " [class='fa fa-angle-down']").removeClass("fa fa-angle-down").addClass("fa fa-angle-left");
-        }
-        else {
-            $("#" + elementName + " [class='fa fa-angle-left']").removeClass("fa fa-angle-left").addClass("fa fa-angle-down");
-        }
-        $("#" + panelName + "").slideToggle();
-        ToggleHiddenPanelCustomer(elementName);
-    });
-    //对话框背景透明度
-    var d = art.dialog.defaults;
-    d.opacity = 0.1;//取消弹出框时背景变暗
-
-    //页面地址
-    sCurrentPath = window.location.href;
-    sCurrentPath = sCurrentPath.substr(sCurrentPath.indexOf("//") + 2, sCurrentPath.length);
-    sCurrentPath = sCurrentPath.substring(sCurrentPath.indexOf("/") + 1, sCurrentPath.indexOf(".aspx"));
-    sCurrentPath = sCurrentPath.substr(0, sCurrentPath.length - 5) + ".aspx";
-
-    //导航图用
-    //$(".nav_count_wall").hide();
-    //$(".nav_left").append("<div class='nav_count_tip_white'></div>");
-    $(".nav_fld").append("<div class='nav_count_tip_white'></div>");
-    $(".nav_fld").append("<div class='nav_count_tip_blue'></div>");
-    $(".nav_count_wall").show();
-});
-
-function ToggleHiddenPanelCustomer(elementName) {
-    ;
-}
 function AddAfterCustomerMenu() {;
     //
 }

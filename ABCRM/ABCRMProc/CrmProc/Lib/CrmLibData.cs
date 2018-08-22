@@ -1917,7 +1917,7 @@ namespace BF.CrmProc
     public class LPFFGZ_LP : LPXX
     {
         public int iLPGRP = 0;
-        public double fLPJE = 0, fKCSL = 0;
+        public double fLPJE = 0;
         public double fSL = 0;
     }
     public class LPFFGZ_TJ//获取礼品发放规则里的礼品用的传输条件

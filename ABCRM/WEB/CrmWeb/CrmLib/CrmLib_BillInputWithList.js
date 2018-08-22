@@ -1,30 +1,9 @@
-﻿var vJLBH = "";
-var vProcStatus = 0;
-var cPS_BROWSE = 0;
-var cPS_ADD = 1;
-var cPS_MODIFY = 2;
-var cPS_ERROR = 3;
-var vUrl = "";
-var vAction = "";
-var vPageMsgID = "1";
-var vPagePersonID = "1";
-var vColumnNames = [];
+﻿var vColumnNames = [];
 var vColumnModel = [];
 var vColumns = [];
-var vSearchData = "";
 var GridWidth = 1000;
 var GridHeight = 700;
-var bCanEdit = true;
-var bCanDelete = true;
-var vCaption = "";
-var CurIndex = -1;
 
-var vOLDDB = GetUrlParam("old");
-if (vOLDDB == "")
-    vOLDDB = "0";
-var vCZK = GetUrlParam("czk");
-if (vCZK == "")
-    vCZK = "0";
 var RandomSession = "";
 
 var d = art.dialog.defaults;
@@ -54,19 +33,6 @@ function PageDate_Clear() {
 
 };
 
-function GetValueRegExp(str, name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = str.match(reg);
-    if (r != null)
-        return unescape(r[2]);
-    return "";
-}
-
-function SetControlState() {
-    //增加了空方法，这样单据js不写这个方法也不会报错了，因为一般这个方法也没有内容
-    ;
-}
-
 function SetControlBaseState() {
     if (sDJRMC == "") {
         alert("您已离线，请重新登录！");
@@ -90,11 +56,6 @@ function SetControlBaseState() {
     //$("#B_Insert").hide();
     SetControlState();
 };
-
-//单据特殊的按钮在这里加，因为如果直接AddToolButtons的话，会覆盖原来按钮的事件，所以加了一个这个方法
-function AddCustomerButton() {
-    ;
-}
 
 $(document).ready(function () {
     GridWidth = $(document).width() - 2;
@@ -129,7 +90,6 @@ $(document).ready(function () {
     //document.getElementById("status-bar").innerHTML = val;
     //document.getElementById("jlbh").innerHTML = "<div class='bffld_left'>记录编号</div><div class='bffld_right'><label id='TB_JLBH'/></div>";//<input id='TB_JLBH' type='text'/>
 
-    vPagePersonID = iDJR;
     if (sDJRMC == "") {
         alert("您已离线，请重新登录！");
         //var strFullPath = window.document.location.href;
@@ -138,8 +98,6 @@ $(document).ready(function () {
         //var prePath = strFullPath.substring(0, pos);   
         //window.parent.location.href = prePath + "/Login.aspx";
     }
-    vAction = GetUrlParam("action");//$.getUrlParam("action");
-    vJLBH = GetUrlParam("jlbh");//$.getUrlParam("jlbh");
     vProcStatus = cPS_BROWSE;
     //$('#TB_JLBH').bind('keypress', function (event) {
     //    if (event.keyCode == "13") {

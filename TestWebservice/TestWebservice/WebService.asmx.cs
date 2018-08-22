@@ -64,15 +64,9 @@ namespace TestWebservice
             List<Sale> lst = new List<Sale>();
             Sale obj = new Sale() { id = a, name = "测试1" + b };
             obj.paylist.Add(new SalePay() { paytype = 1, paymoney = 10 });
-            obj.paylist.Add(new SalePay() { paytype = 2, paymoney = 15 });
             obj.totalmoney = obj.paylist.Sum(one => one.paymoney);
             lst.Add(obj);
             obj = new Sale() { id = a + 1, name = "测试2" + b };
-            obj.paylist.Add(new SalePay() { paytype = 1, paymoney = 40 });
-            obj.couponlist.Add(new PayCoupon() { coupontype = 1, couponmoney = 5 });
-            obj.totalmoney = obj.paylist.Sum(one => one.paymoney);
-            lst.Add(obj);
-            obj = new Sale() { id = a + 2, name = "测试3" + b };
             obj.paylist.Add(new SalePay() { paytype = 1, paymoney = 20 });
             obj.paylist.Add(new SalePay() { paytype = 2, paymoney = 15 });
             obj.couponlist.Add(new PayCoupon() { coupontype = 1, couponmoney = 5 });
