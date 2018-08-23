@@ -1768,13 +1768,11 @@
     <Content Include="image\Img\mg_bg.gif" />
     <Content Include="image\Img\save_item.png" />
     <Content Include="image\Img\title.gif" />
-    <Content Include="image\Img\bg_login.png" />
     <Content Include="image\Img\glyphicons-halflings-white.png" />
     <Content Include="image\Img\glyphicons-halflings.png" />
     <Content Include="image\Img\ico_left.png" />
     <Content Include="image\Img\ico_right.png" />
     <Content Include="image\Img\Image1.jpg" />
-    <Content Include="image\Img\img_loginMain.png" />
     <Content Include="image\Img\img_logo.png" />
     <Content Include="Index2.aspx" />
     <Content Include="Js\bootstrap.js" />

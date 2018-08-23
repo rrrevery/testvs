@@ -221,7 +221,7 @@ function GetHYXXNew(HYKNO, TZJF) {
     if (HYKNO != "") {
         //根据卡号查询信息
         var str = GetHYXXData(0, HYKNO);
-        if (str != "null" && str != "") {
+        if (str) {
             var Obj = JSON.parse(str);
             if (CheckReapet(Obj)) {
                 $("#list").addRowData($("#list").getGridParam("reccount"), {

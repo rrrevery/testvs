@@ -25,10 +25,7 @@ function getHYXXList(sHYK_NO) {
 
     if (sHYK_NO != "") {
         var str = GetHYXXData(0, sHYK_NO);
-        if (str == null) {
-            showMessage("没有找到卡号", 3);
-        }
-        else {
+        if (str) {
             var Obj = JSON.parse(str);
             if (Obj.sHYK_NO == "") {
                 showMessage("没有找到卡号", 3);
@@ -57,8 +54,6 @@ function getHYXXList(sHYK_NO) {
     else {
         showMessage("会员卡号不能为空", 3);
     }
-
-
 }
 
 function ShowHYData(Obj) {

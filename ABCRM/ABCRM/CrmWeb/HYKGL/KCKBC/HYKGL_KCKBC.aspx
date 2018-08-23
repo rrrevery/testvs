@@ -23,7 +23,7 @@
         vPageMsgID = '<%=CM_HYKGL_KCKBC%>';        
     </script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script type="text/javascript" src="http://localhost:22345/writeCard.js"></script>
+    <%=V_WriteCardJS%>
     <script src="HYKGL_KCKBC.js"></script>
     <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>

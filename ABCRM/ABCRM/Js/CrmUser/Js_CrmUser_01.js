@@ -288,7 +288,6 @@
        { id: 1167, pId: 111, name: "会员卡领用申请单", title: "zs", value: "CrmWeb/HYKGL/HYKLYSQ/HYKGL_HYKLYSQ_Srch.aspx?czk=0&djlx=0" },
 
     { id: 112, pId: 11, name: "会员消费管理", title: "1" },
-     { id: 1129, pId: 112, name: "利群积分调整", title: "zs", value: "CrmWeb/HYXF/LQJFBD/HYXF_LQJFBD_Srch.aspx" },
      { id: 1129, pId: 112, name: "客群组类型定义", title: "zs", value: "CrmWeb/HYXF/HYZLXDY/HYXF_HYZLXDY.aspx" },
      { id: 1129, pId: 112, name: "客群组展示", title: "zs", value: "CrmWeb/HYXF/HYZLX/HYXF_HYZLX.aspx" },
      { id: 1129, pId: 112, name: "静态客群组定义", title: "zs", value: "CrmWeb/HYXF/HYZDY/HYXF_HYZDY_Srch.aspx?status=0" },
@@ -322,6 +321,8 @@
      { id: 1122, pId: 112, name: "积分汇总查询", title: "ys", value: "CrmWeb/HYXF/JFHZCX/HYXF_JFHZCX_Srch.aspx" },
       { id: 1122, pId: 112, name: "会员专享商品定义单", title: "ys", value: "CrmWeb/HYXF/HYZXSPDYD/HYXF_HYZXSPDYD_Srch.aspx" },
      { id: 1122, pId: 112, name: "供应商日期段内的每日积分", title: "ys", value: "CrmWeb/HYXF/GYSRQDNMRJF/HYXF_GYSRQDNMRJF.aspx" },
+     { id: 1122, pId: 112, name: "商户积分规则", title: "ys", value: "CrmWeb/HYXF/SHJFGZ/HYXF_SHJFGZ_Srch.aspx" },
+     { id: 1122, pId: 112, name: "商户补积分", title: "ys", value: "CrmWeb/HYXF/BJF/HYXF_BJF_Srch.aspx" },
 
 
     { id: 113, pId: 11, name: "礼品管理", title: "1" },

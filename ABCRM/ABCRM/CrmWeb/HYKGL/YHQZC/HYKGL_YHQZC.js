@@ -2,7 +2,7 @@
 var HYKNO = GetUrlParam("HYKNO");
 
 function InitGrid() {
-    vColumnNames = ["转出会员卡号", "iHYID_ZC", "优惠券ID", "优惠券名称", "转出金额", "余额", "有效期", "门店范围代码", "促销活动编号",  "促销主题"];
+    vColumnNames = ["转出会员卡号", "iHYID_ZC", "优惠券ID", "优惠券名称", "转出金额", "余额", "有效期", "门店范围代码", "促销活动编号", "促销主题"];
     vColumnModel = [
           { name: "sHYK_NO", width: 80, },
           { name: "iHYID", hidden: true },
@@ -59,17 +59,15 @@ $(document).ready(function () {
 function GetCheck() {
     if ($("#TB_ZRHYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_ZRHYKNO").val());
-        if (str == "null" || str == "") {
-            art.dialog({ lock: true, content: "没有找到卡号" });
-            ShowMessage("没有找到卡号", 3);
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
         }
-        var Obj = JSON.parse(str);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
     }
 }
+
 function onClick(e, treeId, treeNode) {
     $("#TB_BGDDMC").val(treeNode.name);
     $("#HF_BGDDDM").val(treeNode.id);
@@ -103,7 +101,7 @@ function SaveData() {
     Obj.sHYKNO = $("#TB_ZRHYKNO").val();
     Obj.iHYKTYPE = $("#HF_HYKTYPE").val();
     Obj.sBGDDDM = $("#HF_BGDDDM").val();
-    Obj.fZRJE = compute("list", "fZCJE");; 
+    Obj.fZRJE = compute("list", "fZCJE");;
     Obj.sZY = $("#TB_ZY").val();
 
     var lst = new Array();

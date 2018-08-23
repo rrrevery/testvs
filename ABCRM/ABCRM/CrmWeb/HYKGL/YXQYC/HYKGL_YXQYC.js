@@ -27,23 +27,21 @@ $(document).ready(function () {
         } else {
             var str = GetHYXXData(0, HYKNO);
         }
-        if (str == "null" || str == "") {
-            art.dialog({ lock: true, content: "没有找到卡号" });
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#TB_HYKNAME").val(Obj.sHYKNAME);
+            $('#list').datagrid('appendRow', {
+                sHYK_NO: HYKNO,
+                iHYID: Obj.iHYID,
+                sHY_NAME: Obj.sHY_NAME,
+                iHYKTYPE: Obj.iHYKTYPE,
+                sHYKNAME: Obj.sHYKNAME,
+                dYYXQ: Obj.dYXQ,
+            });
+            vProcStatus = cPS_ADD;
+            SetControlBaseState();
         }
-        var Obj = JSON.parse(str);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#TB_HYKNAME").val(Obj.sHYKNAME);
-        $('#list').datagrid('appendRow', {
-            sHYK_NO: HYKNO,
-            iHYID: Obj.iHYID,
-            sHY_NAME: Obj.sHY_NAME,
-            iHYKTYPE: Obj.iHYKTYPE,
-            sHYKNAME: Obj.sHYKNAME,
-            dYYXQ: Obj.dYXQ,
-        });
-        vProcStatus = cPS_ADD;
-        SetControlBaseState();
     }
     //$("#list").addRowData($("#list").getGridParam("reccount"), {});
     $("#AddItem").click(function () {
@@ -59,7 +57,6 @@ $(document).ready(function () {
     $("#DelItem").click(function () {
         DeleteRows("list");
     });
-
 });
 
 function onClick(e, treeId, treeNode) {

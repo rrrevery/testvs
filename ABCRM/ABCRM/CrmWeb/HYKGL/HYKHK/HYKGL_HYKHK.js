@@ -46,37 +46,27 @@ $(document).ready(function () {
             GetKCKXX();
         }
     });
-
-
-
-
-
 });
 
 function GetHYXX() {
     if ($("#TB_HYKHM_OLD").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKHM_OLD").val(), DBCaption);
-        $("#HF_HYID").val(0);
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            if (Obj.iSTATUS < 0 && Obj.iSTATUS != -3) {
+                ShowMessage("此卡状态无法进行补卡");
+                return;
+            }
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HY_NAME").text(Obj.sHY_NAME);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
+            $("#HF_FXDWID").val(Obj.iFXDW);
+            $("#LB_FXDWMC").text(Obj.sFXDWMC);
+            $("#LB_JF").text(Obj.fWCLJF);
+            $("#LB_JE").text(Obj.fCZJE);
+            $("#HF_BJ_CHILD").val(Obj.iBJ_CHILD);
         }
-        var Obj = JSON.parse(str);
-        if (Obj.iSTATUS < 0 && Obj.iSTATUS != -3) {
-            ShowMessage("此卡状态无法进行补卡");
-            return;
-        }
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HY_NAME").text(Obj.sHY_NAME);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
-        $("#HF_FXDWID").val(Obj.iFXDW);
-        $("#LB_FXDWMC").text(Obj.sFXDWMC);
-        $("#LB_JF").text(Obj.fWCLJF);
-        $("#LB_JE").text(Obj.fCZJE);
-        $("#HF_BJ_CHILD").val(Obj.iBJ_CHILD);
-
-
     }
 }
 //查找新卡信息(HYKCARD)

@@ -28,7 +28,7 @@
     font-weight: bolder;
     font-style: italic;
     color: blue;">
-        欢迎使用商友CRM后台管理系统！
+        欢迎使用CRM后台管理系统！
     </p>
     <p style="color:white;">说好的NB霸气的首页呢？图呢？表呢？</p>
 </body>

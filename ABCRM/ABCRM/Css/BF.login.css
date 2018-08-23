@@ -44,16 +44,16 @@ input::-ms-clear {
     margin-top: 22px;
 }
 
-.login_b p {
-    width: 100%;
-    line-height: 20px;
-    overflow: hidden;
-    color: #ababab;
-    font-size: 15px;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
-}
+    .login_b p {
+        width: 100%;
+        line-height: 20px;
+        overflow: hidden;
+        color: #ababab;
+        font-size: 15px;
+        text-align: center;
+        margin: 0px;
+        padding: 0px;
+    }
 
 .loginc_l {
     width: 592px;
@@ -65,8 +65,10 @@ input::-ms-clear {
 .loginc_r {
     width: 407px;
     overflow: hidden;
-    float: right;
-    margin-top: 60px;
+    margin: 60px auto;
+    border: 1px solid #dce1e4;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px #1b1b1b;
 }
 
 .logincr_c {

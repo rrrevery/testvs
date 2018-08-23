@@ -27,43 +27,28 @@ $(document).ready(function () {
             CalcJFBL();
         }
     });
-
-
-
 });
-
-
-
 
 function GetHYXX() {
     if ($("#TB_HYK_NO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYK_NO").val(), "CRMDB", $("#TB_CDNR").val());
-        $("#HF_HYID").val(0);
-        if (str == "null" || str == "") {
-            art.dialog({ lock: true, content: "没有找到卡号" });
-            return;
+        if (str) {
+            $("#HF_HYID").val(0);
+            var Obj = JSON.parse(str);
+            if (Obj.iSTATUS == -1) {
+                art.dialog({ lock: true, content: "该卡已作废,不可以补积分" });
+                return;
+            }
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
+            //$("#LB_JE").text(Obj.fCZJE);
+            if ($("#TB_CDNR").val() != "") {
+                $("#TB_HYK_NO").val(Obj.sHYK_NO);
+            }
         }
-        var Obj = JSON.parse(str);
-        if (Obj.iSTATUS == -1) {
-            art.dialog({ lock: true, content: "该卡已作废,不可以补积分" });
-            return;
-        }
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
-        //$("#LB_JE").text(Obj.fCZJE);
-        if ($("#TB_CDNR").val() != "") {
-            $("#TB_HYK_NO").val(Obj.sHYK_NO);
-        }
-
-
     }
 }
-
-
-
-
-
 
 function SetControlState() {
 

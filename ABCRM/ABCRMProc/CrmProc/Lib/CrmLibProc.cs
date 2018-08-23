@@ -4303,11 +4303,11 @@ namespace BF.CrmProc
                     obj.iBJ_CHILD = 1;
                 }
             }
-            //else
-            //{
-            //    msg = CrmLibStrings.msgHYXXNotFound;
-            //    return null;
-            //}
+            else
+            {
+                msg = CrmLibStrings.msgHYXXNotFound;
+                return "";
+            }
             return JsonConvert.SerializeObject(obj);
         }
         public static HYXX_Detail GetFWNR(out string msg, int pFWNRID, int pHYKTYPE, int pHYID, int pMAINHYID = 0, string sDBConnName = "CRMDB")

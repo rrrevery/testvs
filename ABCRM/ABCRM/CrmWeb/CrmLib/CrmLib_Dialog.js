@@ -3,7 +3,7 @@ function MoseDialogModel(dialogName, hideField, showField, hideData, dialogUrl, 
     if (autoShow == undefined) {
         autoShow == true;
     }
-    
+
     $.dialog.data("dialogName", dialogName);
     $.dialog.data("dialogTitle", dialogTitle);
     if (typeof (hideData) == 'object')
@@ -22,10 +22,6 @@ function MoseDialogModel(dialogName, hideField, showField, hideData, dialogUrl, 
     if (dialogName.indexOf("Tree") >= 0) {
         vHeight = 400;
         vWidth = 400;
-    }
-    if (dialogName.indexOf("DialogSK") >= 0) {
-        vHeight = 200;
-        vWidth = 500;
     }
     $.dialog.open(dialogUrl, {
         lock: true, width: vWidth, height: vHeight, cancel: false,
@@ -1413,7 +1409,7 @@ function SelectCXHD(showField, hideField, hideData, mult, condData) {
 
 function SelectSK(showField, hideField, hideData, condData) {
     var dialogUrl = "../../CrmArt/SK/Crm_Art_SK.aspx";
-    MoseDialogModel("DialogSK", hideField, showField, hideData, dialogUrl, "CRM刷卡", "", "sHYK_NO", "iHYID", condData);
+    MoseDialogModel("DialogSK", hideField, showField, hideData, dialogUrl, "CRM刷卡", "", "sHYK_NO", "iHYID", condData, true, 600, 100);
 }
 
 function SelectYHQ(showField, hideField, hideData, mult, condData) {

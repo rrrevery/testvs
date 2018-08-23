@@ -13,7 +13,7 @@
 <body style="height: auto; overflow-y: hidden">
     <div id="MainPanel" class="bfbox zero_padding">
         <%=V_ArtToolBar%>
-        <div class="bfrow" style="margin-top: 10%">
+        <div class="bfrow">
             <div class="bffld_art" style="width: 100%">
                 <div class="bffld_right" style="width: 100%;">
                     <input id="TB_CDNR" type="text" placeholder="请刷卡……" style="font-size: 30px; height: 50px;" />

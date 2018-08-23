@@ -78,7 +78,7 @@ function SetControlState() {
     // $("#Radio1").prop("disabled", isUpdate);
     // $("#Radio2").prop("disabled", isUpdate);
     // $("#TB_HYNAME").prop("disabled", isUpdate);
-    if ($("#TB_SJHM").val()!="")
+    if ($("#TB_SJHM").val() != "")
         $("#TB_SJHM").attr("disabled", "disabled");
     else
         $("#TB_SJHM").removeAttr("disabled");
@@ -740,21 +740,17 @@ function WUC_SPSB_Return() {
 function GetHYXX() {
     if ($("#TB_CXHYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_CXHYKNO").val());
-        if (str == "null" || str == "") {
-            art.dialog({ lock: true, content: "没有找到卡号" });
-            $("#TB_CXHYKNO").val("");
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#TB_JLBH").val(Obj.iHYID);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#LB_HYKTYPE").text(Obj.iHYKTYPE);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
+            $("#LB_STATUS").text(Obj.iSTATUS);
+
+            //window.location("HYKGL_HYDALR.aspx?jlbh=" + Obj.iHYID);
+            ShowDataBase(Obj.iHYID);
         }
-
-        var Obj = JSON.parse(str);
-        $("#TB_JLBH").val(Obj.iHYID);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#LB_HYKTYPE").text(Obj.iHYKTYPE);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
-        $("#LB_STATUS").text(Obj.iSTATUS);
-
-        //window.location("HYKGL_HYDALR.aspx?jlbh=" + Obj.iHYID);
-        ShowDataBase(Obj.iHYID);
     }
 }
 

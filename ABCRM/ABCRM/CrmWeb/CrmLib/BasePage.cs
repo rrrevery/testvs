@@ -23,6 +23,7 @@ public class BasePage : BFPage
     public string V_DHTBodyBegin, V_DHTBodyEnd;
     public string V_ArtToolBar;
     public string V_Head_WebArt, V_Head_WebArtList, V_Head_WebArtTree;
+    public string V_WriteCardJS;
 
     public override void BFPage_Load(object sender, EventArgs e)
     {
@@ -114,7 +115,7 @@ public class BasePage : BFPage
         //Print Object
         tmpjs += "<object id='LODOP_OB' classid='clsid:2105C259-1E0C-4534-8141-A753534CB4CA' width='0' height='0' style='display:none' >";
         tmpjs += "<embed id='LODOP_EM' type='application/x-print-lodop' width='0' height='0' pluginspage='install_lodop32.exe'></embed></object>";
-
+        V_WriteCardJS = "<script type='text/javascript' src='http://localhost:" + GlobalVariables.SYSInfo.iWriteCardPort + "/writeCard.js'></script>";
         //V_HeadConfig += V_Head_JS;
         V_Head_Input += tmpjs;
         V_Head_WebArt += tmpjs;

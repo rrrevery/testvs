@@ -1172,6 +1172,7 @@ function PostToCrmlib(func, Params, suc, async) {
                     ShowMessage(data.msg);
                 else
                     ShowErrMessage(data.msg);
+                result = false;
             }
             else
                 result = suc(data);

@@ -16,30 +16,25 @@ function InitGrid() {
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val());
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            if (Obj.iSTATUS < 0 && GetUrlParam("lx") == "0") {
+                ShowMessage("此卡为无效卡，无需挂失", 3);
+                return;
+            }
+            if (Obj.iSTATUS != -3 && GetUrlParam("lx") == "1") {
+                ShowMessage("此卡非挂失状态，不能恢复", 3);
+                return;
+            }
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HYNAME").text(Obj.sHY_NAME);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
+            $("#LB_JF").text(Obj.fWCLJF);
+            $("#LB_JE").text(Obj.fCZJE);
         }
-
-        var Obj = JSON.parse(str);
-        if (Obj.iSTATUS < 0 && GetUrlParam("lx") == "0") {
-            ShowMessage("此卡为无效卡，无需挂失", 3);
-            return;
-        }
-        if (Obj.iSTATUS != -3 && GetUrlParam("lx") == "1") {
-            ShowMessage("此卡非挂失状态，不能恢复", 3);
-            return;
-        }
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HYNAME").text(Obj.sHY_NAME);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
-        $("#LB_JF").text(Obj.fWCLJF);
-        $("#LB_JE").text(Obj.fCZJE);
     }
 }
-
-
 
 function IsValidData() {
 

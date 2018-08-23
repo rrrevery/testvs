@@ -145,21 +145,16 @@ function ShowData(data) {
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val());
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号!", 3);
-            $("#TB_HYKNO").val("");
-            $("#HF_HYID").val("");
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            if (Obj.sHYK_NO == "") {
+                ShowMessage("没有找到卡号!", 3);
+                $("#TB_HYKNO").val("");
+                $("#HF_HYID").val("");
+                return;
+            }
+            $("#HF_HYID").val(Obj.iHYID);
         }
-
-        var Obj = JSON.parse(str);
-        if (Obj.sHYK_NO == "") {
-            ShowMessage("没有找到卡号!", 3);
-            $("#TB_HYKNO").val("");
-            $("#HF_HYID").val("");
-            return;
-        }
-        $("#HF_HYID").val(Obj.iHYID);
     }
 }
 
