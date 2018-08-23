@@ -10,7 +10,6 @@ else
     vCaption = "库存会员卡补磁";
 
 $(document).ready(function () {
-
     if (HYKNO != "") {
         $("#TB_CZKHM").val(HYKNO);
         //GetHYXX();
@@ -22,7 +21,7 @@ $(document).ready(function () {
 
     vProcStatus = cPS_ADD;
     SetControlBaseState();
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    //FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
     $("#TB_CZKHM").bind("keypress blur", function (event) {
         if (event.keyCode != 13) {
             return;
@@ -64,18 +63,18 @@ $(document).ready(function () {
             }
         });
         // rwcard.WriteCard("3;1", sCDNR);
-        var WriteResult = HttpGetWriteCard("http://localhost:22345", "write", "2;2;1,9600,n,8,1", $("#HF_CDNR").val());
+        var WriteResult = HttpGetWriteCard("http://localhost:" + WriteCardPort, "write", WriteCardType + ";2", $("#HF_CDNR").val());
 
         if (WriteResult.indexOf("error") >= 0) {//rwcard.LastError
             canBeClose = true;
             myDialog.close();
             ShowMessage("写卡失败：" + WriteResult);
         }
-        //if (rwcard.LastError != "") {
-        //    canBeClose = true;
-        //    myDialog.close();
-        //    ShowMessage("写卡失败：" + rwcard.LastError);
-        //}
+            //if (rwcard.LastError != "") {
+            //    canBeClose = true;
+            //    myDialog.close();
+            //    ShowMessage("写卡失败：" + rwcard.LastError);
+            //}
         else {
             posttosever(SaveData(), vUrl, "Insert");
             canBeClose = true;
@@ -135,7 +134,7 @@ function onClick(e, treeId, treeNode) {
 }
 
 function ProcIt() {
-    if (hyk == "1"&&czk=="0" )//会员卡
+    if (hyk == "1" && czk == "0")//会员卡
     {
         if (!IsValidData()) {
             ClearData();
@@ -162,7 +161,7 @@ function ProcIt() {
             ShowMessage("不存在此库存卡信息");
         }
     }
-    else if (czk == "1" && hyk=="1") {
+    else if (czk == "1" && hyk == "1") {
 
         if (!IsValidData()) {
             ClearData();
@@ -175,27 +174,27 @@ function ProcIt() {
         else {
             ShowMessage("不存在此卡信息");
         }
-                //break;
-            //case 0:
-            //    data = GetMZKKCKXXData($("#TB_CZKHM").val(), "");
-            //    break;
-        }
+        //break;
+        //case 0:
+        //    data = GetMZKKCKXXData($("#TB_CZKHM").val(), "");
+        //    break;
+    }
     else if (czk == "1" && hyk == "0") {
 
         if (!IsValidData()) {
             ClearData();
             return;
         }
-      data = GetMZKKCKXXData($("#TB_CZKHM").val(), "");
+        data = GetMZKKCKXXData($("#TB_CZKHM").val(), "");
         if (data != null && data != "" && data != "null") {
             ShowData(data);
         }
         else {
             ShowMessage("不存在此卡信息");
         }
-    
+
     }
-  
+
 
 }
 
@@ -281,10 +280,8 @@ function ShowData(data) {
             case 2:
                 $("#LB_STATUS").text("发售");
                 break;
-
         }
     }
-
 }
 
 function AddCustomerButton() {

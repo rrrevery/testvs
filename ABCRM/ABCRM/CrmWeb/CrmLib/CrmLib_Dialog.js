@@ -1409,7 +1409,7 @@ function SelectCXHD(showField, hideField, hideData, mult, condData) {
 
 function SelectSK(showField, hideField, hideData, condData) {
     var dialogUrl = "../../CrmArt/SK/Crm_Art_SK.aspx";
-    MoseDialogModel("DialogSK", hideField, showField, hideData, dialogUrl, "CRM刷卡", "", "sHYK_NO", "iHYID", condData, true, 600, 100);
+    MoseDialogModel("DialogSK", hideField, showField, hideData, dialogUrl, "CRM刷卡", "", "sHYK_NO", "iHYID", condData, true, 600, 70);
 }
 
 function SelectYHQ(showField, hideField, hideData, mult, condData) {
