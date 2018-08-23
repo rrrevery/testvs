@@ -144,11 +144,8 @@ function ProcIt() {
         if ($("#TB_CZKHM").val() == "")
             return;
         var data = GetHYXXData("0", $("#TB_CZKHM").val());
-        if (data != null && data != "" && data != "null") {
+        if (data) {
             ShowData(data);
-        }
-        else {
-            ShowMessage("不存在此会员卡信息");
         }
     }
     else if (hyk == "0" && czk == "0")//库存卡

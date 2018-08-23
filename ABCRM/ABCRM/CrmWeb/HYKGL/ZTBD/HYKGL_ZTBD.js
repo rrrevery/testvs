@@ -23,25 +23,23 @@ $(document).ready(function () {
 
     if (HYKNO != "") {
         if (vCZK == 1) {
-            var str = GetMZKXXData(0, HYKNO, "","CRMDBMZK");
+            var str = GetMZKXXData(0, HYKNO, "", "CRMDBMZK");
         } else {
             var str = GetHYXXData(0, HYKNO);
         }
-        if (str == "null" || str == "") {
-            art.dialog({ lock: true, content: "没有找到卡号" });
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            $('#list').datagrid('appendRow', {
+                sHYK_NO: HYKNO,
+                iHYID: Obj.iHYID,
+                sHY_NAME: Obj.sHY_NAME,
+                iOLD_STATUS: Obj.iSTATUS,
+                sStatusName: Obj.sStatusName,
+                iBJ_CHILD: Obj.iBJ_CHILD,
+            });
+            vProcStatus = cPS_ADD;
+            SetControlBaseState();
         }
-        var Obj = JSON.parse(str);
-        $('#list').datagrid('appendRow', {
-            sHYK_NO: HYKNO,
-            iHYID: Obj.iHYID,
-            sHY_NAME: Obj.sHY_NAME,
-            iOLD_STATUS: Obj.iSTATUS,
-            sStatusName: Obj.sStatusName,
-            iBJ_CHILD: Obj.iBJ_CHILD,
-        });
-        vProcStatus = cPS_ADD;
-        SetControlBaseState();
     }
     //$("#list").addRowData($("#list").getGridParam("reccount"), {});
     $("#AddItem").click(function () {
@@ -60,7 +58,6 @@ $(document).ready(function () {
     $("#DelItem").click(function () {
         DeleteRows("list");
     });
-
 });
 
 function onClick(e, treeId, treeNode) {

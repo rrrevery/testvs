@@ -104,32 +104,25 @@ function onClick(e, treeId, treeNode) {
 function GetHYXX() {
     if ($("#TB_HYKHM_OLD").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKHM_OLD").val());
-        $("#HF_HYID").val(0);
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
-        }
-        var Obj = JSON.parse(str);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE_OLD").val(Obj.iHYKTYPE);
-        $("#LB_HY_NAME").text(Obj.sHY_NAME);
-        $("#LB_HYKTYPE_OLD").text(Obj.sHYKNAME);
-        $("#LB_JF").text(Obj.fWCLJF);
-        $("#LB_JE").text(Obj.fCZJE);
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE_OLD").val(Obj.iHYKTYPE);
+            $("#LB_HY_NAME").text(Obj.sHY_NAME);
+            $("#LB_HYKTYPE_OLD").text(Obj.sHYKNAME);
+            $("#LB_JF").text(Obj.fWCLJF);
+            $("#LB_JE").text(Obj.fCZJE);
 
-        $("#LB_BGDDMC").text(Obj.sBGDDMC);
-        $("#LB_BGDDDM").text(Obj.sBGDDDM);
+            $("#LB_BGDDMC").text(Obj.sBGDDMC);
+            $("#LB_BGDDDM").text(Obj.sBGDDDM);
 
-        if ($("[name='LX']:checked").val() == 1)
-        {
-            $("#TB_HYKHM_NEW").val(Obj.sHYK_NO);
-           
+            if ($("[name='LX']:checked").val() == 1) {
+                $("#TB_HYKHM_NEW").val(Obj.sHYK_NO);
+
+            }
         }
     }
 }
-
-
-
 
 function GetKCKXX() {
     if ($("#TB_HYKHM_NEW").val() != "") {
