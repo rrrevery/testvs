@@ -221,3 +221,9 @@ function FillSHBMTreeBase(treename, tbname, shdm, lvl) {
         $.fn.zTree.init($("#" + treename), setting, data);
     });
 }
+
+function FillLPFLTree(treename, tbname) {
+    FillTree("FillLPFLTree", treename, tbname, {}, function (data) {
+        $.fn.zTree.init($("#" + treename), setting, data);
+    });
+}

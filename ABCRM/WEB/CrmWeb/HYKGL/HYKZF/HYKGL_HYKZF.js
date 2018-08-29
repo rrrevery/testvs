@@ -151,33 +151,30 @@ function GetHYXX(HYKNO) {
         } else {
             var str = GetHYXXData(0, HYKNO);
         }
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
-        }
-        var Obj = JSON.parse(str);
-        if (Obj.sHYK_NO == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
-        }
-        if (Obj.iBJ_ZF != 1) {
-            ShowMessage("该卡类型不允许作废", 3);
-            return;
-        }
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#TB_HYKNAME").val(Obj.sHYKNAME);
+        if (str) {
+            var Obj = JSON.parse(str);
+            if (Obj.sHYK_NO == "") {
+                ShowMessage("没有找到卡号", 3);
+                return;
+            }
+            if (Obj.iBJ_ZF != 1) {
+                ShowMessage("该卡类型不允许作废", 3);
+                return;
+            }
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#TB_HYKNAME").val(Obj.sHYKNAME);
 
-        $('#list').datagrid('appendRow', {
-            sHYK_NO: Obj.sHYK_NO,
-            iHYID: Obj.iHYID,
-            sHY_NAME: Obj.sHY_NAME,
-            fLJXFJE: Obj.fLJXFJE,
-            fWCLJF: Obj.fWCLJF,
-            fYE: Obj.fYE,
-            iHYKTYPE: Obj.iHYKTYPE,
-            sHYKNAME: Obj.sHYKNAME,
-            iBJ_CHILD: Obj.iBJ_CHILD,
-        });
-
+            $('#list').datagrid('appendRow', {
+                sHYK_NO: Obj.sHYK_NO,
+                iHYID: Obj.iHYID,
+                sHY_NAME: Obj.sHY_NAME,
+                fLJXFJE: Obj.fLJXFJE,
+                fWCLJF: Obj.fWCLJF,
+                fYE: Obj.fYE,
+                iHYKTYPE: Obj.iHYKTYPE,
+                sHYKNAME: Obj.sHYKNAME,
+                iBJ_CHILD: Obj.iBJ_CHILD,
+            });
+        }
     }
 }

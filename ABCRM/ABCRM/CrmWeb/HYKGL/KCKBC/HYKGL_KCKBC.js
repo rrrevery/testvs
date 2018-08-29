@@ -221,7 +221,7 @@ function ClearData() {
 function ShowData(data) {
     var Obj = JSON.parse(data);
     $("#LB_HYKNAME").text(Obj.sHYKNAME);
-    $("#HF_CDNR").val(Obj.sXKCDNR);
+    $("#HF_CDNR").val(Obj.sCDNR);
     $("#LB_YCJE").text(Obj.fQCYE);
     if (hyk == "1") {
         $("#HF_HYID").val(Obj.iHYID);

@@ -128,19 +128,14 @@ function onHYKClick(e, treeId, treeNode) {
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val());
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号!", 3);
-            $("#TB_HYKNO").val("");
-            return;
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
         }
-
-        var Obj = JSON.parse(str);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
     }
 }
-
 
 function PDYE() {
     if (parseInt($("#LB_YJE").text(), 10) < parseInt($("#TB_QKJE").val(), 10)) {

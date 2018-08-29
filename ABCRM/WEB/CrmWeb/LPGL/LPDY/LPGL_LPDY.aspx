@@ -9,9 +9,8 @@
     <script>
         vPageMsgID = <%=CM_LPGL_JFFHLPDY%>;
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="LPGL_LPDY.js"></script>
-    <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script src="../../CrmLib/CrmLib_GetLPXX.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -155,9 +154,6 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContentLPFL" class="menuContent">
-        <ul id="TreeLPFL" class="ztree"></ul>
-    </div>
 </body>
 </html>
 

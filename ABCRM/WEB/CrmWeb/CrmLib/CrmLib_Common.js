@@ -482,11 +482,11 @@ function AddToolButtons(name, id, cls) {
         case "导出组": facls = "fa fa-users"; break;
         case "加下级": facls = "fa fa-caret-square-o-down"; break;
         case "加同级": facls = "fa fa-caret-square-o-right"; break;
-        case "IC卡": facls = "fa fa-credit-card-alt"; break;
-        case "补磁": facls = "fa fa-credit-card-alt"; break;
+        case "刷卡":
+        case "IC卡":
+        case "补磁": facls = "fa fa-credit-card"; break;
         case "查卡": facls = "fa fa-search"; break;
         case "刷新": facls = "fa fa-refresh"; break;
-        case "刷卡": facls = "fa fa-credit-card"; break;
         case "发布": facls = "fa fa-exchange"; break;
     }
     //val = "<button id='" + id + "' type='button' class='" + cls + " " + facls + "'><span class='bftoolbtn_space'></span>" + name + "</button>";
@@ -731,6 +731,8 @@ function ShowMessage(sMsg, time, cls, lock, closefunc) {
 
     var top = $(window).height() * 0.85;
     var width = $(window).width() * 0.9;
+    if (top + 60 > $(window).height())
+        top = $(window).height() - 80;
     art.dialog({
         lock: lock,
         top: top,
@@ -1172,6 +1174,7 @@ function PostToCrmlib(func, Params, suc, async) {
                     ShowMessage(data.msg);
                 else
                     ShowErrMessage(data.msg);
+                result = false;
             }
             else
                 result = suc(data);

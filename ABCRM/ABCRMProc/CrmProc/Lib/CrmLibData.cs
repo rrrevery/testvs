@@ -1763,10 +1763,27 @@ namespace BF.CrmProc
             set { iJLBH = value; }
             get { return iJLBH; }
         }
-        public string sLPFLDM = string.Empty;
-        public string sLPFLMC = string.Empty;
-        public string sPLPFLDM = string.Empty;
-        public string sLPFLQC = string.Empty;
+        public string sLPFLDM
+        {
+            set { id = value; }
+            get { return id; }
+        }
+        public string sPLPFLDM
+        {
+            set { pId = value; }
+            get { return pId; }
+        }
+        public string sLPFLMC
+        {
+            set { sNAME = value; }
+            get { return sNAME; }
+        }
+        public string sLPFLQC
+        {
+            set { sFULLNAME = value; }
+            get { return sFULLNAME; }
+        }
+
         public int iBJ_MJ = 0;
         public int iBJ_TY = 0;
     }

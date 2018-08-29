@@ -7,36 +7,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <%=V_Head_Input %>
-    <style type="text/css">
-        button {
-            margin: 0px 5px 5px 0px;
-            border-radius: 5px;
-            border: currentColor;
-            border-image: none;
-            width: 82px;
-            height: 28px;
-            font-size: 15px;
-            background-color: rgb(60, 148, 210);
-        }
-    </style>
     <script>
         vPageMsgID = '<%=CM_HYKGL_KCKBC%>';        
     </script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script type="text/javascript" src="http://localhost:22345/writeCard.js"></script>
+    <%=V_WriteCardJS%>
     <script src="HYKGL_KCKBC.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
-    <object
+    <%--<object
         id="rwcard"
         classid="clsid:936CB8A6-052B-4ECA-9625-B8CF4CE51B5F"
         codebase="../../CrmLib/RWCard/BFCRM_RWCard.inf"
         width="0"
         height="0">
-    </object>
-
-
+    </object>--%>
     <%=V_InputBodyBegin %>
     <div class="bfrow">
         <div class="bffld" style="display: none;">
@@ -83,8 +68,5 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

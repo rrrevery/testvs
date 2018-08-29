@@ -8,62 +8,59 @@ var vBJ_XFJE = 0;
 function GetHYXX() {
     if ($("#TB_HYKHM_OLD").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKHM_OLD").val());
-        if (str == "null" || str == "") {
-            ClearHYXX();
-            $("#TB_HYKHM_OLD").val("");
-            return;
-        }
-        var Obj = JSON.parse(str);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPEOLD").val(Obj.iHYKTYPE);
-        $("#LB_HYNAME").text(Obj.sHY_NAME);
-        $("#LB_HYKNAMEOLD").text(Obj.sHYKNAME);
-        $("#LB_WCLJF").text(Obj.fWCLJF);
-        $("#LB_BQJF").text(Obj.fBQJF);
-        $("#LB_BQXFJE").text(Obj.fXFJE);
-        $("#LB_BGDDMC").text(Obj.sBGDDMC);
-        $("#HF_BGDDDM").val(Obj.sBGDDDM);
-        $("#HF_YJKRQ").val(Obj.dJKRQ);
-        $("#HF_FXDW").val(Obj.iFXDW);
-        //$("#HF_BJ_XFJE").val(Obj.iBJ_XFJE);
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPEOLD").val(Obj.iHYKTYPE);
+            $("#LB_HYNAME").text(Obj.sHY_NAME);
+            $("#LB_HYKNAMEOLD").text(Obj.sHYKNAME);
+            $("#LB_WCLJF").text(Obj.fWCLJF);
+            $("#LB_BQJF").text(Obj.fBQJF);
+            $("#LB_BQXFJE").text(Obj.fXFJE);
+            $("#LB_BGDDMC").text(Obj.sBGDDMC);
+            $("#HF_BGDDDM").val(Obj.sBGDDDM);
+            $("#HF_YJKRQ").val(Obj.dJKRQ);
+            $("#HF_FXDW").val(Obj.iFXDW);
+            //$("#HF_BJ_XFJE").val(Obj.iBJ_XFJE);
 
-        var str2 = GetSJGZ(Obj.iHYKTYPE, vSJ, $("#LB_BQJF").text(), Obj.fXFJE, Obj.iMDID);
-        if (str2 == "null" || str2 == "") {
-            $("#HF_HYKTYPENEW").val("");
-            $("#LB_HYKNAMENEW").text("");
-            ClearHYXX();
-            //if (vSJ == 1) {
-            //    ShowMessage("没有找到升级规则",1);
-            //    ClearHYXX();
-            //}
-            //else {
-            //    ShowMessage("没有找到降级规则",1);
-            //    ClearHYXX();
-            //}
-            return;
-        }
-        var obj2 = JSON.parse(str2);
-        $("#HF_HYKTYPENEW").val(obj2.iHYKTYPE_NEW);
-        $("#LB_HYKNAMENEW").text(obj2.sHYKNAME_NEW);
-        $("#HF_BJ_XFJE").val(obj2.iBJ_XFJE);
-        if (vSJ == 1) {  //升级
-            if (obj2.iBJ_XFJE == 0) {
-                $("#LB_SJJF").text(obj2.fQDJF);
+            var str2 = GetSJGZ(Obj.iHYKTYPE, vSJ, $("#LB_BQJF").text(), Obj.fXFJE, Obj.iMDID);
+            if (str2 == "null" || str2 == "") {
+                $("#HF_HYKTYPENEW").val("");
+                $("#LB_HYKNAMENEW").text("");
+                ClearHYXX();
+                //if (vSJ == 1) {
+                //    ShowMessage("没有找到升级规则",1);
+                //    ClearHYXX();
+                //}
+                //else {
+                //    ShowMessage("没有找到降级规则",1);
+                //    ClearHYXX();
+                //}
+                return;
+            }
+            var obj2 = JSON.parse(str2);
+            $("#HF_HYKTYPENEW").val(obj2.iHYKTYPE_NEW);
+            $("#LB_HYKNAMENEW").text(obj2.sHYKNAME_NEW);
+            $("#HF_BJ_XFJE").val(obj2.iBJ_XFJE);
+            if (vSJ == 1) {  //升级
+                if (obj2.iBJ_XFJE == 0) {
+                    $("#LB_SJJF").text(obj2.fQDJF);
+                }
+                else {
+                    $("#LB_SJJF").text(obj2.fDRXFJE);
+                }
             }
             else {
-                $("#LB_SJJF").text(obj2.fDRXFJE);
+                if (obj2.iBJ_XFJE == 0) {
+                    $("#LB_SJJF").text(Obj.fBQJF);
+                }
+                else {
+                    $("#LB_SJJF").text(Obj.fXFJE);
+                }
             }
-        }
-        else {
-            if (obj2.iBJ_XFJE == 0) {
-                $("#LB_SJJF").text(Obj.fBQJF);
-            }
-            else {
-                $("#LB_SJJF").text(Obj.fXFJE);
-            }
-        }
 
-        ToggleShowText(vSJ, obj2.iBJ_XFJE);
+            ToggleShowText(vSJ, obj2.iBJ_XFJE);
+        }
     }
 }
 

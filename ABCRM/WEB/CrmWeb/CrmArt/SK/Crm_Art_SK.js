@@ -101,21 +101,16 @@ function GetHYXX(cdnr, sDBConnName) {
     else {
         str = GetHYXXData(0, "", DBCaption, cdnr);
     }
-    if (str == "null" || str == "") {
-        ShowMessage("没有找到卡", 3, false, undefined, function () { document.getElementById("TB_CDNR").focus(); });
-        $("#TB_CDNR").val("");
-        return;
+    if (str) {
+        window.clearInterval(timeCDNR);
+        vReturnData = JSON.parse(str);
+        if (vReturnData.sHYK_NO == "") {
+            ShowMessage("没有找到卡", 3, false, undefined, function () { document.getElementById("TB_CDNR").focus(); });
+            $("#TB_CDNR").val("");
+            return;
+        }
+        ArtSaveClick();
     }
-
-    window.clearInterval(timeCDNR);
-    vReturnData = JSON.parse(str);
-    if (vReturnData.sHYK_NO == "") {
-        ShowMessage("没有找到卡", 3, false, undefined, function () { document.getElementById("TB_CDNR").focus(); });
-        $("#TB_CDNR").val("");
-        return;
-    }
-    ArtSaveClick();
-
 }
 
 function GetKCKXX(hykno, cdnr) {

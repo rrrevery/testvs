@@ -127,29 +127,24 @@ function ShowData(data) {
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val());
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号");
-            $("#TB_HYKNO").val("");
-            return;
-        }
-
-        var Obj = JSON.parse(str);
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#TB_HYNAME").val(Obj.sHY_NAME);
-        $("#HF_YMMYZ").val(Obj.sPASSWORD);
-        if (TYPE == 1) {//密码重置取身份证号后6位，X不取
-            var ZJHM = Obj.sSFZBH;
-            if (isNaN(ZJHM.substring(ZJHM.length - 1, ZJHM.length))) {
-                ZJHM = ZJHM.substring(ZJHM.length - 7, ZJHM.length - 1);
+        if (str) {
+            var Obj = JSON.parse(str);
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#TB_HYNAME").val(Obj.sHY_NAME);
+            $("#HF_YMMYZ").val(Obj.sPASSWORD);
+            if (TYPE == 1) {//密码重置取身份证号后6位，X不取
+                var ZJHM = Obj.sSFZBH;
+                if (isNaN(ZJHM.substring(ZJHM.length - 1, ZJHM.length))) {
+                    ZJHM = ZJHM.substring(ZJHM.length - 7, ZJHM.length - 1);
+                }
+                else {
+                    ZJHM = ZJHM.substring(ZJHM.length - 6, ZJHM.length);
+                }
+                $("#TB_YMM").val("123");
+                $("#TB_XMM").val(ZJHM);
+                $("#TB_QRMM").val(ZJHM);
+                $("#TB_SFZBH").val(Obj.sSFZBH);
             }
-            else {
-                ZJHM = ZJHM.substring(ZJHM.length - 6, ZJHM.length);
-            }
-            $("#TB_YMM").val("123");
-            $("#TB_XMM").val(ZJHM);
-            $("#TB_QRMM").val(ZJHM);
-            $("#TB_SFZBH").val(Obj.sSFZBH);
         }
-
     }
 }

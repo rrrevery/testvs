@@ -7,76 +7,73 @@ var HYK_NO = "";
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val(), vDBName);
-        $("#HF_HYID").val(0);
-        if (str == "null" || str == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
-        }
-        if (str.indexOf("错误") >= 0) {
-            ShowMessage(str, 3);
-            return;
-        }
+        if (str) {
+            if (str.indexOf("错误") >= 0) {
+                ShowMessage(str, 3);
+                return;
+            }
 
-        var Obj = JSON.parse(str);
+            var Obj = JSON.parse(str);
 
-        if (Obj.sHYK_NO == "") {
-            ShowMessage("没有找到卡号", 3);
-            return;
-        }
-        if (Obj.iBJ_GS != 1) {
-            ShowMessage("该卡类型不允许挂失", 3);
-            return;
+            if (Obj.sHYK_NO == "") {
+                ShowMessage("没有找到卡号", 3);
+                return;
+            }
+            if (Obj.iBJ_GS != 1) {
+                ShowMessage("该卡类型不允许挂失", 3);
+                return;
 
-        }
-        if (Obj.iSTATUS < 0 && vHF == "0") {
-            ShowMessage("此卡为无效卡，无需挂失", 3);
-            return;
-        }
-        if (Obj.iSTATUS != -3 && vHF == "1") {
-            ShowMessage("此卡非挂失状态，不能恢复", 3);
-            return;
-        }
-        $("#HF_HYID").val(Obj.iHYID);
-        $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-        $("#LB_HYNAME").text(Obj.sHY_NAME);
-        $("#LB_HYKNAME").text(Obj.sHYKNAME);
-        $("#HF_FXDWDM").val(Obj.sFXDWDM);
-        $("#LB_FXDWMC").text(Obj.sFXDWMC);
-        $("#HF_BJ_CHILD").val(Obj.iBJ_CHILD);
+            }
+            if (Obj.iSTATUS < 0 && vHF == "0") {
+                ShowMessage("此卡为无效卡，无需挂失", 3);
+                return;
+            }
+            if (Obj.iSTATUS != -3 && vHF == "1") {
+                ShowMessage("此卡非挂失状态，不能恢复", 3);
+                return;
+            }
+            $("#HF_HYID").val(Obj.iHYID);
+            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+            $("#LB_HYNAME").text(Obj.sHY_NAME);
+            $("#LB_HYKNAME").text(Obj.sHYKNAME);
+            $("#HF_FXDWDM").val(Obj.sFXDWDM);
+            $("#LB_FXDWMC").text(Obj.sFXDWMC);
+            $("#HF_BJ_CHILD").val(Obj.iBJ_CHILD);
 
-        //if (Obj.iBJ_CHILD == 0) {//挂失的为主卡
+            //if (Obj.iBJ_CHILD == 0) {//挂失的为主卡
 
-        //    if (Obj.iHYID != "") {
-        //         HYK_NO = GetZK(Obj.iHYID);
-        //        if (HYK_NO != "") {
-        //            $("#A").show();
-        //        }
-        //        else
-        //            $("#A").hide();
-        //    }
+            //    if (Obj.iHYID != "") {
+            //         HYK_NO = GetZK(Obj.iHYID);
+            //        if (HYK_NO != "") {
+            //            $("#A").show();
+            //        }
+            //        else
+            //            $("#A").hide();
+            //    }
 
-        //}
-        //else
-        //    $("#A").hide();
+            //}
+            //else
+            //    $("#A").hide();
 
 
-        //if (Obj.iHYID != "") {
-        //    var gxshjf = GetGXSHJF(Obj.iHYID, iDJR);
-        //    if (gxshjf != "") {
-        //        $("#LB_JF").text(gxshjf);
-        //    }
-        //}
+            //if (Obj.iHYID != "") {
+            //    var gxshjf = GetGXSHJF(Obj.iHYID, iDJR);
+            //    if (gxshjf != "") {
+            //        $("#LB_JF").text(gxshjf);
+            //    }
+            //}
 
-        $("#LB_JF").text(Obj.fWCLJF);
-        $("#LB_JE").text(Obj.fCZJE);
-        if (vHF == 0) {
-            $("#LB_YZT").text("正常有效");
-            $("#LB_XZT").text("挂失");
+            $("#LB_JF").text(Obj.fWCLJF);
+            $("#LB_JE").text(Obj.fCZJE);
+            if (vHF == 0) {
+                $("#LB_YZT").text("正常有效");
+                $("#LB_XZT").text("挂失");
 
-        }
-        else {
-            $("#LB_YZT").text("挂失");
-            $("#LB_XZT").text("正常有效");
+            }
+            else {
+                $("#LB_YZT").text("挂失");
+                $("#LB_XZT").text("正常有效");
+            }
         }
     }
 }

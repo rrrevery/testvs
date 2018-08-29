@@ -323,7 +323,7 @@ function GetHYXXNew(HYKNO, TZJF) {
     if (HYKNO != "") {
         //根据卡号查询信息
         var str = GetHYXXData(0, HYKNO);
-        if (str != "null" && str != "") {
+        if (str) {
             var Obj = JSON.parse(str);
             if (CheckReapetImport(Obj)) {
                 var otherObj = GetBalance($("#HF_MDID").val(), $("#HF_YHQ").val(), Obj.iHYID, $("#TB_JSSJ").val(), $("#HF_CXID").val());

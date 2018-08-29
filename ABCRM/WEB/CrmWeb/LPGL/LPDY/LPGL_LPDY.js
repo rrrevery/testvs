@@ -6,10 +6,10 @@ $(document).ready(function () {
     $("#JLBHCaption").hide();
     $("#B_Exec").hide();
     $("#status-bar").hide();
-    $("select[id*='S_LP']").each(function (index, element) {
-        FillLPSX($(element), index);
-    });
-    FillLPFLTree("TreeLPFL", "TB_LPFLMC", "menuContentLPFL",1);//只取未停用的礼品分类
+    //$("select[id*='S_LP']").each(function (index, element) {
+    //    FillLPSX($(element), index);
+    //});
+    FillLPFLTree("TreeLPFL", "TB_LPFLMC");//只取未停用的礼品分类
 
     $("#TB_SHSBMC").click(function () {
         SelectSPSB("TB_SHSBMC", "HF_SHSBID", "zHF_SHSBID", true);
@@ -49,10 +49,9 @@ function IsValidData() {
     }
     return true;
 }
-function onLPFLClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#TB_LPFLMC").val(treeNode.name);
-    $("#HF_LPFLID").val(treeNode.lpflid);
-    hideMenu("menuContentLPFL");
+    $("#HF_LPFLID").val(treeNode.iJLBH);
 }
 
 function setDisable() {

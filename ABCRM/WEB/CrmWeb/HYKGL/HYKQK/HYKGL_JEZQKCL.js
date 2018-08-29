@@ -18,21 +18,19 @@ $(document).ready(function () {
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val());
-        if (str == "null" || str == "") {
-            ShowMessage("卡号不存在或者校验失败", 3);
-            return;
-        }
-        var Obj = JSON.parse(str);
-        if (Obj.iBJ_CZZH == 0) {
-            ShowMessage("该卡类型未开通储值账户", 3);
-            return;
-        }
-        else {
-            $("#HF_HYID").val(Obj.iHYID);
-            $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
-            $("#LB_HY_NAME").text(Obj.sHY_NAME);
-            $("#LB_HYKNAME").text(Obj.sHYKNAME);
-            $("#LB_YJE").text(Obj.fCZJE);
+        if (str) {
+            var Obj = JSON.parse(str);
+            if (Obj.iBJ_CZZH == 0) {
+                ShowMessage("该卡类型未开通储值账户", 3);
+                return;
+            }
+            else {
+                $("#HF_HYID").val(Obj.iHYID);
+                $("#HF_HYKTYPE").val(Obj.iHYKTYPE);
+                $("#LB_HY_NAME").text(Obj.sHY_NAME);
+                $("#LB_HYKNAME").text(Obj.sHYKNAME);
+                $("#LB_YJE").text(Obj.fCZJE);
+            }
         }
     }
 }
