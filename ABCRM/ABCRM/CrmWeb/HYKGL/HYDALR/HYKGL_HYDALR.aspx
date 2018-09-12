@@ -379,7 +379,7 @@
             <div class="bffld">
                 <div class="bffld_left">备注</div>
                 <div class="bffld_right">
-                    <input id="TB_ZY" type="text" style="width: 385%" />
+                    <input id="TB_BZ" type="text" style="width: 385%" />
                 </div>
             </div>
         </div>
@@ -471,9 +471,6 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeQY" class="ztree"></ul>
-    </div>
 </body>
 </html>
 

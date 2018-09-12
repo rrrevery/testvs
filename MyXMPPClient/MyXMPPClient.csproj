@@ -35,9 +35,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\BFVX\CRM-BS\引用\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Matrix">
       <HintPath>packages\MatriX.2.1.0.5\lib\net40\Matrix.dll</HintPath>
     </Reference>
@@ -88,12 +85,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\CY\BFVX\CRM-BS\CyPub\CyPub_BF\CyPub.csproj">
-      <Project>{e7557a25-01ce-49a4-9edd-70ec82a8b767}</Project>
-      <Name>CyPub</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

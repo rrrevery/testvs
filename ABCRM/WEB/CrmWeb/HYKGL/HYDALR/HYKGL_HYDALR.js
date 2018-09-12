@@ -157,7 +157,7 @@ $(document).ready(function () {
     DrawGrid("listWDTJ", vWDTJColumnNames, vWDTJColumnModel);
     DrawGrid("listWDQZ", vWDQZColumnNames, vWDQZColumnModel);
     DrawGrid("List_HYK", vHYKColumnNames, vHYKColumnModel);
-    FillQYTree("TreeQY", "TB_QY");
+    FillQYTree("TreeQY", "TB_QY", false);
     FillSelect("DDL_ZJLX", GetHYXXXM(0));
     FillSelect("DDL_ZY", GetHYXXXM(1));
     FillSelect("DDL_JTSR", GetHYXXXM(2));

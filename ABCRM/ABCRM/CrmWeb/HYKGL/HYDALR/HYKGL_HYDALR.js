@@ -157,7 +157,7 @@ $(document).ready(function () {
     DrawGrid("listWDTJ", vWDTJColumnNames, vWDTJColumnModel);
     DrawGrid("listWDQZ", vWDQZColumnNames, vWDQZColumnModel);
     DrawGrid("List_HYK", vHYKColumnNames, vHYKColumnModel);
-    FillQYTree("TreeQY", "TB_QY");
+    FillQYTree("TreeQY", "TB_QY", false);
     FillSelect("DDL_ZJLX", GetHYXXXM(0));
     FillSelect("DDL_ZY", GetHYXXXM(1));
     FillSelect("DDL_JTSR", GetHYXXXM(2));
@@ -645,14 +645,6 @@ function ShowData(Data) {
 
     //other
     $("#DDL_ZY").val(data.HYKXX.iZYID);
-    //var treeZY = $.fn.zTree.getZTreeObj("TreeZY");
-    //if (treeZY) {
-    //    var treeNodeZY = treeZY.getNodeByParam("jlbh", data.HYKXX.iZYID);
-    //    if (treeNodeZY != null) {
-    //        $("#TB_ZY").val(treeNodeZY.name);
-    //    }
-    //}
-
 
     //$("#CB_DKH").prop("disabled", true);//大客户标记不允许修改 无锡华地 2014.12.1
 
@@ -768,12 +760,6 @@ function onClick(e, treeId, treeNode) {
         $("#HF_XQID").val("");
         $("#zHF_XQID").val("");
         hideMenu("menuContent");
-    }
-    if (treeId == "TreeZY") {
-        $("#HF_ZYID").val(treeNode.jlbh);
-        $("#TB_ZY").val(treeNode.name);
-
-        hideMenu("menuContent_ZY");
     }
 }
 

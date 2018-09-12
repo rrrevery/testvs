@@ -471,9 +471,6 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeQY" class="ztree"></ul>
-    </div>
 </body>
 </html>
 

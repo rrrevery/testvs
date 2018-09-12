@@ -716,11 +716,11 @@ function MakeNewTab(url, title, tabid) {
         if (parent && parent._ && parent._.OpenPage) {
             parent._.OpenPage(options);
         }
+        document.domain = d;
     }
     else {
         parent.navTab.openTab(tabid.toString() + "tab", localhostPath + url, { title: title, external: true });
     }
-    document.domain = d;
 };
 
 function ShowMessage(sMsg, time, cls, lock, closefunc) {

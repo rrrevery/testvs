@@ -7,10 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Matrix.Xmpp;
-using Matrix.Xmpp.Client;
-using Matrix.Xmpp.Register;
-using BF.Pub;
 
 namespace MyXMPPClient
 {
@@ -52,7 +48,7 @@ namespace MyXMPPClient
         {
             DateTime ks = DateTime.Now;
             XmppMessage.XmppSend("rrr@rrr970", tbMsg.Text);
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 XmppMessage.XmppSend("bj" + i + "@rrr970", tbMsg.Text);
             }
@@ -74,7 +70,7 @@ namespace MyXMPPClient
         private void btSysLogin_Click(object sender, EventArgs e)
         {
             string usr = tbSysUser.Text;
-            XmppMessage.XmppRegisterOF(usr, "1");
+            XmppMessage.XmppSysLogin(usr, "1");
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -95,19 +91,20 @@ namespace MyXMPPClient
 
         private void SysSend(string user, string msg)
         {
-            DbConnection conn = CyDbConnManager.GetActiveDbConnection("DB");
-            CyQuery query = new CyQuery(conn);
-            query.SQL.Text = "select * from mUser where USERNAME=:USERNAME";
-            query.ParamByName("USERNAME").AsString = user;
-            query.Open();
-            if (!query.IsEmpty)
-            {
-                string usrof = query.FieldByName("OFNAME").AsString;
-                //xc.RegisterNewAccount = false;
-                XmppMessage.XmppSend(usrof, msg);
-            }
-            query.Close();
-            conn.Close();
+            XmppMessage.XmppSysSend(user, msg);
+            //DbConnection conn = CyDbConnManager.GetActiveDbConnection("DB");
+            //CyQuery query = new CyQuery(conn);
+            //query.SQL.Text = "select * from mUser where USERNAME=:USERNAME";
+            //query.ParamByName("USERNAME").AsString = user;
+            //query.Open();
+            //if (!query.IsEmpty)
+            //{
+            //    string usrof = query.FieldByName("OFNAME").AsString;
+            //    //xc.RegisterNewAccount = false;
+            //    XmppMessage.XmppSend(usrof, msg);
+            //}
+            //query.Close();
+            //conn.Close();
         }
     }
 }
