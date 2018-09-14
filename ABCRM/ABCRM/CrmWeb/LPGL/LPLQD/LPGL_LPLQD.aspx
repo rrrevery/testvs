@@ -12,8 +12,8 @@
         bCanEdit = CheckMenuPermit(iDJR, '<%=CM_LPGL_JFFHLPLQD_LR%>');
         bCanExec = CheckMenuPermit(iDJR, '<%=CM_LPGL_JFFHLPLQD_SH%>');
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="LPGL_LPLQD.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -78,12 +78,6 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent1" class="menuContent">
-        <ul id="TreeBGDD1" class="ztree"></ul>
-    </div>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>
 

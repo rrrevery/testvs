@@ -42,7 +42,7 @@ $(document).ready(function () {
         $("#DV_JHFS").hide();
     }
 
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     BFButtonClick("TB_GHSMC", function () {
         SelectGHS("TB_GHSMC", "HF_GHSID", "zHF_GHSID", true, 0); //iBJ_TY=0 未停用
     });
@@ -97,7 +97,7 @@ function IsValidData() {
     }
     return true;
 }
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     if ($("#HF_BGDDDM").val() != "") {
         ShowYesNoMessage("是否清空数据？", function () {
             $('#list').datagrid('loadData', { total: 0, rows: [] });
@@ -109,8 +109,6 @@ function onClick(e, treeId, treeNode) {
         $("#TB_BGDDMC").val(treeNode.name);
         $("#HF_BGDDDM").val(treeNode.id);
     }
-
-    hideMenu("menuContent");
 }
 
 function SaveData() {

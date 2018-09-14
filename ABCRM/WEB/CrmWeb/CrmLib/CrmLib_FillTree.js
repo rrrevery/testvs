@@ -196,7 +196,7 @@ function FillBQXMTree(treename, tbname, bqlb) {
 }
 
 function FillQYTree(treename, tbname, async) {
-    FillTree("FillHYQY", treename, tbname, {}, function (data) {
+    FillTree("FillHYQY", treename, tbname, { iMODE: 1 }, function (data) {
         $.fn.zTree.init($("#" + treename), setting, data);
         //if (data.length < 1) {
         //    var zNode = '{"id":"00","pid":"0","name":"暂无会员区域数据..."}';

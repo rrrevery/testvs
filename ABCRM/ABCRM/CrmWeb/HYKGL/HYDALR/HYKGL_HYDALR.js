@@ -634,9 +634,9 @@ function ShowData(Data) {
 
     var treeStr = "";
     var treeObj = $.fn.zTree.getZTreeObj("TreeQY");
-    var treeNode = treeObj.getNodeByParam("jlbh", data.HYKXX.iQYID);
+    var treeNode = treeObj.getNodeByParam("iJLBH", data.HYKXX.iQYID);
     while (treeNode != null && treeNode.pId != "") {
-        treeStr = treeNode.qymc + " " + treeStr;
+        treeStr = treeNode.sQYMC + " " + treeStr;
         treeNode = treeObj.getNodeByParam("id", treeNode.pId);
     }
     $("#TB_QY").val(treeStr);
@@ -746,13 +746,13 @@ function GetHYXX() {
     }
 }
 
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     if (treeId == "TreeQY") {
-        $("#HF_QYID").val(treeNode.jlbh);
+        $("#HF_QYID").val(treeNode.iJLBH);
         var str = "";
         var treeObj = $.fn.zTree.getZTreeObj(treeId);
         while (treeNode != null && treeNode.pId != "") {
-            str = treeNode.qymc + " " + str;
+            str = treeNode.sQYMC + " " + str;
             treeNode = treeObj.getNodeByParam("id", treeNode.pId);
         }
         $("#TB_QY").val(str);

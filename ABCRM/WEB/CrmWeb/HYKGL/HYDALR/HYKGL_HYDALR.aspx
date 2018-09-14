@@ -192,17 +192,17 @@
         </div>
 
         <div class="bfrow">
-            <div class="bffld">
+            <div class="bffld_l2">
                 <div class="bffld_left">工作单位</div>
                 <div class="bffld_right">
-                    <input id="TB_GZDW" type="text" style="width: 385%" />
+                    <input id="TB_GZDW" type="text" />
                 </div>
             </div>
         </div>
         <div class="bfrow" no_control="no_control">
-            <div class="bffld_l" style="width: 100%;">
-                <div class="bffld_left" style="width: 8.3%; white-space: nowrap">接受商场信息方式</div>
-                <div id="CBL_XXFS"></div>
+            <div class="bffld_l2">
+                <div class="bffld_left">接受商场信息方式</div>
+                <div class="bffld_right" id="CBL_XXFS"></div>
             </div>
         </div>
     </div>
@@ -369,17 +369,17 @@
             </div>
         </div>
         <div class="bfrow" no_control="no_control">
-            <div class="bffld" style="width: 100%">
-                <div class="bffld_left" style="width: 8.3%;">业余爱好</div>
-                <div id="CBL_YYAH"></div>
+            <div class="bffld_l2">
+                <div class="bffld_left">业余爱好</div>
+                <div class="bffld_right" id="CBL_YYAH"></div>
             </div>
         </div>
 
         <div class="bfrow">
-            <div class="bffld">
+            <div class="bffld_l2">
                 <div class="bffld_left">备注</div>
                 <div class="bffld_right">
-                    <input id="TB_ZY" type="text" style="width: 385%" />
+                    <input id="TB_BZ" type="text" />
                 </div>
             </div>
         </div>
