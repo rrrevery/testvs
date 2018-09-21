@@ -18,7 +18,7 @@ function InitGrid() {
     ];
 };
 $(document).ready(function () {
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     $("#B_Exec").hide();
     $("#B_Delete").hide();
     $("#B_Update").hide();
@@ -91,7 +91,7 @@ function SetControlState() {
     }
 }
 
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     if ($("#HF_BGDDDM").val() != "") {
         ShowYesNoMessage("是否清空数据？", function () {
             $('#list').datagrid('loadData', { total: 0, rows: [] });

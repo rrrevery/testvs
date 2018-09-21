@@ -1499,16 +1499,17 @@ function PostToServer(Obj, str_url, str_mode, str_suc, async, succ) {
         type: "post",
         url: str_url + "?mode=" + str_mode + "&func=" + vPageMsgID + "&old=" + vOLDDB,
         async: async,
+        dataType: "json",
         data: {
             json: JSON.stringify(Obj), titles: 'cybillpost'
         },
         success: function (data) {
             canBeClose = true;
             myDialog.close();
-            if (typeof (data) == "string") {
-                vJLBH = GetValueRegExp(data, "jlbh")
-                if (vJLBH == "" && data != "yes")
-                    data = JSON.parse(data);
+            if (data.jlbh != "") {
+                vJLBH = data.jlbh;
+                //if (vJLBH == "" && data != "yes")
+                //    data = JSON.parse(data);
             }
             //if (data.indexOf("错误") >= 0 || data.indexOf("error") >= 0) {
             //    ShowErrMessage(data);

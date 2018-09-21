@@ -23,8 +23,8 @@
 
         }
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="LPGL_LPJHD.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -44,7 +44,7 @@
         <div class="bffld">
             <div class="bffld_left" style="white-space: nowrap" id="BGDDSTR"></div>
             <div class="bffld_right">
-                <input id="TB_BGDDMC" type="text" style="background-color: #F4F6F7" />
+                <input id="TB_BGDDMC" type="text" />
                 <input id="HF_BGDDDM" type="hidden" />
             </div>
         </div>
@@ -109,8 +109,5 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

@@ -11,9 +11,9 @@ $(document).ready(function () {
         $("#TB_HYKHM_OLD").attr("readonly", "readonly");
     }
 
-    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME_NEW", "menuContentHYKTYPE");
+    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME_NEW");
 
-  //  FillBGDDTreeSK("TreeBGDD", "TB_BGDDMC", "menuContent");
+    //  FillBGDDTreeSK("TreeBGDD", "TB_BGDDMC", "menuContent");
     //卡类型弹出框 
     //$("#TB_HYKNAME_NEW").click(function () {
     //    SelectKLX("TB_HYKNAME_NEW", "HF_HYKTYPE_NEW", "zHF_HYKTYPE_NEW", true);
@@ -42,10 +42,10 @@ $(document).ready(function () {
     $("#TB_HYKHM_OLD").bind('keypress', function (event) {//#TB_CDNR,
         if (event.keyCode == "13") {
 
-            var s=$("[name='LX']:checked").val();
+            var s = $("[name='LX']:checked").val();
             if ($("[name='LX']:checked").val() == undefined) {
-                    ShowMessage("请选择类型", 3);
-                    return false;
+                ShowMessage("请选择类型", 3);
+                return false;
 
             }
             GetHYXX();
@@ -58,41 +58,23 @@ $(document).ready(function () {
         }
     });
 
-
     $(function () {
         $('input:radio[name="LX"]').change(function () {
-         
-
-
-
             if ($("[name='LX']:checked").val() == 1) {
-
                 document.getElementById("TB_HYKNAME_NEW").disabled = false;
                 document.getElementById("TB_HYKHM_NEW").disabled = true;
-
-          
             }
             if ($("[name='LX']:checked").val() == 2) {
                 document.getElementById("TB_HYKNAME_NEW").disabled = true;
                 document.getElementById("TB_HYKHM_NEW").disabled = false;
-
             }
-            
-
-            
-
         });
-
-
-
     });
-
 })
 
-function onHYKClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#TB_HYKNAME_NEW").val(treeNode.name);
     $("#HF_HYKTYPE_NEW").val(treeNode.id);
-        hideMenu("menuContentHYKTYPE");   
 };
 
 function onClick(e, treeId, treeNode) {
@@ -206,7 +188,7 @@ function SaveData() {
     Obj.sHYKHM_NEW = $("#TB_HYKHM_NEW").val();
     //Obj.iHYKTYPE_NEW = $("#HF_HYKTYPE_NEW").val(); 
     Obj.iHYKTYPE_NEW = $("#HF_HYKTYPE_NEW").val();
-   // Obj.fBDJF = $("#TB_BDJF").val();
+    // Obj.fBDJF = $("#TB_BDJF").val();
     Obj.sBGDDDM = $("#LB_BGDDDM").text();
     Obj.sZY = $("#TB_ZY").val();
     Obj.iLoginRYID = iDJR;
@@ -228,7 +210,7 @@ function ShowData(data) {
     $("#TB_HYKHM_NEW").val(Obj.sHYKHM_NEW);
     $("#HF_HYKTYPE_NEW").val(Obj.iHYKTYPE_NEW);
     $("#TB_HYKNAME_NEW").val(Obj.sHYKNAME_NEW);
-    
+
     $("#LB_JF").text(Obj.fJF);
     $("#LB_JE").text(Obj.fJE);
     $("#TB_BDJF").val(Obj.fBDJF);

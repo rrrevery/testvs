@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSybase", "TestSybase\Te
 		{E7557A25-01CE-49A4-9EDD-70EC82A8B767} = {E7557A25-01CE-49A4-9EDD-70EC82A8B767}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyPub", "..\..\..\BFVX\CRM-BS\CyPub\CyPub_BF\CyPub.csproj", "{E7557A25-01CE-49A4-9EDD-70EC82A8B767}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyPub", "..\..\..\CY\BFVX\CRM-BS\CyPub\CyPub_BF\CyPub.csproj", "{E7557A25-01CE-49A4-9EDD-70EC82A8B767}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,15 +27,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://124.193.186.226:8816/tfs/defaultcollection
-		SccProjectUniqueName0 = ..\\..\\..\\BFVX\\CRM-BS\\CyPub_BF\\CyPub\\CyPub.csproj
-		SccProjectName0 = $/CRM-BS/CyPub_BF/CyPub
-		SccAuxPath0 = http://124.193.186.226:8816/tfs/defaultcollection
-		SccLocalPath0 = ..\\..\\..\\BFVX\\CRM-BS\\CyPub_BF\\CyPub
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

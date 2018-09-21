@@ -482,5 +482,32 @@ namespace TestSybase
                 conn.Close();
             }
         }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            string dbname = "MSSQL";
+            DbConnection conn = CyDbConnManager.GetActiveDbConnection(dbname);
+            try
+            {
+                CyQuery query = new CyQuery(conn);
+                query.SQL.Text = "insert into SHDY(SHDM,SHMC) values(:SHDM,:SHMC)";
+                query.ParamByName("SHDM").AsString = "BH";
+                query.ParamByName("SHMC").AsString = "百货";
+                query.ExecSQL();
+                query.SQL.Text = "select * from SHDY";
+                query.Open();
+                Log("SHDM：" + query.FieldByName("SHDM").AsString);
+                Log("SHMC：" + query.FieldByName("SHMC").AsString);
+                query.Close();
+            }
+            catch (Exception ex)
+            {
+                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

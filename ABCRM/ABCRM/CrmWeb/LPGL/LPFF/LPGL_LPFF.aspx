@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <%=V_Head_Input %>
-
     <script>
         //vJFLX = GetUrlParam("JFLX") || 0;
         var vGZLX = GetUrlParam("vGZLX") || 0;
@@ -27,9 +26,9 @@
             vPageMsgID = '<%= CM_LPGL_LPFF_LD%>';
         }
     </script>
-    <script src="LPGL_LPFF.js"></script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
+    <script src="LPGL_LPFF.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -80,7 +79,7 @@
         <div class="bffld">
             <div class="bffld_left">保管地点</div>
             <div class="bffld_right">
-                <input id="TB_BGDDMC" type="text" style="background-color: #F4F6F7" />
+                <input id="TB_BGDDMC" type="text" />
                 <input id="HF_BGDDDM" type="hidden" />
             </div>
         </div>
@@ -107,7 +106,7 @@
         <div class="bffld_l">
             <div class="bffld_left">摘要</div>
             <div class="bffld_right">
-                <input id="TB_ZY" type="text"  />
+                <input id="TB_ZY" type="text" />
             </div>
         </div>
     </div>
@@ -119,8 +118,5 @@
         <button id="DelItem" type='button' class="item_deltoolbar">删除礼品</button>
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

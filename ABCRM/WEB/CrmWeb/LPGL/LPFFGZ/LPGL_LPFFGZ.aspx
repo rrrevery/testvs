@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <%=V_Head_Input %>
-    <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script src="LPGL_LPFFGZ.js"></script>
     <script>vPageMsgID = '<%=CM_LPGL_LPFFGZDEF%>'</script>
-    <script src="../../CrmLib/CrmLib_FillHYKTYPE.js"></script>
+    <script src="../../CrmLib/CrmLib_GetData.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
+    <script src="LPGL_LPFFGZ.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -133,8 +133,5 @@
         <button id="DelItem" type='button' class="item_deltoolbar">删除礼品</button>
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContentHYKTYPE" class="menuContent">
-        <ul id="TreeHYKTYPE" class="ztree"></ul>
-    </div>
 </body>
 </html>

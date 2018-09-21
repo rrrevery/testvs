@@ -14,9 +14,8 @@
         bCanExec = CheckMenuPermit(iDJR, '<%=CM_HYKGL_HYKGHKLX_SH%>');
         bCanSrch = CheckMenuPermit(iDJR, '<%=CM_HYKGL_HYKGHKLX_CX%>');
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="HYKGL_GHKLX.js"></script>
-    <script src="../../CrmLib/CrmLib_FillHYKTYPE.js"></script>
-
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -131,12 +130,5 @@
     </div>
 
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
-
-    <div id="menuContentHYKTYPE" class="menuContent">
-        <ul id="TreeHYKTYPE" class="ztree"></ul>
-    </div>
 </body>
 </html>

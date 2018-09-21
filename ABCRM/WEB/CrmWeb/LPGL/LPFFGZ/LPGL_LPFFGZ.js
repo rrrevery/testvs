@@ -17,7 +17,7 @@ $(document).ready(function () {
     $("#B_Stop").show();
     $("#ZZR").show();
     $("#ZZSJ").show();
-    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME", "menuContentHYKTYPE");
+    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME");
     if (vGZLX)
     {
         $("input[name='GZLX'][value=" + vGZLX + "]").attr("checked", true);
@@ -36,10 +36,8 @@ $(document).ready(function () {
 
 });
 
-function onHYKClick(e, treeId, treeNode) {
-    $("#TB_HYKNAME").val(treeNode.name);
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#HF_HYKTYPE").val(treeNode.id);
-    hideMenu("menuContentHYKTYPE");
 }
 
 function SetControlState() {

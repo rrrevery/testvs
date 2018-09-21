@@ -8118,22 +8118,17 @@ namespace BF.CrmProc
             //5积分返利冲正(pMDID传的是原记录编号）（暂无）
             //升降级使用方式3，扣减BQJF或XFJE            
             msg = string.Empty;
-            string sRYDM = string.Empty;
             string sSHDM = string.Empty;
             double fZJF = 0, tBDJF = 0, fZJE = 0, tBDJE = 0, fZBQ = 0, tBDBQ = 0;
-            query.Close();
-            query.SQL.Text = "select RYDM from RYXX where PERSON_ID=" + pRYID;
-            query.Open();
-            sRYDM = query.FieldByName("RYDM").AsString;
             //int tMDID = query.FieldByName("MDID").AsInteger;//tMDID为人员所属MDID，管辖商户分摊使用此MDID
             DateTime serverTime = CyDbSystem.GetDbServerTime(query);
             int tJYBH = SeqGenerator.GetSeq("HYK_JFBDJLMX");
-            UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, pMDID, tJYBH, pBDJF, pBDJE, sRYDM, pRYMC, serverTime, pZY, pBQJFBD, pBNJFBD, pLJJFBD, true);
+            UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, pMDID, tJYBH, pBDJF, pBDJE, pRYID.ToString(), pRYMC, serverTime, pZY, pBQJFBD, pBNJFBD, pLJJFBD, true);
             //处理门店积分
             switch (pCLFS)
             {
                 case 0:
-                    UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, pMDID, tJYBH, pBDJF, pBDJE, sRYDM, pRYMC, serverTime, pZY, pBQJFBD, pBNJFBD, pLJJFBD, false);
+                    UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, pMDID, tJYBH, pBDJF, pBDJE, pRYID.ToString(), pRYMC, serverTime, pZY, pBQJFBD, pBNJFBD, pLJJFBD, false);
                     break;
                 case 2:
                     {
@@ -8227,7 +8222,7 @@ namespace BF.CrmProc
                         UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, lst[i].iMDID, tJYBH,
                             fZJF == 0 ? 0 : Math.Round(pBDJF * lst[i].fWCLJF / fZJF, 4),
                             fZJE == 0 ? 0 : Math.Round(pBDJE * lst[i].fXFJE / fZJE, 4),
-                            sRYDM, pRYMC, serverTime, pZY,
+                            pRYID.ToString(), pRYMC, serverTime, pZY,
                             fZBQ == 0 ? 0 : Math.Round(pBQJFBD * lst[i].fBQJF / fZBQ, 4),
                             pBNJFBD, pLJJFBD, false);
                         tBDJF += (fZJF == 0 ? 0 : Math.Round(pBDJF * lst[i].fWCLJF / fZJF, 4));
@@ -8238,7 +8233,7 @@ namespace BF.CrmProc
                         UpdateJFZH_ZH(out msg, query, pHYID, pCLLX, pJLBH, lst[i].iMDID, tJYBH,
                             pBDJF - tBDJF,
                             pBDJE - tBDJE,
-                            sRYDM, pRYMC, serverTime, pZY,
+                            pRYID.ToString(), pRYMC, serverTime, pZY,
                             pBQJFBD - tBDBQ,
                             pBNJFBD, pLJJFBD, false);
                 }

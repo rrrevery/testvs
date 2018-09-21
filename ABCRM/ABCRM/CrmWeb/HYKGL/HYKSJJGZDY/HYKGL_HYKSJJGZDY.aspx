@@ -15,8 +15,8 @@
         else
             vPageMsgID = '<%=CM_HYKGL_HYKJJGZDY%>';
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="HYKGL_HYKSJJGZDY.js"></script>
-    <script src="../../CrmLib/CrmLib_FillHYKTYPE.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -80,13 +80,6 @@
             </div>
         </div>
     </div>
-
-
-
     <%=V_InputBodyEnd %>
-    <div id="menuContentHYKTYPE_OLD" class="menuContent">
-        <ul id="TreeHYKTYPE_OLD" class="ztree"></ul>
-    </div>
-
 </body>
 </html>

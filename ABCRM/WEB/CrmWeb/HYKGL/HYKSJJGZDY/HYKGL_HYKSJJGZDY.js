@@ -14,7 +14,7 @@ $(document).ready(function () {
     //    SelectMD("TB_MDMC", "HF_MDID", "zHF_MDID", false);
     //})
 
-    FillHYKTYPETree("TreeHYKTYPE_OLD", "TB_HYKNAME_OLD", "menuContentHYKTYPE_OLD", 0);
+    FillHYKTYPETree("TreeHYKTYPE_OLD", "TB_HYKNAME_OLD");
     if (newtype != "") {
         bCanEdit = true;
     }
@@ -132,7 +132,7 @@ function ShowData(data) {
     //mdid = Obj.iMDID;
 }
 
-function onHYKClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     if (treeNode.pId != "0")//非0才是卡类型 id是hyktype
     {
         FillKSJHYKTYPE("S_HYKNAME_NEW", treeNode.id, sj);

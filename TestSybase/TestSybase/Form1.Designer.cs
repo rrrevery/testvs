@@ -69,9 +69,11 @@
             this.button18 = new System.Windows.Forms.Button();
             this.tbSD_HEX = new System.Windows.Forms.TextBox();
             this.tbSD_NUM = new System.Windows.Forms.TextBox();
-            this.tbMsg = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
+            this.tbMsg = new System.Windows.Forms.TextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.button21 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -80,6 +82,7 @@
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -91,6 +94,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -500,16 +504,6 @@
             this.tbSD_NUM.TabIndex = 0;
             this.tbSD_NUM.Text = resources.GetString("tbSD_NUM.Text");
             // 
-            // tbMsg
-            // 
-            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbMsg.Location = new System.Drawing.Point(0, 246);
-            this.tbMsg.Multiline = true;
-            this.tbMsg.Name = "tbMsg";
-            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMsg.Size = new System.Drawing.Size(668, 84);
-            this.tbMsg.TabIndex = 24;
-            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.button20);
@@ -530,6 +524,37 @@
             this.button20.Text = "button20";
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // tbMsg
+            // 
+            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbMsg.Location = new System.Drawing.Point(0, 246);
+            this.tbMsg.Multiline = true;
+            this.tbMsg.Name = "tbMsg";
+            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMsg.Size = new System.Drawing.Size(668, 84);
+            this.tbMsg.TabIndex = 24;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.button21);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(660, 304);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "MSSQL";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(8, 6);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 0;
+            this.button21.Text = "button21";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // Form1
             // 
@@ -552,6 +577,7 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,6 +628,8 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Button button21;
     }
 }
 

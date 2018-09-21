@@ -502,7 +502,7 @@ function SaveDataBase() {
 function posttosever(Obj, str_url, str_mode, str_suc, async) {
     return PostToServer(Obj, str_url, str_mode, str_suc, async, function (data) {
         SetControlBaseState();
-        vJLBH = GetValueRegExp(data, "jlbh")
+        vJLBH = data.jlbh;
         if (bAutoAddAfterSave) {
             document.getElementById("B_Insert").onclick();
         }

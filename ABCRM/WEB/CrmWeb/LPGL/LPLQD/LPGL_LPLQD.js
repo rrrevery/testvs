@@ -15,8 +15,8 @@ function InitGrid() {
 
 
 $(document).ready(function () {
-    FillBGDDTree("TreeBGDD1", "TB_BGDDMC_BC", "menuContent1");
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD1", "TB_BGDDMC_BC");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
 
     $("#AddItem").click(function () {
         if ($("#TB_BGDDMC_BC").val() == "") {
@@ -77,7 +77,7 @@ function IsValidData() {
 
     return true;
 }
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     if (treeId == "TreeBGDD1") {
         if ($("#HF_BGDDDM_BC").val() != "") {
             ShowYesNoMessage("是否清空数据？", function () {
@@ -90,13 +90,10 @@ function onClick(e, treeId, treeNode) {
             $("#TB_BGDDMC_BC").val(treeNode.name);
             $("#HF_BGDDDM_BC").val(treeNode.id);
         }
-
-        hideMenu("menuContent1");
     }
     else {
         $("#TB_BGDDMC").val(treeNode.name);
         $("#HF_BGDDDM").val(treeNode.id);
-        hideMenu("menuContent");
     }
 }
 

@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <%=V_Head_Input %>
-    <script src="LPGL_RCLPFF.js"></script>
     <script>vPageMsgID = '<%=CM_LPGL_RCLPFF%>'</script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
+    <script src="LPGL_RCLPFF.js"></script>
     <%--    <script src="../../../Js/LodopFuncs.js"></script>
     <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0" height="0">
         <embed id="LODOP_EM" type="application/x-print-lodop" width="0" height="0" pluginspage="install_lodop32.exe"></embed>
@@ -66,7 +66,7 @@
         <div class="bffld">
             <div class="bffld_left">保管地点</div>
             <div class="bffld_right">
-                <input id="TB_BGDDMC" type="text" style="background-color: #F4F6F7" />
+                <input id="TB_BGDDMC" type="text" />
                 <input id="HF_BGDDDM" type="hidden" />
             </div>
         </div>
@@ -96,8 +96,5 @@
         <button id="DelItem" type='button' class="item_deltoolbar">删除礼品</button>
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

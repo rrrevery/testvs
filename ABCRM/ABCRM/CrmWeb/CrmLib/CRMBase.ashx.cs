@@ -96,10 +96,11 @@ namespace BF.CrmWeb.CrmLib
                             context.Response.Write(outdata);
                         else if ((obj.iJLBH != 0 || obj.sJLBH != "") && context.Request["mode"] != "Delete" && context.Request["mode"] != "Export")
                         {
-                            if (obj.iJLBH == 0)
-                                context.Response.Write("jlbh=" + obj.sJLBH);
-                            else
-                                context.Response.Write("jlbh=" + obj.iJLBH);
+                            context.Response.Write(JsonConvert.SerializeObject(new JLBHMsg(obj.sJLBH)));
+                            //if (obj.iJLBH == 0)
+                            //    context.Response.Write(JsonConvert.SerializeObject(new JLBHMsg(obj.sJLBH)));
+                            //else
+                            //    context.Response.Write("jlbh=" + obj.iJLBH);
 
                         }
                         else if (context.Request["mode"] == "ExportMember")
@@ -122,7 +123,7 @@ namespace BF.CrmWeb.CrmLib
                     }
                     else
                     {
-                        context.Response.Write("错误:" + msg);
+                        context.Response.Write(JsonConvert.SerializeObject(new ErrorMsg(msg, 2)));
                         return;
                     }
                 }
@@ -132,7 +133,7 @@ namespace BF.CrmWeb.CrmLib
                 string str = e.Message;
                 if (e is Newtonsoft.Json.JsonException)
                     str = "JSON解析错误，请检查输入数据，错误信息(" + e.Message + ")";
-                context.Response.Write("错误:" + str);
+                context.Response.Write(JsonConvert.SerializeObject(new ErrorMsg(str, 2)));
                 return;
             }
         }
