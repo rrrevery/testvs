@@ -14,8 +14,8 @@
         bCanExec = CheckMenuPermit(iDJR, <%=CM_HYXF_JFBD_SH%>);
         bCanSrch = CheckMenuPermit(iDJR, <%=CM_HYXF_JFBD_CX%>);
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="HYXF_JFBDD.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -82,8 +82,5 @@
 
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

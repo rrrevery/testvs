@@ -4,6 +4,7 @@ vUrl = vCZK == "0" ? "../HYKGL.ashx" : "../../MZKGL/MZKGL.ashx";
 vDBName = vCZK == "0" ? "CRMDB" : "CRMDBMZK";
 var HYKNO = GetUrlParam("HYKNO");
 var HYK_NO = "";
+
 function GetHYXX() {
     if ($("#TB_HYKNO").val() != "") {
         var str = GetHYXXData(0, $("#TB_HYKNO").val(), vDBName);
@@ -121,8 +122,7 @@ function SaveData() {
 
 $(document).ready(function () {
     $("#A").hide();
-
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     if (HYKNO != "") {
         $("#TB_HYKNO").val(HYKNO);
         GetHYXX();
@@ -191,10 +191,8 @@ function WUC_HYKC_Return() {
 //    hideMenu("menuContent");
 //}
 
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#TB_BGDDMC").val(treeNode.name);
-    $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
 }
 
 function ShowData(data) {

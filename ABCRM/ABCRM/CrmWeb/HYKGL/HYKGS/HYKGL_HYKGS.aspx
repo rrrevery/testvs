@@ -42,8 +42,8 @@
             }
         }
     </script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="HYKGL_HYKGS.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -142,8 +142,5 @@
         </div>
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

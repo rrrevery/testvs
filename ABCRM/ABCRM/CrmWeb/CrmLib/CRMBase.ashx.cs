@@ -33,7 +33,7 @@ namespace BF.CrmWeb.CrmLib
                 context.Response.Charset = "UTF-8";//GB2312
                 if (context.Session["User_Information"] == null)
                 {
-                    context.Response.Write("错误:请重新登录后再操作");
+                    context.Response.Write(JsonConvert.SerializeObject(new ErrorMsg("错误:请重新登录后再操作", 2)));
                     return;
                 }
                 //ConditionCollection cc = new ConditionCollection();
@@ -83,7 +83,7 @@ namespace BF.CrmWeb.CrmLib
                     ExecFunc(tMsgID, jsonValue, out obj);
                     if (obj == null)
                     {
-                        context.Response.Write("错误:未找到对应菜单号：" + tMsgID);
+                        context.Response.Write(JsonConvert.SerializeObject(new ErrorMsg("未找到对应菜单号：" + tMsgID, 2)));
                         return;
                     }
                     obj.iPageMsgID = tMsgID;
@@ -118,7 +118,7 @@ namespace BF.CrmWeb.CrmLib
                             // context.Response.Write(outdata);
                         }
                         else
-                            context.Response.Write("yes");
+                            context.Response.Write(JsonConvert.SerializeObject(new JLBHMsg("0")));
                         return;
                     }
                     else

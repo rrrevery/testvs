@@ -17,8 +17,7 @@ function InitGrid() {
 };
 
 $(document).ready(function () {
-
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     var lastsel;
 
     if (HYKNO != "") {
@@ -60,10 +59,8 @@ $(document).ready(function () {
     });
 });
 
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#TB_BGDDMC").val(treeNode.name);
-    $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
 }
 
 function SetControlState() {
@@ -93,14 +90,9 @@ function IsValidData() {
                 ShowMessage("请选择修改的状态", 3);
                 return false;
             }
-
-
         }
     }
-
-
     return true;
-
 }
 
 function SaveData() {
@@ -144,10 +136,7 @@ function ShowData(data) {
     if (Obj.iNEW_STATUS == "-4") {
         $("#rd_TY")[0].checked = true;
     }
-
-
-
-
+    
     $('#list').datagrid('loadData', Obj.itemTable, "json");
     $('#list').datagrid("loaded");
     $("#LB_DJRMC").text(Obj.sDJRMC);

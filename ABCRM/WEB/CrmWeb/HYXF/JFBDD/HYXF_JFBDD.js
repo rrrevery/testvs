@@ -18,9 +18,7 @@ function InitGrid() {
 };
 
 $(document).ready(function () {
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
-
-
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     $("#AddItem").click(function () {
         var DataArry = new Object();
         //DataArry["iMDID"] = parseInt($("#HF_MDID").val());
@@ -83,10 +81,8 @@ function InsertClickCustom() {
     //$("#CK_iBJ_CLLJJF")[0].checked = true;
 };
 
-function onClick(e, treeId, treeNode) {
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#TB_BGDDMC").val(treeNode.name);
-    $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
 }
 
 function IsValidData() {

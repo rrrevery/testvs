@@ -12,14 +12,12 @@ function InitGrid() {
           { name: "iHYKTYPE", hidden: true },
           { name: "sHYKNAME", width: 100, },
           { name: "dYYXQ", width: 150 },
-
     ];
 };
 
 $(document).ready(function () {
-
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
-    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME", "menuContentHYKTYPE", vCZK == "1" ? 2 : 1);
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
+    FillHYKTYPETree("TreeHYKTYPE", "TB_HYKNAME", vCZK == "1" ? 2 : 1);
 
     if (HYKNO != "") {
         if (vCZK == 1) {
@@ -59,38 +57,29 @@ $(document).ready(function () {
     });
 });
 
-function onClick(e, treeId, treeNode) {
-    $("#TB_BGDDMC").val(treeNode.name);
-    $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
-}
-
-function onHYKClick(e, treeId, treeNode) {
-    var ids = $("#list").datagrid("getData").rows;
-    if (ids.length > 0) {
-        var rowdata = $('#list').datagrid('getData').rows[0];
-        if (rowdata.iHYKTYPE != treeNode.id) {
-            ShowYesNoMessage("卡类型不一致，是否清空卡号列表？", function () {
-
-                $('#list').datagrid('loadData', { total: 0, rows: [] });
+function TreeNodeClickCustom(e, treeId, treeNode) {
+    if (treeId == "TreeBGDD") {
+        $("#TB_BGDDMC").val(treeNode.name);
+    }
+    if (treeId == "TreeHYKTYPE") {
+        var ids = $("#list").datagrid("getData").rows;
+        if (ids.length > 0) {
+            var rowdata = $('#list').datagrid('getData').rows[0];
+            if (rowdata.iHYKTYPE != treeNode.id) {
+                ShowYesNoMessage("卡类型不一致，是否清空卡号列表？", function () {
+                    $('#list').datagrid('loadData', { total: 0, rows: [] });
+                    $("#TB_HYKNAME").val(treeNode.name);
+                });
+            }
+            else {
                 $("#TB_HYKNAME").val(treeNode.name);
-                $("#HF_HYKTYPE").val(treeNode.id);
-                hideMenu("menuContentHYKTYPE");
-            });
+            }
         }
         else {
             $("#TB_HYKNAME").val(treeNode.name);
-            $("#HF_HYKTYPE").val(treeNode.id);
-            hideMenu("menuContentHYKTYPE");
         }
     }
-    else {
-        $("#TB_HYKNAME").val(treeNode.name);
-        $("#HF_HYKTYPE").val(treeNode.id);
-        hideMenu("menuContentHYKTYPE");
-    }
-};
-
+}
 
 function SetControlState() {
     if (HYKNO != "") {

@@ -23,8 +23,8 @@
         }
     </script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="HYKGL_ZTBD.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -83,8 +83,5 @@
         <button id="DelItem" type='button' class="item_deltoolbar">删除卡</button>
     </div>
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>
