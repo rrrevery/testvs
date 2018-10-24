@@ -1,6 +1,3 @@
-prompt Importing table RCLPROC...
-set feedback off
-set define off
 insert into RCLPROC (GROUP_ID, STEP, PROCEDURE_NAME, PROCEDURE_PARAM, MS, STATUS)
 values (5161000, 1, 'HYXF_QD_HYCXDJ', 'pRCLRQ,pZXR', '启动促销单据', 1);
 
@@ -8,7 +5,7 @@ insert into RCLPROC (GROUP_ID, STEP, PROCEDURE_NAME, PROCEDURE_PARAM, MS, STATUS
 values (5161000, 2, 'HYK_YHQ_QD_CXDJ', 'pRCLRQ,pZXR', '启动优惠券促销活动单据', 1);
 
 insert into RCLPROC (GROUP_ID, STEP, PROCEDURE_NAME, PROCEDURE_PARAM, MS, STATUS)
-values (5161000, 3, 'HYK_PROC_UPDATECRMJZRQ', 'pRCLRQ', 'update HYK_XFJL 的CRMJZRQ', 1);
+values (5161000, 3, 'HYK_PROC_UPDATECRMJZRQ', 'pRCLRQ', '更新记账日期', 1);
 
 insert into RCLPROC (GROUP_ID, STEP, PROCEDURE_NAME, PROCEDURE_PARAM, MS, STATUS)
 values (5161000, 4, 'HYK_PROC_HYK_CZK_RBB', 'pRCLRQ', '金额账日报表', 1);

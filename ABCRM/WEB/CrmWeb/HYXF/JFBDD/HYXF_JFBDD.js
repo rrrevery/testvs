@@ -82,7 +82,7 @@ function InsertClickCustom() {
 };
 
 function TreeNodeClickCustom(e, treeId, treeNode) {
-    $("#TB_BGDDMC").val(treeNode.name);
+    $("#HF_BGDDDM").val(treeNode.sBGDDDM);
 }
 
 function IsValidData() {
