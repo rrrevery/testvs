@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,54 +12,7 @@ namespace TestAntlr
 {
     public partial class Form1 : Form
     {
-        public class DataTableExpr : DataTable
-        {
-            public Dictionary<string, string> ColumnExpression = new Dictionary<string, string>();
-            public DataTableExpr()
-            {
-                this.RowChanged += DataTableExpr_RowChanged;
-            }
-
-            private void DataTableExpr_RowChanged(object sender, DataRowChangeEventArgs e)
-            {
-                this.RowChanged -= DataTableExpr_RowChanged;
-                foreach (var column in ColumnExpression)
-                    CalcField(e.Row, column.Key, column.Value);
-                this.RowChanged += DataTableExpr_RowChanged;
-            }
-
-            public void CalcField(DataRow row, string column, string expression)
-            {
-                string res = string.Empty;
-                //计算表达式，可能一个expression里存在多个表达式，按每个{{~}}之间为一个表达式来计算，表达式外的保持原状
-                int inx = expression.IndexOf("{{");
-                int inx_end = expression.IndexOf("}}");
-                while (inx >= 0)
-                {
-                    res += expression.Substring(0, inx);
-                    string exp = expression.Substring(inx + 3, inx_end - inx - 3);
-                    //替换字段
-                    int inx2 = exp.IndexOf("[");
-                    int inx2_end = exp.IndexOf("]");
-                    while (inx2 >= 0)
-                    {
-                        string fld = exp.Substring(inx2 + 1, inx2_end - inx2 - 1);
-                        double val = 0;
-                        double.TryParse(row[fld].ToString(), out val);
-                        exp = exp.Replace("[" + fld + "]", val.ToString());
-                        inx2 = exp.IndexOf("[");
-                        inx2_end = exp.IndexOf("]");
-                    }
-                    expression = expression.Substring(inx_end + 2);
-                    res += calculator.Calc(exp); //"计算表达式《" + exp + "》";
-                    inx = expression.IndexOf("{{");
-                    inx_end = expression.IndexOf("}}");
-                }
-                if (expression != string.Empty)
-                    res += expression;
-                row[column] = res;
-            }
-        }
+        
         public DataTableExpr table;
         public Form1()
         {
@@ -126,40 +78,7 @@ namespace TestAntlr
             table.ColumnExpression["理科"] = "{{=[物理]+[化学]+[生物]}}";
             table.ColumnExpression["总分"] = "{{=[语文]+[数学]+[英语]+[政治]+[历史]+[地理]+[物理]+[化学]+[生物]}}";
             table.ColumnExpression["偏科程度"] = "{{=round(100*abs([文科]-[理科])/([文科]+[理科]),2)}}%";
-            table.TableNewRow += Table_TableNewRow;
-            table.RowChanged += Table_RowChanged;
             dataGridView1.DataSource = table;
-        }
-
-        private void Table_RowChanged(object sender, DataRowChangeEventArgs e)
-        {
-            //Console.WriteLine("2");
-            //table.RowChanged -= Table_RowChanged;
-            //foreach (var column in table.ColumnExpression)
-            //    CalcField(e.Row, column.Key, column.Value);
-            //table.RowChanged += Table_RowChanged;
-        }
-
-        private void Table_TableNewRow(object sender, DataTableNewRowEventArgs e)
-        {
-            /*e.Row["总分"] = "{{=[语文]+[数学]+[英语]+[文科]+[理科]}}";
-            e.Row["文科"] = "{{=[政治]+[历史]+[地理]}}";
-            e.Row["理科"] = "{{=[物理]+[化学]+[生物}]}";
-            e.Row["偏科程度"] = "{{=100*abs([文科]-[理科])/([文科]+[理科])}}%";*/
-            /*CalcField(e.Row, "总分", "{{=[语文]+[数学]+[英语]+[文科]+[理科]}}");
-            CalcField(e.Row, "文科", "{{=[政治]+[历史]+[地理]}}");
-            CalcField(e.Row, "理科", "{{=[物理]+[化学]+[生物]}}");
-            CalcField(e.Row, "偏科程度", "{{=100*abs([文科]-[理科])/([文科]+[理科])}}%");*/
-        }
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (((DataTable)dataGridView1.DataSource).Rows.Count == 0)
-            //    return;
-            //CalcField(((DataTable)dataGridView1.DataSource).Rows[e.RowIndex], "文科", "{{=[政治]+[历史]+[地理]}}");
-            //CalcField(((DataTable)dataGridView1.DataSource).Rows[e.RowIndex], "理科", "{{=[物理]+[化学]+[生物]}}");
-            //CalcField(((DataTable)dataGridView1.DataSource).Rows[e.RowIndex], "总分", "{{=[语文]+[数学]+[英语]+[文科]+[理科]}}");
-            //CalcField(((DataTable)dataGridView1.DataSource).Rows[e.RowIndex], "偏科程度", "{{=round(100*abs([文科]-[理科])/([文科]+[理科]),2)}}%");
         }
     }
 }
