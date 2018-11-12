@@ -88,6 +88,8 @@ funcname
    | SQRT
    | ABS
    | ROUND
+   | FLOOR
+   | CEIL
    ;
 
 relop
@@ -147,6 +149,14 @@ ABS
 
 ROUND
    :'round'
+   ;
+
+FLOOR
+   :'floor'
+   ;
+
+CEIL
+   :'ceil'
    ;
 
 LPAREN

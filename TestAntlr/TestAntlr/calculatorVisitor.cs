@@ -10,6 +10,14 @@ namespace TestAntlr
 {
     public class calculatorVisitor : calculatorBaseVisitor<object>
     {
+        public override object VisitConstant([NotNull] calculatorParser.ConstantContext context)
+        {
+            if (context.PI() != null)
+                return Math.PI;
+            if (context.EULER() != null)
+                return Math.E;
+            return base.VisitConstant(context);
+        }
         public override object VisitExpression([NotNull] calculatorParser.ExpressionContext context)
         {
             double left = Convert.ToDouble(Visit(context.multiplyingExpression(0)));

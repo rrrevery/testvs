@@ -52,6 +52,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Z.Expressions.Eval, Version=2.7.13.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Expressions.Eval.2.7.13\lib\net45\Z.Expressions.Eval.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calculator.cs" />
@@ -65,19 +69,13 @@
     <Compile Include="DataTableExpr.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DataTableExpr2.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyGrammar.g4.lexer.cs">
-      <DependentUpon>MyGrammar.g4</DependentUpon>
-    </Compile>
-    <Compile Include="MyGrammar.g4.parser.cs">
-      <DependentUpon>MyGrammar.g4</DependentUpon>
-    </Compile>
-    <Compile Include="MyGrammarVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -92,10 +90,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Antlr4 Include="MyGrammar.g4">
-      <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>TestAntlr</CustomToolNamespace>
-    </Antlr4>
     <Antlr4 Include="calculator.g4">
       <Generator>MSBuild:Compile</Generator>
       <CustomToolNamespace>TestAntlr</CustomToolNamespace>

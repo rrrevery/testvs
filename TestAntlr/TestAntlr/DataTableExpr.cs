@@ -10,6 +10,7 @@ namespace TestAntlr
 {
     public class DataTableExpr : DataTable
     {
+        private string[] aDtFuncs = { "sum", "count", "max", "min", "avg", "stdev", "var" };
         public Dictionary<string, string> ColumnExpression = new Dictionary<string, string>();
         public DataTableExpr()
         {
@@ -28,6 +29,7 @@ namespace TestAntlr
         {
             string res = string.Empty;
             //计算表达式，可能一个expression里存在多个表达式，按每个{{~}}之间为一个表达式来计算，表达式外的保持原状
+            //先计算sum，count，max，min，avg，stdev标准差，var方差，因为这些使用datatable自己的compute方法计算
             int inx = expression.IndexOf("{{");
             int inx_end = expression.IndexOf("}}");
             while (inx >= 0)
@@ -40,6 +42,15 @@ namespace TestAntlr
                 while (inx2 >= 0)
                 {
                     string fld = exp.Substring(inx2 + 1, inx2_end - inx2 - 1);
+                    foreach (var item in aDtFuncs)
+                    {
+                        if (exp.IndexOf(item + "([" + fld + "])") >= 0)
+                        {
+                            double funcval = 0; ;
+                            double.TryParse(Compute(item + "(" + fld + ")", "").ToString(), out funcval);
+                            exp = exp.Replace(item + "([" + fld + "])", funcval.ToString());
+                        }
+                    }
                     double val = 0;
                     double.TryParse(row[fld].ToString(), out val);
                     exp = exp.Replace("[" + fld + "]", val.ToString());

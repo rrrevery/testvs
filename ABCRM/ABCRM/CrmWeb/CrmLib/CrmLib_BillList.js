@@ -341,7 +341,6 @@ function ExportClick() {
     var zUrl = vUrl + "?mode=Export&func=" + vPageMsgID;
     var array = new Object();
     array.json = JSON.stringify(obj);
-    array = $.sign(array);
     PostToExport(zUrl, array);
     SetControlBaseState();
 };
