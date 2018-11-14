@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E818CD6-801A-4DF4-8A60-F80BE85E16BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BF</RootNamespace>
+    <AssemblyName>ChangYiProc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CyPub, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\CyPub_BF\CyPub.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="LoginServiceLib">
+      <HintPath>..\..\..\引用\LoginServiceLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\引用\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CrmProc\CRMGL\CRMGL_CRMCZQX_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_CXHDYHQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_FXDWDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_FXQDDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_GXSJDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_JXCDB_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_KLXDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_KZDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_LQXQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_MDDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_MDSQLX_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_NLDDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_HYQYDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_QTKGLY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_RYXXDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SDDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SHDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SHHTCX.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SHSPCX.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SHZFFS_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SPJGDDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_XQSQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_XTCSDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_XTSJPHJC_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_HYXXXM_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_YHPOSXX_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_YHQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_YHQSYSH_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_YHXXDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_YWYDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_ZFFSDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_ZYDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\BFMZQDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_JJRDEF.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_RFMFXZBMD_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_RFMFXZB_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_RFMJBDY_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_SQXSFX_Proc.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPORT_YXHDDEF.cs" />
+    <Compile Include="CrmProc\CRMREPORT\CRMREPOTR_JJR_RQ_DEF.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_AKLXFXWXBDHY_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_BMQDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_BMQFFD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_BMQFFGZDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_BMQLBDEF.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_BQDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_CSDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_CXHDDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_GGDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_GXHFHDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_HYPLDBQ.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_HYQYDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_JFDHBLDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_JFDHLPDYD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_JFDHLPGZDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_LPSCTP_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_MEDIADY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_NEWSDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_QDJLCX_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_QMQGZDYD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_QMQTH.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_SBZKDYD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_TSJL.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_TSLXDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCJGTJ_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCNRTKDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCXXJLCX_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCYHCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WDCZLJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXBDHYTJ_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXCDDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXCDNRDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXCJDYD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXFL_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXFXDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXGJCCFJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXGroup_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXGZGNFX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXGZHF_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXHYKPTSC.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJB_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJFDHLPD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJFDHLPLQD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJFDHYHQ_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJPFFJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJPJCDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXJTWYDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKBHYKTF_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKBKSJF_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKBKTPSC_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKKBKZLJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKKBK_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKKZSJFGZDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXKLXDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLBDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLBFFGZDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLCDY_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLCSBDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLJD_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXLSSCSC.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXMDDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXMenu_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXMessage_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXPPSBDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXQDSJFGZDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXQFXXDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXQF_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXQMQJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSHLMDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSHLMLXDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSPTJ.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSQGZDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSQGZDYD.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSQJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXSYDHDY.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXUser_Group_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXUser_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXWTDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXXHJFMXCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXYHCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXYHGZFX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXYYFWDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXYYFWJLCL_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXYYFWJLCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXZFJHY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXZJHYMDCX_Srch.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WXZXHDDY_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_WX_Resource_Proc.cs" />
+    <Compile Include="CrmProc\GTPT\GTPT_XXTS_Proc.cs" />
+    <Compile Include="CrmProc\CRMGL\CRMGL_SPSBCX.cs" />
+    <Compile Include="CrmProc\GTPT\UploadMediaFileType.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BQHYCX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BQZKLXDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_CXKXX.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_ARTTREE_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BGDDDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_CXKXXBYZT_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_DALR_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_GHFXDW_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_GHKLX_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_GKDALR_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_GKZYDALR_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYBQPLDR_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYDADR_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYDBQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYGXSHJFXF_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKFFZFHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKFF_DZ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKJEZHHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKJKZK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKLYSQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKTK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKXF_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKYHQQTCLTJ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKYHQXFTJMD_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKYHQXFTJSH_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKYHQXFTJ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYPLDBQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYTJGZDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYTJ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JCBQGZDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JEZCKCL_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKFFTJ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKFF_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKGS_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKHK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKHS_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKJEZHCLJL_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKJK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKKSJJL.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKLQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JEZQKCL_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKSJ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKZF_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKZTBGGZDY.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYXX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JFBDJLMX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JFRBB_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_JFXFMX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKBGZ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKCX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKYETZ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKYXQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_KCKZF_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BQLBDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BQZDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_BQXMDY_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_MMXG_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_HYKFF_PL_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_SJJGZ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQCK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQCLJL_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQMDRBB_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQPLCK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQPLQK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQQK_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQRBB_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQSSXFTJ_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQYEQL_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQZHMX_Srch.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQYXQ_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YHQZC_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_YXQYC_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_ZHBQGZDY.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_ZKXX_Proc.cs" />
+    <Compile Include="CrmProc\HYKGL\HYKGL_ZTBD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_BJF_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_BMKLXXFHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_BMPPXFHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_BMXFHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_FQDYD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_HYKJFBDCLJL_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_HYXFQJHZDBQ.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_HYZDY_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_HYZLXDY_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFBDD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFDYD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFFLGZ_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFFLZX_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFHZCX_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFTZD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_JFZCD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_QMFDY_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_QMF_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_QZLXDEF_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_QZXXDY_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_SHJFGZ_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_TDJFZKD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_XFJLCX_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_XFMXCX_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_XFMXHZ_Srch.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_YQDYD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_MBJZDYD_Proc.cs" />
+    <Compile Include="CrmProc\HYXF\HYXF_ZKDYD_Proc.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_BMXFCSJKR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_BMXFCSJKY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_BMXFPMR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_BMXFPMY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_DBMXFCSJKR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_DBMXFCSJKY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_DSKTXFCSJKR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_DSKTXFCSJKY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_KYHY_Proc.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_MDPMR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_MDPMY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_MDXFCSJKR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_MDXFCSJKY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_SKTPMR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_SKTPMY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_SKTXFCSJKR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_SKTXFCSJKY_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_XFCSJK_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_YJHYR_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_YJGZDEF_Srch.cs" />
+    <Compile Include="CrmProc\JKPT\JKPT_YJHYY_Srch.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_BMHYXFFX.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_CXXX_Srch.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_DRXFJEYJ_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_DYHYFX_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HDFX_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYHDBM_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYHDCJ.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYHDDY.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYHDHF_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYHDLDPS_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYSJYJ_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_HYXYDJZDY_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_KFJLDY_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_KHXFDJZDY_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_RWCL_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_RWFB_Proc.cs" />
+    <Compile Include="CrmProc\KFPT\KFPT_RWZX_Proc.cs" />
+    <Compile Include="CrmProc\Lib\CrmLibData.cs" />
+    <Compile Include="CrmProc\Lib\LibStrings.cs" />
+    <Compile Include="CrmProc\Lib\LibData.cs" />
+    <Compile Include="CrmProc\Lib\LibProc.cs" />
+    <Compile Include="CrmProc\Lib\CrmLibProc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_CXLPXX_Srch.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_JFFHLPHZ_Srch.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_JFFHLPJXC_Srch.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_JFFHLPKC_Srch.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_GHSDY_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPDY_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPFFGZ_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPFF_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPFLDY_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPJHD_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPKCBDJL_Srch.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPLQD_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPPDCL_Proc.cs" />
+    <Compile Include="CrmProc\LPGL\LPGL_LPZFD_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_ASKFSTJMZKCQK.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CalculateKD.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CZKXYMDSZ_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CZKZJFGZDY_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CZKZKGZDY_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_JEZRBB_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_JEZYBB_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CZKCK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_CZKQK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KCKBGZ_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KCKCX_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KCKHZ_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KCKYETZD_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KCKZF_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_KHDALR_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKASKFSCXSKXX_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKBKCK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKCQK.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKFS_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKGS_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKHK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKHS_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKJEPLZC_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKJEZCLJL.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKJEZC_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKJK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKKFP.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKLQ_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKLYSQ_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKPLQD_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKPLQK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKQKGX_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKSKQKCX_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKTS_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKYEQL_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKZF_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKZPQD_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_SKDPLQD_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKXFCX_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKXFTJ_Srch.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKYECX.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKYEHZ.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_MZKPLCK_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_SKZXGZDY_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_YXQYC_Proc.cs" />
+    <Compile Include="CrmProc\MZKGL\MZKGL_ZTBD_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_CXHDDY_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_JFBSGZ_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_JFDXBL_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_LDZQHDDY.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_MBJZGZ_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_QTJFDHJL_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_SFQHZ_BM_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_SFQHZ_HT_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_SFQHZ_SPFL_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_SFQHZ_SP_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_YHQDQYE_Srch.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_YHQFFGZ_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_YHQMZDEF.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_YHQSYGZ_Proc.cs" />
+    <Compile Include="CrmProc\YHQGL\YHQGL_YHQYCZZ_Proc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SMS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\SMS\BF.SMS.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SMS\wmgw.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SMS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SMS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SMS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SMS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

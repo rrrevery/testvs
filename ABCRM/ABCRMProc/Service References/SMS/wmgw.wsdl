@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="MongateCsSpSendSmsNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszMobis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iMobiCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszSubPort" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateCsSpSendSmsNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateCsSpSendSmsNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateSendSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszMobis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszMsg" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iMobiCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pszSubPort" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MsgId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateSendSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateSendSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateMULTIXSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="multixmt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateMULTIXSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateMULTIXSendResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateCsGetSmsExEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateCsGetSmsExExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateCsGetSmsExExResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MongateCsGetStatusReportExEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateCsGetStatusReportExExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateCsGetStatusReportExExResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateQueryBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateQueryBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MongateQueryBalanceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateGetDeliver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iReqType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MongateGetDeliverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MongateGetDeliverResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MongateCsSpSendSmsNewSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateCsSpSendSmsNew" />
+  </wsdl:message>
+  <wsdl:message name="MongateCsSpSendSmsNewSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateCsSpSendSmsNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateSendSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateSendSubmit" />
+  </wsdl:message>
+  <wsdl:message name="MongateSendSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateSendSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateMULTIXSendSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateMULTIXSend" />
+  </wsdl:message>
+  <wsdl:message name="MongateMULTIXSendSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateMULTIXSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateCsGetSmsExExSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateCsGetSmsExEx" />
+  </wsdl:message>
+  <wsdl:message name="MongateCsGetSmsExExSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateCsGetSmsExExResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateCsGetStatusReportExExSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateCsGetStatusReportExEx" />
+  </wsdl:message>
+  <wsdl:message name="MongateCsGetStatusReportExExSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateCsGetStatusReportExExResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateQueryBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateQueryBalance" />
+  </wsdl:message>
+  <wsdl:message name="MongateQueryBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateQueryBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="MongateGetDeliverSoapIn">
+    <wsdl:part name="parameters" element="tns:MongateGetDeliver" />
+  </wsdl:message>
+  <wsdl:message name="MongateGetDeliverSoapOut">
+    <wsdl:part name="parameters" element="tns:MongateGetDeliverResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wmgwSoap">
+    <wsdl:operation name="MongateCsSpSendSmsNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">短信息发送接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateCsSpSendSmsNewSoapIn" />
+      <wsdl:output message="tns:MongateCsSpSendSmsNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateSendSubmit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">短信息发送接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateSendSubmitSoapIn" />
+      <wsdl:output message="tns:MongateSendSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateMULTIXSend">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">短信息发送接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateMULTIXSendSoapIn" />
+      <wsdl:output message="tns:MongateMULTIXSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetSmsExEx">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接收上行信息接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateCsGetSmsExExSoapIn" />
+      <wsdl:output message="tns:MongateCsGetSmsExExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetStatusReportExEx">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取状态报告接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateCsGetStatusReportExExSoapIn" />
+      <wsdl:output message="tns:MongateCsGetStatusReportExExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateQueryBalance">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询余额接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateQueryBalanceSoapIn" />
+      <wsdl:output message="tns:MongateQueryBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MongateGetDeliver">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取上行/状态报告接口</wsdl:documentation>
+      <wsdl:input message="tns:MongateGetDeliverSoapIn" />
+      <wsdl:output message="tns:MongateGetDeliverSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wmgwSoap" type="tns:wmgwSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MongateCsSpSendSmsNew">
+      <soap:operation soapAction="http://tempuri.org/MongateCsSpSendSmsNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateSendSubmit">
+      <soap:operation soapAction="http://tempuri.org/MongateSendSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateMULTIXSend">
+      <soap:operation soapAction="http://tempuri.org/MongateMULTIXSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetSmsExEx">
+      <soap:operation soapAction="http://tempuri.org/MongateCsGetSmsExEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetStatusReportExEx">
+      <soap:operation soapAction="http://tempuri.org/MongateCsGetStatusReportExEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateQueryBalance">
+      <soap:operation soapAction="http://tempuri.org/MongateQueryBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateGetDeliver">
+      <soap:operation soapAction="http://tempuri.org/MongateGetDeliver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wmgwSoap12" type="tns:wmgwSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MongateCsSpSendSmsNew">
+      <soap12:operation soapAction="http://tempuri.org/MongateCsSpSendSmsNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateSendSubmit">
+      <soap12:operation soapAction="http://tempuri.org/MongateSendSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateMULTIXSend">
+      <soap12:operation soapAction="http://tempuri.org/MongateMULTIXSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetSmsExEx">
+      <soap12:operation soapAction="http://tempuri.org/MongateCsGetSmsExEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateCsGetStatusReportExEx">
+      <soap12:operation soapAction="http://tempuri.org/MongateCsGetStatusReportExEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateQueryBalance">
+      <soap12:operation soapAction="http://tempuri.org/MongateQueryBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MongateGetDeliver">
+      <soap12:operation soapAction="http://tempuri.org/MongateGetDeliver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wmgw">
+    <wsdl:port name="wmgwSoap" binding="tns:wmgwSoap">
+      <soap:address location="http://61.145.229.29:9006/MWGate/wmgw.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wmgwSoap12" binding="tns:wmgwSoap12">
+      <soap12:address location="http://61.145.229.29:9006/MWGate/wmgw.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

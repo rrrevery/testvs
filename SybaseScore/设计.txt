@@ -1,0 +1,24 @@
+create table SS1 (
+   ID numeric(9) identity,
+   I1 int null,
+   I2 int null,
+   I3 int null,
+   I4 int null,
+   I5 int null,
+   F1 float null,
+   F2 float null,
+   F3 float null,
+   F4 float null,
+   F5 float null,
+   S1 varchar(200) null,
+   S2 varchar(200) null,
+   S3 varchar(200) null,
+   S4 varchar(200) null,
+   S5 varchar(200) null,
+   constraint PK_SS1 primary key (ID)
+)
+go
+
+以公司数据库为基准
+插入20线程*500次=49600
+查询20线程*100次

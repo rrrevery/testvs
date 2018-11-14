@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMServerProc", "CRMServerProc\CRMServerProc.csproj", "{118E0A81-C0D8-4006-8E16-4858702FEBB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRMServerWcfLib", "CRMServerWcfLib\CRMServerWcfLib.csproj", "{88A84D08-DC4E-4272-A5B8-33C94B43C333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmServerWeb", "CrmServerWeb\CrmServerWeb.csproj", "{29E7B65E-5510-45DC-A7ED-0DF68DF1FC7C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://124.193.186.228:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CRMServerProc\\CRMServerProc.csproj
+		SccProjectName1 = CRMServerProc
+		SccLocalPath1 = CRMServerProc
+		SccProjectUniqueName2 = CRMServerWcfLib\\CRMServerWcfLib.csproj
+		SccProjectName2 = CRMServerWcfLib
+		SccLocalPath2 = CRMServerWcfLib
+		SccProjectUniqueName3 = CrmServerWeb\\CrmServerWeb.csproj
+		SccProjectName3 = CrmServerWeb
+		SccLocalPath3 = CrmServerWeb
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{118E0A81-C0D8-4006-8E16-4858702FEBB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{118E0A81-C0D8-4006-8E16-4858702FEBB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{118E0A81-C0D8-4006-8E16-4858702FEBB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{118E0A81-C0D8-4006-8E16-4858702FEBB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A84D08-DC4E-4272-A5B8-33C94B43C333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A84D08-DC4E-4272-A5B8-33C94B43C333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A84D08-DC4E-4272-A5B8-33C94B43C333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A84D08-DC4E-4272-A5B8-33C94B43C333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E7B65E-5510-45DC-A7ED-0DF68DF1FC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E7B65E-5510-45DC-A7ED-0DF68DF1FC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E7B65E-5510-45DC-A7ED-0DF68DF1FC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E7B65E-5510-45DC-A7ED-0DF68DF1FC7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
