@@ -18,10 +18,6 @@ namespace MyXMPPClient
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            for (int i = 1; i < 10; i++)
-            {
-                tbGroup.Text += "000" + i + "\r\n";
-            }
             XmppMessage.XmppInit(OnMessage);
         }
 
@@ -47,12 +43,12 @@ namespace MyXMPPClient
         private void button3_Click(object sender, EventArgs e)
         {
             DateTime ks = DateTime.Now;
-            XmppMessage.XmppSend("rrr@rrr970", tbMsg.Text);
+            XmppMessage.XmppSend("rrr", tbMsg.Text);
             for (int i = 0; i < 100000; i++)
             {
-                XmppMessage.XmppSend("bj" + i + "@rrr970", tbMsg.Text);
+                XmppMessage.XmppSend("bj" + i, tbMsg.Text);
             }
-            XmppMessage.XmppSend("bj01@rrr970", tbMsg.Text);
+            XmppMessage.XmppSend("bj01", tbMsg.Text);
             DateTime js = DateTime.Now;
             Log((js - ks).TotalMilliseconds.ToString());
         }
@@ -78,7 +74,7 @@ namespace MyXMPPClient
             string user = tbToSysUser.Text;
             if (user == "")
                 return;
-            SysSend(user, tbMsg.Text);
+            XmppMessage.XmppSysSend(user, tbMsg.Text);
         }
 
         private void button7_Click(object sender, EventArgs e)

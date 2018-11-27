@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD945C13-406A-47E6-9647-0C7A4130785F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JHEMR.JHMRFirstPageDesigner</RootNamespace>
+    <AssemblyName>JHMRFirstPageDesigner</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>D:\V6客户端\虚拟机\JHEMR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="JHEMRGlobalLib, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\V6客户端\虚拟机\JHEMR\JHEMRGlobalLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JHServicesLib, Version=2.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\V6客户端\虚拟机\JHEMR\JHServicesLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Host\HostControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Host\HostSurface.cs" />
+    <Compile Include="Host\HostSurfaceManager.cs" />
+    <Compile Include="Host\KeystrokeMessageFilter.cs" />
+    <Compile Include="Host\MyRootDesigner.cs" />
+    <Compile Include="Host\MyTopLevelComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Host\NameCreationService.cs" />
+    <Compile Include="Host\RandomUtil.cs" />
+    <Compile Include="JHFrmNewFormType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JHFrmNewFormType.Designer.cs">
+      <DependentUpon>JHFrmNewFormType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loader\BasicHostLoader.cs" />
+    <Compile Include="Loader\CodeDomHostLoader.cs" />
+    <Compile Include="Loader\CodeGen.cs" />
+    <Compile Include="Loader\FromControlLoader.cs" />
+    <Compile Include="Loader\TypeResolutionService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolBox\Toolbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\ToolboxItem.cs" />
+    <Compile Include="ToolBox\ToolboxItemCollection.cs" />
+    <Compile Include="ToolBox\ToolboxTab.cs" />
+    <Compile Include="ToolBox\ToolboxTabCollection.cs" />
+    <Compile Include="ToolBox\ToolboxUIManagerVS.cs" />
+    <Compile Include="ToolBox\ToolboxXmlManager.cs" />
+    <Compile Include="UCMyDesigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMyDesigner.Designer.cs">
+      <DependentUpon>UCMyDesigner.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Host\HostControl.resx">
+      <DependentUpon>HostControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Host\MyTopLevelComponent.resx">
+      <DependentUpon>MyTopLevelComponent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JHFrmNewFormType.resx">
+      <DependentUpon>JHFrmNewFormType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ToolBox\Toolbox.resx">
+      <DependentUpon>Toolbox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMyDesigner.resx">
+      <DependentUpon>UCMyDesigner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JHFirstPageControls\JHFirstPageControls.csproj">
+      <Project>{74D7DCE7-9D60-4584-A9B0-378F548DA9B9}</Project>
+      <Name>JHFirstPageControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
