@@ -13,7 +13,7 @@ namespace TestDatabind
     public partial class Form1 : Form
     {
         RDataTable table;
-        DataObject obj = new DataObject();
+        DataObject obj = new DataObject { CreateTime = new DateTime(2000,1,1) };
         public Form1()
         {
             InitializeComponent();
@@ -25,10 +25,12 @@ namespace TestDatabind
             table.Columns.Add("ID", typeof(double));
             table.Columns.Add("Code", typeof(string));
             table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("CreateTime", typeof(DateTime));
 
             label1.DataBindings.Add("Text", table.BindSource, "Id");
             textBox1.DataBindings.Add("Text", table.BindSource, "Code");
             textBox2.DataBindings.Add("Text", table.BindSource, "Name");
+            //dateTimePicker1.DataBindings.Add("Value", table.BindSource, "CreateTime");
             dataGridView1.DataSource = table.BindSource;
 
             //label1.DataBindings.Add("Text", bindingSource1, "Id");
@@ -44,6 +46,7 @@ namespace TestDatabind
             label2.DataBindings.Add("Text", bindingSource1, "Id");
             textBox3.DataBindings.Add("Text", bindingSource1, "Code");
             textBox4.DataBindings.Add("Text", bindingSource1, "Name");
+            dateTimePicker2.DataBindings.Add("Value", bindingSource1, "CreateTime");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,6 +64,7 @@ namespace TestDatabind
             obj.Id = DateTime.Now.Hour;
             obj.Code = DateTime.Now.Minute.ToString();
             obj.Name = DateTime.Now.Second.ToString();
+            obj.CreateTime = DateTime.Now;
         }
 
         private void btnModObj_Click(object sender, EventArgs e)

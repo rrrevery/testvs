@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWizFetcher", "TestWizFetcher\TestWizFetcher.csproj", "{0B036443-3770-4DA0-B9A2-4449B53FF616}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B036443-3770-4DA0-B9A2-4449B53FF616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B036443-3770-4DA0-B9A2-4449B53FF616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B036443-3770-4DA0-B9A2-4449B53FF616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B036443-3770-4DA0-B9A2-4449B53FF616}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E251925D-B352-4D37-AD2E-EA7C61126887}
+	EndGlobalSection
+EndGlobal

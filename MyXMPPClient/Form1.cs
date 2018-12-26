@@ -67,6 +67,7 @@ namespace MyXMPPClient
         {
             string usr = tbSysUser.Text;
             XmppMessage.XmppSysLogin(usr, "1");
+            //XmppMessage.XmppLogin(usr, "1");
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -101,6 +102,14 @@ namespace MyXMPPClient
             //}
             //query.Close();
             //conn.Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string user = tbToSysUser.Text;
+            if (user == "")
+                return;
+            XmppMessage.XmppSysSendFile("admin@rrr970/Spark", @"D:\1.sql");
         }
     }
 }

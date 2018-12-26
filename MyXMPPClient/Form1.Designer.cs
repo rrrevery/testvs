@@ -31,23 +31,24 @@
             this.tbLog = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.tbToSysUser = new System.Windows.Forms.TextBox();
+            this.tbMsg = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btSysLogin = new System.Windows.Forms.Button();
             this.tbSysUser = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.tbGroup = new System.Windows.Forms.TextBox();
+            this.tbTo = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.tbPsw = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tbUser = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.tbToSysUser = new System.Windows.Forms.TextBox();
-            this.tbMsg = new System.Windows.Forms.TextBox();
-            this.tbTo = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.tbGroup = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.tbToSysUser);
             this.tabPage1.Controls.Add(this.tbMsg);
@@ -88,6 +90,32 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "测试";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(140, 72);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "发送消息";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // tbToSysUser
+            // 
+            this.tbToSysUser.Location = new System.Drawing.Point(140, 18);
+            this.tbToSysUser.Name = "tbToSysUser";
+            this.tbToSysUser.Size = new System.Drawing.Size(100, 21);
+            this.tbToSysUser.TabIndex = 14;
+            // 
+            // tbMsg
+            // 
+            this.tbMsg.Location = new System.Drawing.Point(140, 45);
+            this.tbMsg.Margin = new System.Windows.Forms.Padding(2);
+            this.tbMsg.Name = "tbMsg";
+            this.tbMsg.Size = new System.Drawing.Size(291, 21);
+            this.tbMsg.TabIndex = 13;
+            this.tbMsg.Text = "1";
             // 
             // textBox2
             // 
@@ -132,6 +160,52 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "OF测试";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(565, 206);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "test100000";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(565, 22);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 18;
+            this.button7.Text = "SysGroupSend";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // tbGroup
+            // 
+            this.tbGroup.Location = new System.Drawing.Point(459, 20);
+            this.tbGroup.Multiline = true;
+            this.tbGroup.Name = "tbGroup";
+            this.tbGroup.Size = new System.Drawing.Size(100, 209);
+            this.tbGroup.TabIndex = 17;
+            // 
+            // tbTo
+            // 
+            this.tbTo.Location = new System.Drawing.Point(258, 22);
+            this.tbTo.Name = "tbTo";
+            this.tbTo.Size = new System.Drawing.Size(100, 21);
+            this.tbTo.TabIndex = 15;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(372, 20);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "send";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button5
             // 
@@ -179,77 +253,15 @@
             this.tbUser.Size = new System.Drawing.Size(100, 21);
             this.tbUser.TabIndex = 10;
             // 
-            // button6
+            // button8
             // 
-            this.button6.Location = new System.Drawing.Point(140, 72);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "发送消息";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // tbToSysUser
-            // 
-            this.tbToSysUser.Location = new System.Drawing.Point(140, 18);
-            this.tbToSysUser.Name = "tbToSysUser";
-            this.tbToSysUser.Size = new System.Drawing.Size(100, 21);
-            this.tbToSysUser.TabIndex = 14;
-            // 
-            // tbMsg
-            // 
-            this.tbMsg.Location = new System.Drawing.Point(140, 45);
-            this.tbMsg.Margin = new System.Windows.Forms.Padding(2);
-            this.tbMsg.Name = "tbMsg";
-            this.tbMsg.Size = new System.Drawing.Size(291, 21);
-            this.tbMsg.TabIndex = 13;
-            this.tbMsg.Text = "1";
-            // 
-            // tbTo
-            // 
-            this.tbTo.Location = new System.Drawing.Point(258, 22);
-            this.tbTo.Name = "tbTo";
-            this.tbTo.Size = new System.Drawing.Size(100, 21);
-            this.tbTo.TabIndex = 15;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(372, 20);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "send";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(565, 22);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 18;
-            this.button7.Text = "SysGroupSend";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // tbGroup
-            // 
-            this.tbGroup.Location = new System.Drawing.Point(459, 20);
-            this.tbGroup.Multiline = true;
-            this.tbGroup.Name = "tbGroup";
-            this.tbGroup.Size = new System.Drawing.Size(100, 209);
-            this.tbGroup.TabIndex = 17;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(565, 206);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "test100000";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button8.Location = new System.Drawing.Point(221, 72);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "发送消息";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
@@ -293,6 +305,7 @@
         private System.Windows.Forms.TextBox tbTo;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button8;
     }
 }
 

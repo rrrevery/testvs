@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace TestDatabind
 {
-    public class DataObject// : INotifyPropertyChanged
+    public class DataObject : INotifyPropertyChanged
     {
         public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public DateTime CreateTime { get; set; }
 
-       // public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

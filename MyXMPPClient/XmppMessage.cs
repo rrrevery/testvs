@@ -4,9 +4,11 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Matrix;
 using Matrix.Xmpp;
 using Matrix.Xmpp.Client;
 using Matrix.Xmpp.Register;
+using Matrix.Xml;
 
 namespace MyXMPPClient
 {
@@ -16,7 +18,8 @@ namespace MyXMPPClient
         public static string sDomain = "rrr970";
         public static string sIP = "127.0.0.1";
         static XmppClient xc = new XmppClient();
-        public static void XmppInit(Action<string, string> onMessage)
+        public static FileTransferManager fm = new FileTransferManager();
+        public static void XmppInit(Action<string, string> onMessage, Action<string, string> onFile = null)
         {
             //
             Type type = typeof(Matrix.License.LicenseManager);
@@ -61,6 +64,13 @@ namespace MyXMPPClient
             xc.OnRegister += new EventHandler<Matrix.EventArgs>(xmpp_OnRegister);
             xc.OnRegisterInformation += new EventHandler<RegisterEventArgs>(xmpp_OnRegisterInformation);
             xc.OnRegisterError += new EventHandler<Matrix.Xmpp.Client.IqEventArgs>(xmpp_OnRegisterError);
+
+            //文件处理
+            fm.XmppClient = xc;
+            fm.OnFile += delegate (object sender, FileTransferEventArgs e)
+            {
+
+            };
         }
 
         public static void Log(string s)
@@ -91,6 +101,15 @@ namespace MyXMPPClient
         {
             xc.Send(new Matrix.Xmpp.Client.Message { To = "mjuser|" + To + "@" + sDomain, Type = MessageType.Chat, Body = Msg });
         }
+        public static void XmppSysSendFile(string To, string FileName)
+        {
+            //xc.Send(new Matrix.Xmpp.Client.Message { To = "mjuser|" + To + "@" + sDomain, Type = MessageType.Chat, Body = Msg });
+            //XmppXElement xl = XmppXElement.LoadFile(@"C:\config.ini");
+            //Message msg = new Message(xl);
+            //xc.Send();
+            Jid jid = new Jid(To);
+            fm.Send(jid, FileName, "");
+        }
         public static void XmppSysLogin(string Username, string Password)
         {
             string usrof = "mjuser|" + Username;
@@ -102,6 +121,7 @@ namespace MyXMPPClient
             xc.Username = Username;
             xc.Password = Password;
             xc.RegisterNewAccount = true;
+            xc.Show = Show.Chat;
             xc.Open();
         }
         public static void XmppClose()
@@ -131,7 +151,7 @@ namespace MyXMPPClient
             e.Register.Password = xc.Password;
         }
 
-        private static void xmpp_OnRegister(object sender, EventArgs e)
+        private static void xmpp_OnRegister(object sender, Matrix.EventArgs e)
         {
             Log("注册成功");
             xc.RegisterNewAccount = false;
