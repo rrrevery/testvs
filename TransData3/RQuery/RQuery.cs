@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Data.ProviderBase;
 using System.Data.Common;
+using System.Configuration;
 
 namespace RRR
 {
@@ -180,6 +182,7 @@ namespace RRR
                 dataReader.Close();
                 active = false;
             }
+            command.Parameters.Clear();
         }
         public void Next()
         {
@@ -212,6 +215,21 @@ namespace RRR
     }
     public class RTools
     {
+        public static DbConnection GetDbConnection(string connName)
+        {
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[connName];
+            DbConnection conn = DbProviderFactories.GetFactory(settings.ProviderName).CreateConnection();
+            conn.ConnectionString = settings.ConnectionString;
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return conn;
+        }
         public static string GetTMStr(byte[] bytes)
         {
             string tm = "0x";

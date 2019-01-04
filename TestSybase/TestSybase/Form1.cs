@@ -534,6 +534,10 @@ namespace TestSybase
                     query.ParamByName("NAME").AsString = "名称" + i;
                     query.ParamByName("CODE").AsInteger = i;
                     query.ExecSQL();
+                    query.SQL.Text = "insert into TB2(ID,VALUE,COUNT) values(newid(),:VALUE,:COUNT)";
+                    query.ParamByName("VALUE").AsFloat = DateTime.Now.Millisecond;
+                    query.ParamByName("COUNT").AsInteger = DateTime.Now.Millisecond;
+                    query.ExecSQL();
                 }
                 DateTime en = DateTime.Now;
                 Log("10万插入耗时：" + (en - be).TotalMilliseconds.ToString());
