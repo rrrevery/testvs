@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Common;
+using System.Configuration;
 using BF.Pub;
 
 namespace TestSybase
@@ -121,7 +122,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -152,7 +153,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -232,7 +233,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -259,7 +260,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -281,7 +282,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -307,7 +308,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -328,7 +329,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -348,7 +349,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -386,7 +387,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -416,7 +417,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -438,7 +439,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -475,7 +476,7 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
@@ -502,12 +503,103 @@ namespace TestSybase
             }
             catch (Exception ex)
             {
-                tbMsg.Text += dbname + ":" + ex.Message + "\r\n";
+                Log(dbname + ":" + ex.Message);
             }
             finally
             {
                 conn.Close();
             }
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            string dbname = "MSSQLLocal";
+            DbConnection conn = CyDbConnManager.GetActiveDbConnection(dbname);
+            try
+            {
+                CyQuery query = new CyQuery(conn);
+                query.SQL.Text = "insert into TB1(ID,NAME,CODE,CREATETIME) values(newid(),:NAME,:CODE,getdate())";
+                query.ParamByName("NAME").AsString = "名称";
+                query.ParamByName("CODE").AsInteger = 0;
+                query.ExecSQL();
+                query.SQL.Text = "select * from TB1";
+                query.Open();
+                Log("NAME：" + query.FieldByName("NAME").AsString);
+                Log("CODE：" + query.FieldByName("CODE").AsInteger);
+                query.Close();
+                DateTime be = DateTime.Now;
+                for (int i = 1; i <= 1000; i++)
+                {
+                    query.SQL.Text = "insert into TB1(ID,NAME,CODE,CREATETIME) values(newid(),:NAME,:CODE,getdate())";
+                    query.ParamByName("NAME").AsString = "名称" + i;
+                    query.ParamByName("CODE").AsInteger = i;
+                    query.ExecSQL();
+                }
+                DateTime en = DateTime.Now;
+                Log("10万插入耗时：" + (en - be).TotalMilliseconds.ToString());
+                be = DateTime.Now;
+                query.SQL.Text = "select count(*) from TB1 where CODE>=1 and CODE<=100000";
+                query.Open();
+                en = DateTime.Now;
+                Log("10万Count耗时：" + (en - be).TotalMilliseconds.ToString());
+                //be = DateTime.Now;
+                //query.SQL.Text = "delete from TB1 where CODE>=1 and CODE<=100000";
+                //query.ExecSQL();
+                //en = DateTime.Now;
+                //Log("10万删除耗时：" + (en - be).TotalMilliseconds.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log(dbname + ":" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "")
+                return;
+            if (textBox5.Text == "")
+                return;
+            string dbname = comboBox1.Text;
+            DbConnection conn = CyDbConnManager.GetActiveDbConnection(dbname);
+            try
+            {
+                CyQuery query = new CyQuery(conn);
+                if (textBox5.SelectedText == "")
+                    query.SQL.Text = textBox5.Text;
+                else
+                    query.SQL.Text = textBox5.SelectedText;
+                query.Open();
+                //int i = query.ExecSQL();
+                //if (i == -1)
+                //{
+                //    query.Open();
+                //    Log("尼玛还不支持Open");
+                //}
+                //else
+                //{
+                //    Log(i + " row(s) effected");
+                //}
+            }
+            catch (Exception ex)
+            {
+                Log(dbname + ":" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (ConnectionStringSettings one in ConfigurationManager.ConnectionStrings)
+                comboBox1.Items.Add(one.Name);
         }
     }
 }

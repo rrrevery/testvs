@@ -4,22 +4,24 @@ using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Configuration;
 using Matrix;
 using Matrix.Xmpp;
 using Matrix.Xmpp.Client;
 using Matrix.Xmpp.Register;
-using Matrix.Xml;
 
 namespace MyXMPPClient
 {
     public class XmppMessage
     {
 
-        public static string sDomain = "rrr970";
-        public static string sIP = "127.0.0.1";
+        public static string sIP = ConfigurationManager.AppSettings["XMPPHost"];
+        public static string sDomain = ConfigurationManager.AppSettings["XMPPDomain"];
+        public static string sRecieveDirectory = ConfigurationManager.AppSettings["XMPPFileRecieveDirectory"];
+
         static XmppClient xc = new XmppClient();
         public static FileTransferManager fm = new FileTransferManager();
-        public static void XmppInit(Action<string, string> onMessage, Action<string, string> onFile = null)
+        public static void XmppInit(Action<string, string> onRecieveMessage, Action<string, string> onRecieveFile = null)
         {
             //
             Type type = typeof(Matrix.License.LicenseManager);
@@ -49,7 +51,7 @@ namespace MyXMPPClient
                             ofmsg = e.Message.Value;
                         else
                             ofmsg = e.Message.Value.Substring(0, e.Message.Value.LastIndexOf(e.Message.Thread));
-                        onMessage(offrom, ofmsg);
+                        onRecieveMessage(offrom, ofmsg);
                         break;
                     case Matrix.Xmpp.Chatstates.Chatstate.Inactive: break;
                     case Matrix.Xmpp.Chatstates.Chatstate.Composing: break;
@@ -69,7 +71,13 @@ namespace MyXMPPClient
             fm.XmppClient = xc;
             fm.OnFile += delegate (object sender, FileTransferEventArgs e)
             {
-
+                e.Accept = true;
+                e.Directory = sRecieveDirectory;
+            };
+            fm.OnEnd += delegate (object sender, FileTransferEventArgs e)
+            {
+                if (e.Direction == Direction.Incoming && onRecieveFile != null)
+                    onRecieveFile(e.Jid.User, e.Directory + "\\" + e.Filename);
             };
         }
 
@@ -103,11 +111,10 @@ namespace MyXMPPClient
         }
         public static void XmppSysSendFile(string To, string FileName)
         {
-            //xc.Send(new Matrix.Xmpp.Client.Message { To = "mjuser|" + To + "@" + sDomain, Type = MessageType.Chat, Body = Msg });
-            //XmppXElement xl = XmppXElement.LoadFile(@"C:\config.ini");
-            //Message msg = new Message(xl);
-            //xc.Send();
-            Jid jid = new Jid(To);
+            Jid jid = new Jid();
+            jid.User = "mjuser|" + To;
+            jid.Server = sDomain;
+            jid.Resource = "MatriX";
             fm.Send(jid, FileName, "");
         }
         public static void XmppSysLogin(string Username, string Password)

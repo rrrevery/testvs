@@ -1,0 +1,14 @@
+0、前提
+	暂时只考虑SQLServer
+1、取数
+	时间戳
+	判断时间戳
+	保存时间戳
+2、传输
+	Post
+3、写数
+	IIS
+	
+	
+	
+Newtonsoft.Json.JsonConvert.SerializeObject(dataReader)

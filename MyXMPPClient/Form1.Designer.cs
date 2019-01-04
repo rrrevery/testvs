@@ -31,6 +31,7 @@
             this.tbLog = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tbToSysUser = new System.Windows.Forms.TextBox();
             this.tbMsg = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.tbPsw = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tbUser = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -90,6 +90,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "测试";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(221, 72);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "发送文件";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button6
             // 
@@ -252,16 +262,6 @@
             this.tbUser.Name = "tbUser";
             this.tbUser.Size = new System.Drawing.Size(100, 21);
             this.tbUser.TabIndex = 10;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(221, 72);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "发送消息";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 

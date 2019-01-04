@@ -18,7 +18,7 @@ namespace MyXMPPClient
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            XmppMessage.XmppInit(OnMessage);
+            XmppMessage.XmppInit(OnMessage, OnFile);
         }
 
         public void Log(string s)
@@ -28,6 +28,10 @@ namespace MyXMPPClient
         private void OnMessage(string From, string Msg)
         {
             Log(DateTime.Now.ToString() + " " + From + ":" + Msg);
+        }
+        private void OnFile(string From, string File)
+        {
+            Log(DateTime.Now.ToString() + " 从" + From + "收到文件，已保存至" + File);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -109,7 +113,11 @@ namespace MyXMPPClient
             string user = tbToSysUser.Text;
             if (user == "")
                 return;
-            XmppMessage.XmppSysSendFile("admin@rrr970/Spark", @"D:\1.sql");
+            var of = new OpenFileDialog();
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                XmppMessage.XmppSysSendFile(user, of.FileName);
+            }
         }
     }
 }

@@ -41,6 +41,7 @@
       <HintPath>..\..\..\..\BFVX\CRM-BS\引用\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

@@ -71,9 +71,13 @@
             this.tbSD_NUM = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button20 = new System.Windows.Forms.Button();
-            this.tbMsg = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.button21 = new System.Windows.Forms.Button();
+            this.tbMsg = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button23 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -525,18 +529,12 @@
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
-            // tbMsg
-            // 
-            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbMsg.Location = new System.Drawing.Point(0, 246);
-            this.tbMsg.Multiline = true;
-            this.tbMsg.Name = "tbMsg";
-            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMsg.Size = new System.Drawing.Size(668, 84);
-            this.tbMsg.TabIndex = 24;
-            // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.comboBox1);
+            this.tabPage8.Controls.Add(this.button23);
+            this.tabPage8.Controls.Add(this.textBox5);
+            this.tabPage8.Controls.Add(this.button22);
             this.tabPage8.Controls.Add(this.button21);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
@@ -556,6 +554,53 @@
             this.button21.UseVisualStyleBackColor = true;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
+            // tbMsg
+            // 
+            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbMsg.Location = new System.Drawing.Point(0, 246);
+            this.tbMsg.Multiline = true;
+            this.tbMsg.Name = "tbMsg";
+            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMsg.Size = new System.Drawing.Size(668, 84);
+            this.tbMsg.TabIndex = 24;
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(89, 6);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 1;
+            this.button22.Text = "button22";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(8, 35);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(356, 183);
+            this.textBox5.TabIndex = 2;
+            // 
+            // button23
+            // 
+            this.button23.Location = new System.Drawing.Point(370, 195);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(75, 23);
+            this.button23.TabIndex = 3;
+            this.button23.Text = "button23";
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(370, 169);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -565,6 +610,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -578,6 +624,7 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -630,6 +677,10 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
