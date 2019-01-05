@@ -77,10 +77,15 @@
     <Compile Include="Reciever.ashx.cs">
       <DependentUpon>Reciever.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Test.ashx.cs">
+      <DependentUpon>Test.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Reciever.ashx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Test.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

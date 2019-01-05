@@ -7,11 +7,18 @@ using System.Data;
 using System.Data.ProviderBase;
 using System.Data.Common;
 using System.Configuration;
+using System.IO;
+using System.IO.Compression;
 
 namespace RRR
 {
     public class RSQL
     {
+        private RQuery query;
+        public RSQL(RQuery query)
+        {
+            this.query = query;
+        }
         StringBuilder sql = new StringBuilder();
         public void Add(string s)
         {
@@ -26,6 +33,7 @@ namespace RRR
             get { return sql.ToString(); }
             set
             {
+                query.command.Parameters.Clear();
                 sql.Length = 0;
                 Add(value);
             }
@@ -98,11 +106,11 @@ namespace RRR
         {
             command = conn.CreateCommand();
             command.CommandTimeout = 3600;
-
+            SQL = new RSQL(this);
         }
-        DbCommand command;
+        public DbCommand command;
         DbDataReader dataReader;
-        public RSQL SQL = new RSQL();
+        public RSQL SQL;
         public string ParamSymbol = "@";
 
         private bool eof = false;
@@ -236,6 +244,37 @@ namespace RRR
             for (int i = 0; i < bytes.Length; i++)
                 tm += bytes[i].ToString("x2");
             return tm;
+        }
+        public static string CompressFile(string sourceFilePath)
+        {
+            string targetFileName = sourceFilePath + ".gz";
+            using (FileStream sourceFileStream = new FileInfo(sourceFilePath).OpenRead())
+            {
+                using (FileStream targetFileStream = File.Create(targetFileName))
+                {
+                    using (GZipStream zipStream = new GZipStream(targetFileStream, CompressionMode.Compress))
+                    {
+                        sourceFileStream.CopyTo(zipStream);
+                    }
+                }
+            }
+            return targetFileName;
+        }
+        public static string DecompressFile(string sourceFilePath)
+        {
+            string targetFileName = sourceFilePath.Replace(".gz", "");
+            using (FileStream sourceFileStream = new FileInfo(sourceFilePath).OpenRead())
+            {
+                //Create the decompressed file.
+                using (FileStream targetFileStream = File.Create(targetFileName))
+                {
+                    using (GZipStream zipStream = new GZipStream(sourceFileStream, CompressionMode.Decompress))
+                    {
+                        zipStream.CopyTo(targetFileStream);
+                    }
+                }
+            }
+            return targetFileName;
         }
     }
 }

@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.Common;
 using System.Configuration;
-using System.Net;
-using System.IO.Compression;
 using Newtonsoft.Json;
 using RRR;
 
@@ -19,19 +17,9 @@ namespace TransData3
 {
     public partial class Form1 : Form
     {
-        public class TransDefine
-        {
-            public string TblName = string.Empty;
-            public string KeyFld = string.Empty;
-            public string TMFld = string.Empty;
-            public int TMType = 0;
-            public string Stamp = string.Empty;
-            public int Stamp_Int = 0;
-            public string Stamp_Str = string.Empty;
-        }
         public List<TransDefine> TransList = new List<TransDefine>();
         public string Server = ConfigurationManager.AppSettings["Reciever"].ToString();
-        public string TrasnID = ConfigurationManager.AppSettings["TransID"].ToString();
+        public string TransID = ConfigurationManager.AppSettings["TransID"].ToString();
         public Form1()
         {
             InitializeComponent();
@@ -39,31 +27,44 @@ namespace TransData3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TransList.Clear();
-            DbConnection conn = RTools.GetDbConnection("MSSQLLocal");
-            RQuery query = new RQuery(conn);
-            query.SQL.Text = "select * from TransDefine where Enabled=1 and TransID=" + TrasnID + " order by Inx";
-            query.Open();
-            while (!query.Eof)
+            TransData();
+        }
+        private void TransData()
+        {
+            try
             {
-                TransList.Add(new TransDefine
+                Log("开始同步数据……");
+                TransList.Clear();
+                DbConnection conn = RTools.GetDbConnection("MSSQLLocal");
+                RQuery query = new RQuery(conn);
+                query.SQL.Text = "select * from TransDefine where Enabled=1 and TransID=" + TransID + " order by Inx";
+                query.Open();
+                while (!query.Eof)
                 {
-                    TblName = query.FieldByName("TblName").AsString,
-                    KeyFld = query.FieldByName("KeyFld").AsString,
-                    TMFld = query.FieldByName("TMFld").AsString,
-                    TMType = query.FieldByName("TMType").AsInteger,
-                    Stamp = RTools.GetTMStr(query.FieldByName("Stamp").AsBytes),
-                    Stamp_Int = query.FieldByName("Stamp_Int").AsInteger,
-                    Stamp_Str = query.FieldByName("Stamp_Str").AsString
-                });
-                query.Next();
+                    TransList.Add(new TransDefine
+                    {
+                        TblName = query.FieldByName("TblName").AsString,
+                        KeyFld = query.FieldByName("KeyFld").AsString,
+                        TMFld = query.FieldByName("TMFld").AsString,
+                        TMType = query.FieldByName("TMType").AsInteger,
+                        Stamp = RTools.GetTMStr(query.FieldByName("Stamp").AsBytes),
+                        Stamp_Int = query.FieldByName("Stamp_Int").AsInteger,
+                        Stamp_Str = query.FieldByName("Stamp_Str").AsString
+                    });
+                    query.Next();
+                }
+                query.Close();
+                foreach (var one in TransList)
+                {
+                    TransOneData(query, one);
+                }
+                conn.Close();
+                Log("同步数据完毕");
             }
-            query.Close();
-            foreach (var one in TransList)
+            catch (Exception e)
             {
-                TransOneData(query, one);
+                Log("杯具了：" + e.Message);
             }
-            conn.Close();
         }
         private void TransOneData(RQuery query, TransDefine one)
         {
@@ -81,82 +82,35 @@ namespace TransData3
                 File.WriteAllText(filename, o);
                 File.AppendAllText(filename, "\r\n");
                 DataTable dt = query.GetDataTable();
+                Log("正在生成" + one.TblName + "数据，共" + dt.Rows.Count + "条");
                 string s = JsonConvert.SerializeObject(dt);
                 File.AppendAllText(filename, s);
-                //CompressSingle(filename);
-                //PostFileToServer(filename + ".gz");
-                PostFileToServer(filename);
-                MessageBox.Show("1");
-                string tm = RTools.GetTMStr((byte[])dt.Rows[dt.Rows.Count - 1]["TM"]);
-                query.Close();
-                query.SQL.Text = "update TransDefine set Stamp=" + tm + " where TransID=" + TrasnID + " and TblName=:TblName";
-                //query.ParamByName("TrasnID").asi = one.TblName;
-                query.ParamByName("TblName").AsString = one.TblName;
-                query.ExecSQL();
-            }
-        }
-        public string CompressSingle(string sourceFilePath)
-        {
-            string zipFileName = sourceFilePath + ".gz";
-            using (FileStream sourceFileStream = new FileInfo(sourceFilePath).OpenRead())
-            {
-                using (FileStream zipFileStream = File.Create(zipFileName))
+                string result = TransTools.PostFileToServer(Server, RTools.CompressFile(filename));
+                Log("正在传输" + one.TblName);
+                if (result == "")
                 {
-                    using (GZipStream zipStream = new GZipStream(zipFileStream, CompressionMode.Compress))
-                    {
-                        sourceFileStream.CopyTo(zipStream);
-                    }
+                    Log("传输" + one.TblName + "成功");
+                    string tm = RTools.GetTMStr((byte[])dt.Rows[dt.Rows.Count - 1]["TM"]);
+                    query.Close();
+                    query.SQL.Text = "update TransDefine set Stamp=" + tm + " where TransID=" + TransID + " and TblName=:TblName";
+                    //query.ParamByName("TrasnID").asi = one.TblName;
+                    query.ParamByName("TblName").AsString = one.TblName;
+                    query.ExecSQL();
+                }
+                else
+                {
+                    Log("传输" + one.TblName + "失败，" + result);
                 }
             }
-            return zipFileName;
         }
-        public void PostFileToServer(string file)
-        {
-            FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read);
-            byte[] buffur = new byte[fs.Length];
-            fs.Read(buffur, 0, (int)fs.Length);
-
-            Upload(Server, "file", file, buffur, 0, buffur.Length);
-            fs.Close();
-        }
-        static public string Upload(string uriStr, string name, string fileName, byte[] data, int offset, int count)
-        {
-            try
-            {
-                var request = WebRequest.Create(uriStr);
-                request.Method = "POST";
-                var boundary = $"******{DateTime.Now.Ticks}***";
-                request.ContentType = $"multipart/form-data; boundary={boundary}";
-                boundary = $"--{boundary}";
-                using (var requestStream = request.GetRequestStream())
-                {
-                    var buffer = Encoding.ASCII.GetBytes(boundary + Environment.NewLine);
-                    requestStream.Write(buffer, 0, buffer.Length);
-                    buffer = Encoding.ASCII.GetBytes($"Content-Disposition: form-data; name=\"{name}\"; filename=\"{fileName}\"{Environment.NewLine}");
-                    requestStream.Write(buffer, 0, buffer.Length);
-                    buffer = Encoding.ASCII.GetBytes($"Content-Type: application/octet-stream{Environment.NewLine}{Environment.NewLine}");
-                    requestStream.Write(buffer, 0, buffer.Length);
-                    requestStream.Write(data, offset, count);
-                    buffer = Encoding.ASCII.GetBytes($"{Environment.NewLine}{boundary}--");
-                    requestStream.Write(buffer, 0, buffer.Length);
-                }
-                using (var response = request.GetResponse())
-                using (var responseStream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(responseStream))
-                {
-                    return streamReader.ReadToEnd();
-                }
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             DbConnection conn = RTools.GetDbConnection("MSSQLLocal");
             RQuery query = new RQuery(conn);
+            query.SQL.Text = "delete from TB1";
+            query.ExecSQL();
+            query.SQL.Text = "delete from TB2";
+            query.ExecSQL();
             for (int i = 1; i <= 1000; i++)
             {
                 query.SQL.Text = "insert into TB1(ID,NAME,CODE,CREATETIME) values(newid(),:NAME,:CODE,getdate())";
@@ -178,6 +132,17 @@ namespace TransData3
             query.SQL.Text = "update TransDefine set Stamp=null";
             query.ExecSQL();
             conn.Close();
+        }
+        private void Log(string str)
+        {
+            tbMsg.AppendText(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff ") + str + "\r\n");
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            TransData();
+            timer1.Enabled = true;
         }
     }
 }
