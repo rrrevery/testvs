@@ -1,0 +1,42 @@
+CREATE TABLE [dbo].[TB1] (
+    [Id]         UNIQUEIDENTIFIER NOT NULL,
+    [Name]       NVARCHAR (50)    NULL,
+    [Code]       INT              NULL,
+    [CreateTime] DATETIME         NULL,
+    [TM]         ROWVERSION       NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[TB2] (
+    [Id]    UNIQUEIDENTIFIER NOT NULL,
+    [Value] FLOAT (53)       NULL,
+    [Count] INT              NULL,
+    [TM]    ROWVERSION       NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[TransDefine] (
+    [TransID]   INT            NOT NULL,
+    [TblName]   NVARCHAR (50)  NOT NULL,
+    [Inx]       INT            NULL,
+    [KeyFld]    NVARCHAR (50)  NULL,
+    [TMFld]     NVARCHAR (50)  NULL,
+    [TMType]    INT            NULL,
+    [Stamp]     VARBINARY (8) NULL,
+    [Stamp_Int] INT            NULL,
+    [Stamp_Str] NVARCHAR (50)  NULL,
+    [Enabled]   SMALLINT       NULL,
+    PRIMARY KEY CLUSTERED ([TransID] ASC, [TblName] ASC)
+);
+
+
+2008 express
+https://www.microsoft.com/zh-CN/download/details.aspx?id=30438
+2012 express
+https://www.microsoft.com/zh-CN/download/details.aspx?id=29062
+
+https://pacs.meehealth.com:6443/?roomname=room711&myname=aa1
+
+INSERT INTO [TransDefine]([TransID], [TblName], [Inx], [KeyFld], [TMFld], [TMType], [Stamp], [Stamp_Int], [Stamp_Str], [Enabled]) VALUES (1, N'DIR:e:\VSGit\TransData3\Attachment', 3, N'Attachment', N'', NULL, NULL, NULL, N'636823218069396973', 1);
+INSERT INTO [TransDefine]([TransID], [TblName], [Inx], [KeyFld], [TMFld], [TMType], [Stamp], [Stamp_Int], [Stamp_Str], [Enabled]) VALUES (1, N'TB1', 1, N'Id', N'TM', NULL, 0x0000000000002F0E, NULL, NULL, 1);
+INSERT INTO [TransDefine]([TransID], [TblName], [Inx], [KeyFld], [TMFld], [TMType], [Stamp], [Stamp_Int], [Stamp_Str], [Enabled]) VALUES (1, N'TB2', 2, N'Id', N'TM', NULL, 0x0000000000002F0F, NULL, NULL, 1);

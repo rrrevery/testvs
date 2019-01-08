@@ -229,67 +229,67 @@ function Get_CYCBL_CheckItem(cbl_name) {
     return valuelist;
 };
 
-function DrawGrid(listName, vColName, vColModel, vSingle) {
-    //为简化查询模板开发流程，统一Grid格式，新的查询可以使用InitGrid函数初始化vColumnNames和vColumnModel
-    InitGrid();
-    if (listName == undefined) { listName = "list"; }
-    if (vSingle == undefined) { vSingle = true; }
-    if (vColName == undefined) { vColName = vColumnNames; }
-    if (vColModel == undefined) { vColModel = vColumnModel; }
-    if (vColumns.length == 0 || vColName != vColumnNames) {
-        vColumns = InitColumns(undefined, vColModel, vColName);
-        vAllColumns = vColumns;
-    }
-    $("#" + listName + "").datagrid({
-        //url: vUrl + "?mode=Search&func=" + vPageMsgID,
-        //method: 'post',
-        width: GridWidth,
-        height: GridHeight,//674,
-        autoRowHeight: false,
-        striped: true,
-        columns: [vColumns],
-        frozenColumns: [vFrozenColumns],
-        sortName: vColumns[0].field,
-        singleSelect: vSingle,
-        sortOrder: 'desc',
-        //remoteSort: false,
-        //fitColumns: true,
-        //scrollbarSize: 0,
-        showHeader: true,
-        showFooter: true,
-        pagePosition: 'bottom',
-        rownumbers: true, //添加一列显示行号
-        pagination: true,  //启用分页
-        pageNumber: 1,
-        pageSize: 10,
-        pageList: [10, 50, 100],
-        onSortColumn: function (sort, order) {
-            SearchData(undefined, undefined, sort, order, listName);
-        },
-        onClickRow: OnClickRow,
-        onDblClickRow: DBClickRow,
-    });
-    var pager = $('#' + listName + '').datagrid("getPager");
-    pager.pagination({
-        onSelectPage: function (pageNum, pageSize) {
-            SearchData(pageNum, pageSize, undefined, undefined, listName);
-        },
-        buttons: [{
-            iconCls: 'fa fa-cog datagrid_setting',
-            handler: ListSet
-        }]
-    });
-}
+//function DrawGrid(listName, vColName, vColModel, vSingle) {
+//    //为简化查询模板开发流程，统一Grid格式，新的查询可以使用InitGrid函数初始化vColumnNames和vColumnModel
+//    InitGrid();
+//    if (listName == undefined) { listName = "list"; }
+//    if (vSingle == undefined) { vSingle = true; }
+//    if (vColName == undefined) { vColName = vColumnNames; }
+//    if (vColModel == undefined) { vColModel = vColumnModel; }
+//    if (vColumns.length == 0 || vColName != vColumnNames) {
+//        vColumns = InitColumns(undefined, vColModel, vColName);
+//        vAllColumns = vColumns;
+//    }
+//    $("#" + listName + "").datagrid({
+//        //url: vUrl + "?mode=Search&func=" + vPageMsgID,
+//        //method: 'post',
+//        width: GridWidth,
+//        height: GridHeight,//674,
+//        autoRowHeight: false,
+//        striped: true,
+//        columns: [vColumns],
+//        frozenColumns: [vFrozenColumns],
+//        sortName: vColumns[0].field,
+//        singleSelect: vSingle,
+//        sortOrder: 'desc',
+//        //remoteSort: false,
+//        //fitColumns: true,
+//        //scrollbarSize: 0,
+//        showHeader: true,
+//        showFooter: true,
+//        pagePosition: 'bottom',
+//        rownumbers: true, //添加一列显示行号
+//        pagination: true,  //启用分页
+//        pageNumber: 1,
+//        pageSize: 10,
+//        pageList: [10, 50, 100],
+//        onSortColumn: function (sort, order) {
+//            SearchData(undefined, undefined, sort, order, listName);
+//        },
+//        onClickRow: OnClickRow,
+//        onDblClickRow: DBClickRow,
+//    });
+//    var pager = $('#' + listName + '').datagrid("getPager");
+//    pager.pagination({
+//        onSelectPage: function (pageNum, pageSize) {
+//            SearchData(pageNum, pageSize, undefined, undefined, listName);
+//        },
+//        buttons: [{
+//            iconCls: 'fa fa-cog datagrid_setting',
+//            handler: ListSet
+//        }]
+//    });
+//}
 
-function OnClickRow(rowIndex, rowData) {
-    if (vSQDXZ == "1") {
-        //window.parent.ReloadData(rowData);
-        //window.parent.art.dialog.list['sqd'].close();
-    }
-    else {
-        SetControlBaseState();
-    }
-}
+//function OnClickRow(rowIndex, rowData) {
+//    if (vSQDXZ == "1") {
+//        //window.parent.ReloadData(rowData);
+//        //window.parent.art.dialog.list['sqd'].close();
+//    }
+//    else {
+//        SetControlBaseState();
+//    }
+//}
 
 function AddCustomerButton() {
     AddToolButtons("确定", "B_QD");

@@ -29,52 +29,123 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnTrans = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClearLog = new System.Windows.Forms.Button();
             this.tbMsg = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnTrans = new System.Windows.Forms.Button();
+            this.chbAuto = new System.Windows.Forms.CheckBox();
+            this.btnExit = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnTrans
+            // panel1
             // 
-            this.btnTrans.Location = new System.Drawing.Point(174, 12);
-            this.btnTrans.Name = "btnTrans";
-            this.btnTrans.Size = new System.Drawing.Size(75, 23);
-            this.btnTrans.TabIndex = 0;
-            this.btnTrans.Text = "传输";
-            this.btnTrans.UseVisualStyleBackColor = true;
-            this.btnTrans.Click += new System.EventHandler(this.button1_Click);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnClearLog);
+            this.panel1.Controls.Add(this.tbMsg);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnTrans);
+            this.panel1.Controls.Add(this.chbAuto);
+            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(675, 359);
+            this.panel1.TabIndex = 28;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(73)))), ((int)(((byte)(154)))));
+            this.btnClearLog.ForeColor = System.Drawing.Color.White;
+            this.btnClearLog.Location = new System.Drawing.Point(453, 10);
+            this.btnClearLog.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.Size = new System.Drawing.Size(99, 39);
+            this.btnClearLog.TabIndex = 34;
+            this.btnClearLog.Text = "清空日志";
+            this.btnClearLog.UseVisualStyleBackColor = false;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
+            // 
+            // tbMsg
+            // 
+            this.tbMsg.BackColor = System.Drawing.Color.White;
+            this.tbMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tbMsg.Location = new System.Drawing.Point(0, 58);
+            this.tbMsg.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tbMsg.Multiline = true;
+            this.tbMsg.Name = "tbMsg";
+            this.tbMsg.ReadOnly = true;
+            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbMsg.Size = new System.Drawing.Size(673, 299);
+            this.tbMsg.TabIndex = 31;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(348, 10);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 39);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "清除记录";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.Location = new System.Drawing.Point(243, 10);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
+            this.button2.Size = new System.Drawing.Size(99, 39);
+            this.button2.TabIndex = 29;
             this.button2.Text = "生成数据";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btnTrans
             // 
-            this.button3.Location = new System.Drawing.Point(93, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "清除传输记录";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnTrans.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(73)))), ((int)(((byte)(154)))));
+            this.btnTrans.ForeColor = System.Drawing.Color.White;
+            this.btnTrans.Location = new System.Drawing.Point(11, 10);
+            this.btnTrans.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnTrans.Name = "btnTrans";
+            this.btnTrans.Size = new System.Drawing.Size(99, 39);
+            this.btnTrans.TabIndex = 28;
+            this.btnTrans.Text = "手工同步";
+            this.btnTrans.UseVisualStyleBackColor = false;
+            this.btnTrans.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tbMsg
+            // chbAuto
             // 
-            this.tbMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tbMsg.Location = new System.Drawing.Point(0, 41);
-            this.tbMsg.Multiline = true;
-            this.tbMsg.Name = "tbMsg";
-            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMsg.Size = new System.Drawing.Size(560, 181);
-            this.tbMsg.TabIndex = 25;
+            this.chbAuto.AutoSize = true;
+            this.chbAuto.Checked = true;
+            this.chbAuto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAuto.Location = new System.Drawing.Point(125, 18);
+            this.chbAuto.Name = "chbAuto";
+            this.chbAuto.Size = new System.Drawing.Size(92, 24);
+            this.chbAuto.TabIndex = 33;
+            this.chbAuto.Text = "自动同步";
+            this.chbAuto.UseVisualStyleBackColor = true;
+            this.chbAuto.Click += new System.EventHandler(this.chbAuto_CheckedChanged);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(73)))), ((int)(((byte)(154)))));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(558, 10);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(99, 39);
+            this.btnExit.TabIndex = 32;
+            this.btnExit.Text = "退出";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // timer1
             // 
@@ -83,27 +154,35 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 222);
-            this.Controls.Add(this.tbMsg);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnTrans);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.ClientSize = new System.Drawing.Size(675, 359);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Form1";
-            this.Text = "一个名字";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "同步程序";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnTrans;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox tbMsg;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnTrans;
+        private System.Windows.Forms.CheckBox chbAuto;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnClearLog;
     }
 }
 

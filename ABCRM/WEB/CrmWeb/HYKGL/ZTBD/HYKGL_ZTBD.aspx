@@ -57,12 +57,14 @@
         </div>
         <div class="bffld_l">
             <div class="bffld_left">新状态</div>
-            <input class="magic-radio" type="radio" name="status" id="rd_TY" value="-4" />
-            <label for="rd_TY">停用卡</label>
-            <input class="magic-radio" type="radio" name="status" id="rd_FSK" value="0" />
-            <label for="rd_FSK">发售卡</label>
-            <input class="magic-radio" type="radio" name="status" id="rd_YXFK" value="1" />
-            <label for="rd_YXFK">已消费卡</label>
+            <div class="bffld_right">
+                <input class="magic-radio" type="radio" name="status" id="rd_TY" value="-4" />
+                <label for="rd_TY">停用卡</label>
+                <input class="magic-radio" type="radio" name="status" id="rd_FSK" value="0" />
+                <label for="rd_FSK">发售卡</label>
+                <input class="magic-radio" type="radio" name="status" id="rd_YXFK" value="1" />
+                <label for="rd_YXFK">已消费卡</label>
+            </div>
         </div>
     </div>
 

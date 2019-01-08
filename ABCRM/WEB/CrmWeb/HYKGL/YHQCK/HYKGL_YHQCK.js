@@ -62,7 +62,7 @@ $(document).ready(function () {
         vProcStatus = cPS_ADD;
         SetControlBaseState();
     }
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
     // FillMDDM($("#S_MDFW"));
 
     $("#TB_CXHD").click(function () {
@@ -158,10 +158,8 @@ function GetHYXX() {
     }
 }
 
-function onClick(e, treeId, treeNode) {
-    $("#TB_BGDDMC").val(treeNode.name);
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
 }
 
 function WUC_Return(MC, ID, zID, SHDM, SHMC, jqxhr) {

@@ -67,6 +67,14 @@ namespace RRR
                 param.Value = value;
             }
         }
+        public DateTime AsDatetime
+        {
+            set
+            {
+                param.DbType = DbType.DateTime;
+                param.Value = value;
+            }
+        }
     }
     public class RField
     {
@@ -97,6 +105,13 @@ namespace RRR
             get
             {
                 return Data.ToString() == string.Empty ? new byte[8] : (byte[])Data;
+            }
+        }
+        public DateTime AsDatetime
+        {
+            get
+            {
+                return Data.ToString() == string.Empty ? DateTime.MinValue : (DateTime)Data;
             }
         }
     }
@@ -219,6 +234,11 @@ namespace RRR
             RField fld = new RField();
             fld.Data = dataReader[name];
             return fld;
+        }
+        public void SetTrans(DbTransaction trans)
+        {
+            if (command != null)
+                command.Transaction = trans;
         }
     }
     public class RTools

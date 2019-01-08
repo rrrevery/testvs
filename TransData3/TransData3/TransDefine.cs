@@ -42,7 +42,7 @@ namespace TransData3
                 {
                     var buffer = Encoding.ASCII.GetBytes(boundary + Environment.NewLine);
                     requestStream.Write(buffer, 0, buffer.Length);
-                    buffer = Encoding.ASCII.GetBytes($"Content-Disposition: form-data; name=\"{name}\"; filename=\"{fileName}\"{Environment.NewLine}");
+                    buffer = Encoding.UTF8.GetBytes($"Content-Disposition: form-data; name=\"{name}\"; filename=\"{fileName}\"{Environment.NewLine}");
                     requestStream.Write(buffer, 0, buffer.Length);
                     buffer = Encoding.ASCII.GetBytes($"Content-Type: application/octet-stream{Environment.NewLine}{Environment.NewLine}");
                     requestStream.Write(buffer, 0, buffer.Length);

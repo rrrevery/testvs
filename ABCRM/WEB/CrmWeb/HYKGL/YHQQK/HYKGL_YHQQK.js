@@ -23,7 +23,7 @@ $(document).ready(function () {
         var checkRepeatField = [];
         SelectYHQZH("list", condData, checkRepeatField,true);
     });
-    FillBGDDTree("TreeBGDD", "TB_BGDDMC", "menuContent");
+    FillBGDDTree("TreeBGDD", "TB_BGDDMC");
 })
 
 function CustomerOpenDialogReturn(rows, listName, lst, array, CheckFieldId) {
@@ -113,16 +113,8 @@ function ShowData(data) {
     $("#LB_HYKNAME").text(Obj.sHYKNAME);
 }
 
-function onClick(e, treeId, treeNode) {
-    $("#TB_BGDDMC").val(treeNode.name);
+function TreeNodeClickCustom(e, treeId, treeNode) {
     $("#HF_BGDDDM").val(treeNode.id);
-    hideMenu("menuContent");
-}
-
-function onHYKClick(e, treeId, treeNode) {
-    $("#TB_HYKNAME").val(treeNode.name);
-    $("#HF_HYKTYPE").val(treeNode.id);
-    hideMenuHYK();
 }
 
 function GetHYXX() {

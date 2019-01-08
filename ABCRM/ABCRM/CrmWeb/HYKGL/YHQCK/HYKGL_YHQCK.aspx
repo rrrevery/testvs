@@ -14,7 +14,7 @@
         bCanSrch = CheckMenuPermit(iDJR, '<%=CM_HYKGL_YHQZHCKCL_CX%>');
     </script>
     <script src="HYKGL_YHQCK.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
 
 </head>
@@ -95,8 +95,5 @@
     </div>
     <input type="hidden" id="HF_CZYMDID" />
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
 </body>
 </html>

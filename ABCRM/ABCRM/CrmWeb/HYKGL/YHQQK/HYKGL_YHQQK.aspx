@@ -11,9 +11,8 @@
         vPageMsgID = '<%=CM_HYKGL_YHQZHQKCL%>';
     </script>
     <script src="HYKGL_YHQQK.js"></script>
-    <script src="../../CrmLib/CrmLib_FillBGDD.js"></script>
+    <script src="../../CrmLib/CrmLib_FillTree.js"></script>
     <script src="../../CrmLib/CrmLib_GetData.js"></script>
-    <script src="../../CrmLib/CrmLib_FillHYKTYPE.js"></script>
 </head>
 <body>
     <%=V_InputBodyBegin %>
@@ -121,11 +120,5 @@
     </div>
     <input type="hidden" id="HF_CZYMDID" />
     <%=V_InputBodyEnd %>
-    <div id="menuContent" class="menuContent">
-        <ul id="TreeBGDD" class="ztree"></ul>
-    </div>
-    <div id="menuContentHYKTYPE" class="menuContent">
-        <ul id="TreeHYKTYPE" class="ztree"></ul>
-    </div>
 </body>
 </html>

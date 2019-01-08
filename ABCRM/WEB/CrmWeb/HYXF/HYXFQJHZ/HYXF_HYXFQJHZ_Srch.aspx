@@ -96,18 +96,18 @@
     <div class="bfrow">
         <div class="bffld">
             <div class="bffld_left">会员卡号</div>
-            <div class="bffld_right">
-                <input id="TB_HYKNO1" type="text" style="width: 45%; float: left;" />
+            <div class="bffld_right twovalue">
+                <input id="TB_HYKNO1" type="text" />
                 <span class="Wdate_span">至</span>
-                <input id="TB_HYKNO2" type="text" style="width: 45%; float: left;" />
+                <input id="TB_HYKNO2" type="text" />
             </div>
         </div>
         <div class="bffld">
             <div class="bffld_left">年龄段</div>
-            <div class="bffld_right">
-                <input id="TB_AGE1" type="text" style="width: 45%; float: left;" />
+            <div class="bffld_right twovalue">
+                <input id="TB_AGE1" type="text" />
                 <span class="Wdate_span">至</span>
-                <input id="TB_AGE2" type="text" style="width: 45%; float: left;" />
+                <input id="TB_AGE2" type="text" />
             </div>
         </div>
     </div>
@@ -138,28 +138,28 @@
     <div class="bfrow">
         <div class="bffld">
             <div class="bffld_left">会员积分</div>
-            <div class="bffld_right">
-                <input id="TB_JF1" type="text" style="width: 45%; float: left;" />
+            <div class="bffld_right twovalue">
+                <input id="TB_JF1" type="text" />
                 <span class="Wdate_span">至</span>
-                <input id="TB_JF2" type="text" style="width: 45%; float: left;" />
+                <input id="TB_JF2" type="text" />
             </div>
         </div>
         <div class="bffld">
             <div class="bffld_left">消费金额</div>
-            <div class="bffld_right">
-                <input id="TB_XFJE1" type="text" style="width: 45%; float: left;" />
+            <div class="bffld_right twovalue">
+                <input id="TB_XFJE1" type="text" />
                 <span class="Wdate_span">至</span>
-                <input id="TB_XFJE2" type="text" style="width: 45%; float: left;" />
+                <input id="TB_XFJE2" type="text" />
             </div>
         </div>
     </div>
     <div class="bfrow">
         <div class="bffld">
             <div class="bffld_left">消费次数</div>
-            <div class="bffld_right">
-                <input id="TB_SKCS1" type="text" style="width: 45%; float: left;" />
+            <div class="bffld_right twovalue">
+                <input id="TB_SKCS1" type="text" />
                 <span class="Wdate_span">至</span>
-                <input id="TB_SKCS2" type="text" style="width: 45%; float: left;" />
+                <input id="TB_SKCS2" type="text" />
             </div>
         </div>
     </div>
@@ -197,7 +197,7 @@
     <div class="bfrow">
         <div class="bffld">
             <div class="bffld_left">统计日期</div>
-            <div class="bffld_right">
+            <div class="bffld_right twodate">
                 <input id="TB_TJRQ1" type="text" class="Wdate" onfocus="WdatePicker({isShowWeek:true})" />
                 <span class="Wdate_span">至</span>
                 <input id="TB_TJRQ2" type="text" class="Wdate" onfocus="WdatePicker({isShowWeek:true})" />
@@ -206,7 +206,7 @@
         </div>
         <div class="bffld">
             <div class="bffld_left">有效期</div>
-            <div class="bffld_right">
+            <div class="bffld_right twodate">
                 <input id="TB_YXQ1" type="text" class="Wdate" onfocus="WdatePicker({isShowWeek:true})" />
                 <span class="Wdate_span">至</span>
                 <input id="TB_YXQ2" type="text" class="Wdate" onfocus="WdatePicker({isShowWeek:true})" />
